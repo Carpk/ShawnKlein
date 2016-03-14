@@ -9,16 +9,16 @@ name: 'Shawn Klein'
 description: "Web Developer in the Chicagoland area."
 
 # Author's info
-author: ''
+author: 'Shawn Klein'
 # edit 'categories' in the front matter of every post to match this username
-nickname: casper
-bio: 'A paranormal expert and his daughter bunk in an abandoned house populated by 3 mischievous ghosts and one friendly one.'
-location: 'Maine, USA'
-url: 'http://biomadeira.github.io/jasper/'
-image: 'assets/images/casper.png'
+nickname: carpk
+bio: 'Self taught free lance web developer. Lover of all things open source.'
+location: 'Chicago, IL'
+url: 'http://ShawnKlein.net/'
+image: 'assets/images/carpk.png'
 
-short_url: 'biomadeira.github.io/jasper/'
-google_analytics: UA-69281367-1
+short_url: 'ShawnKlein.net/'
+google_analytics: UA-75067724-1
 disqus: username
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /jasper/
