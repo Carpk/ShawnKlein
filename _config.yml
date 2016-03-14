@@ -21,7 +21,7 @@ short_url: 'ShawnKlein.net/'
 google_analytics: UA-75067724-1
 disqus: username
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
-baseurl: /jasper/
+baseurl: /
 
 # Permalinks
 permalink: /:title
