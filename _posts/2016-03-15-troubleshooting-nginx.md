@@ -2,7 +2,7 @@
 layout: post
 cover: 'assets/images/autumn_stairs.jpg'
 title: Troubleshooting nginx install
-date:   2016-03-12 10:18:00
+date:   2016-03-15 10:18:00
 tags: troubleshooting
 subclass: 'post tag-test tag-content'
 categories: 'casper'
@@ -10,7 +10,7 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-Recently after installing nginx on a Ubuntu Server and completed setting up up configurations along with a basic index.html page, I was unable to connect to the URL or ping the ip address. The connection kept giving me a 408 request timed out error code.
+Recently after installing nginx on a Ubuntu Server and completed setting up up configurations along with a basic index.html page, I was unable to connect to the URL or ping the ip address. The connection kept giving me a "request timed out" error.
 
 I ssh'd to the server and ran a series of codes to check that nginx was running, this was my first step to make sure nginx was up and running:
 
