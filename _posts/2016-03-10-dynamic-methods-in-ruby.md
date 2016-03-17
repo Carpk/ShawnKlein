@@ -24,18 +24,21 @@ end
 ###Define method
 
 ```
-book.instance_variables.each
-
+books.first.instance_variables.each do |ivar|
+  type = ivar[1..-1]
+  define_method("sort_books_by_" + type) do
+    books.sort_by {|b| b.send(type)}
+  end
 end
 ```
 
 ###Method missing
 
 ```
-def method_missing(method_name, *args)
+def method_missing(method, *args)
   attr = method.split('_').last
-  super unless book.respond_to?(attr)
-  self.sort_by{|b| b.attr}
+  super unless self.books.first.respond_to?(attr)
+  self.books.sort_by{ |b| b.send(attr) }
 end
 ```
 
