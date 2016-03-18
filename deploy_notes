@@ -1,0 +1,6 @@
+
+to deploy, use following command:
+
+aws s3 sync . s3://shawnklein.net/
+
+

@@ -46,7 +46,7 @@ If the above code was in a Libray class, you could call one of the defined metho
 
 ###Method missing
 
-Probably the most dangerous of way to dynamically create methods, Ruby looks for a method in the current class, then checks all of that classes ancestor for the called method. If it does not find it, it calls `#method_missing` on the BasicObject class. We are redefining that method to allow our `sort_books_by_index` to be caught, and have the `index` attribute to be passed using `#send`.  
+Probably the most dangerous of way to dynamically create methods, Ruby looks for a method in the current class, then checks all of that classe's ancestors for the called method. If it does not find it, it calls `#method_missing` on the BasicObject class. We are redefining that method to allow our `sort_books_by_index` to be caught, and have the `index` attribute to be passed using `#send`.  
 
 ```
 def method_missing(method, *args)
@@ -56,7 +56,7 @@ def method_missing(method, *args)
 end
 ```
 
-And the below code would pass without any problems:
+And the below code will run without any problems:
 
 `library.sort_books_by_index`
 
