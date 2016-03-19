@@ -11,11 +11,11 @@ logo: 'assets/images/logo.png'
 ---
 There are three main ways to get Ruby to dynamically generate code for us. These are ways that Ruby will generate code for a method when it simply does not exist yet.
 
-In our examples, we will be defining code in a Library class, which could have a ivar `@books` an array of Book objects.
+In our examples, we will be defining code in a Library class, which could have an ivar called `@books` as an array of Book objects.
 
 ###Send
 
-The `#send` method is pretty much at the center of all our dynamic methods. It takes a symbol, and passes it to the calling class where it searches that class and all ancestors for that method to execute. Our Books class has `attr_reader :title` enabled.
+The `#send` method is pretty much at the center of all our dynamic methods. It takes a symbol, and passes it to the calling class where it searches that class and all ancestors for that method to execute. For our example, lets say our Book objects have `attr_reader :title` enabled.
 
 ```
 def sort_books_by(attr)
