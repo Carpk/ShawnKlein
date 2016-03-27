@@ -75,7 +75,7 @@ class Person
 end
 ````
 
-Another way we can utilize the Strategy pattern is for the context to pass its `self` into a strategy method
+Another way we can utilize the Strategy pattern is for the context to pass its `self` into a strategy method. The example below also has an example if you were to pass the strategy in as a proc. We would bundle up our `#work` method into a proc object and pass it in when initializing our Person class. Which could be used when the strategy interface is a very simple design, such as our example below.
 
 ````
 class Fireman
@@ -85,14 +85,16 @@ class Fireman
   end
 end
 
-class Person(strategy)
-  def initialize
+class Person
+  def initialize(strategy) # or &strategy
     @name = 'Joe'
     @job = strategy
   end
 
   def preform_job
     @job.work(self)
+      # or
+    # @job.call(self)
   end
 end
 ````
@@ -103,8 +105,59 @@ The major benefit of strategy is the separation of concerns, varying elements ha
 
 ###Observer
 
+If we have potential that multiple objects are interested in the connection, they can register using the `#add_observers()` method. Otherwise, the below `@observers` array could be a single instantiation of an observing class that gets passed in upon the subjects initialization. The below example removes that implicit coupling as it is not dependant on whether none, one or many observer classes are in the array.
+
+````
+class Logger
+  def update(obj)
+    @log_file << "#{obj} is attempting to make a connection"
+  end
+end
+
+class Subject
+  def initialize
+    @observers = [Logger.new]
+  end
+
+  def add_observer(obs)
+    @observers << obs
+  end
+
+  def report_to_observers
+    @observers.each {|obs| obs.update(self)}
+  end
+end
+
+class Connection
+  include Subject
+  def initialize
+    super
+  end
+
+  def connect
+    ### attempts to connect ###
+    report_to_observers
+  end
+end
+````
+
 ###Composite
 
 ###Iterator
 
 ###Command
+
+###Adapter
+
+###Proxy
+
+###Decorator
+
+###Singleton
+
+###Factory
+
+###Builder
+
+###Interpreter
+
