@@ -12,22 +12,29 @@ logo: 'assets/images/logo.png'
 
 This post is a work in progress, check back later for updates!
 
+* Template
 
-* [composite](#composite)
+* Strategy
+
+* Observer
+
+* [Composite](#composite)
+
 * [Iterator](#iterator)
+
 * [Command](#command)
 
-###Adapter
+* Adapter
 
-###Proxy
+* Proxy
 
-###Decorator
+* Decorator
 
-###Singleton
+* Singleton
 
-###Factory
+* Factory
 
-###Template
+###<a name="template"></a>Template
 
 The template design pattern is useful when the application is prone to change at a given interval. While behaviors are initially defined in a base class (our "ReadHTMLFile" class), they can be inherited into a class that allows for greater customization.
 
@@ -61,7 +68,7 @@ Our base class will read a HTML5 without any problems. But if we plan on reading
 
 One of the drawbacks of this design pattern, is that it relies heavily on inheritance. The subclasses will always depend on its baseclass, and will limit our flexibility.
 
-###Strategy
+###<a name="strategy"></a>Strategy
 
 The Strategey design pattern is based on composition and delegation rather than inheritance. It is where you pull the varying algorithm into separate object, where it will then pass it into the initializing subclass. The strategy gets passed into the context. 
 
@@ -117,7 +124,7 @@ However, this way has increased the coupling between classes and the context sti
 
 The major benefit of strategy is the separation of concerns, varying elements have been taken out and put into thier own class.
 
-###Observer
+###<a name="observer"></a>Observer
 
 If we have potential that multiple objects are interested in the connection, they can register using the `#add_observers()` method. Otherwise, the below `@observers` array could be a single instantiation of an observing class that gets passed in upon the subjects initialization. The below example removes that implicit coupling as it is not dependant on whether none, one or many observer classes are in the array.
 
@@ -164,9 +171,33 @@ There are two differant techniques to notify the observer, the pull technique `o
 
 ###<a name="composite"></a>Composite
 
-###Iterator
+Composite is a combination of multiple elements coming together to make one overall element. This tree-like structure starts at the top with the component, the very bottom of the tree are leaf classes, and the classes that fill in the inbetween are composite classes.
 
-###Command
+````
+class Company
+  def initialize
+    @job = Department.new
+  end
+end
+
+class Department
+  def initialize
+    @location = String.new
+    @industry = Technology.new
+  end
+end
+
+class Position
+end
+
+class Employee
+end
+````
+
+
+###<a name="iterator"></a>Iterator
+
+###<a name="command"></a>Command
 
 ###Adapter
 
