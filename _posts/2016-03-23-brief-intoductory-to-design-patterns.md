@@ -13,6 +13,20 @@ logo: 'assets/images/logo.png'
 This post is a work in progress, check back later for updates!
 
 
+* [composite](#composite)
+* [Iterator](#iterator)
+* [Command](#command)
+
+###Adapter
+
+###Proxy
+
+###Decorator
+
+###Singleton
+
+###Factory
+
 ###Template
 
 The template design pattern is useful when the application is prone to change at a given interval. While behaviors are initially defined in a base class (our "ReadHTMLFile" class), they can be inherited into a class that allows for greater customization.
@@ -141,7 +155,14 @@ class Connection
 end
 ````
 
-###Composite
+Ruby comes with its own observer module that can be found in the [standard library](http://ruby-doc.org/stdlib-2.0.0/libdoc/observer/rdoc/Observable.html). 
+
+One variation is to use code blocks when passing in to the `#add_observable(&observer)` method.
+
+There are two differant techniques to notify the observer, the pull technique `observer.call(self)`, which just sends the subject. Then the push technique `observer.update(self,  :salary_changed, old_salary, new_salary)` or `observer.update_salary(self, old_salary, new_salary)` sends a great deal of additional information.
+
+
+###<a name="composite"></a>Composite
 
 ###Iterator
 
