@@ -12,11 +12,11 @@ logo: 'assets/images/logo.png'
 
 This post is a work in progress, check back later for updates!
 
-* Template
+* [Template](#template)
 
-* Strategy
+* [Strategy](#strategy)
 
-* Observer
+* [Observer](#observer)
 
 * [Composite](#composite)
 
@@ -171,7 +171,7 @@ There are two differant techniques to notify the observer, the pull technique `o
 
 ###<a name="composite"></a>Composite
 
-Composite is a combination of multiple elements coming together to make one overall element. This tree-like structure starts at the top with the component, the very bottom of the tree are leaf classes, and the classes that fill in the inbetween are composite classes.
+Composite pattern is a combination of multiple elements coming together to make one overall element. This tree-like structure starts at the top with the component, the very bottom of the tree are leaf classes, and the classes that fill in the inbetween are composite classes.
 
 ````
 class Company
@@ -183,11 +183,19 @@ end
 class Department
   def initialize
     @location = String.new
-    @industry = Technology.new
+    @sub_tasks = []
+  end
+  def num_of_tasks
+    total = 0
+    @sub_tasks.each {|task| total += task.num_of_tasks}
+    total
   end
 end
 
 class Position
+  def num_of_tasks
+    total = 1
+  end
 end
 
 class Employee
@@ -197,13 +205,47 @@ end
 
 ###<a name="iterator"></a>Iterator
 
+Iterators pattern will provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
+
+####External
+
+Is when the iterator is separate from the aggregate. 
+
+````
+class ExternalIterator
+  def initialize(array)
+    @array = array
+    @index = 0
+  end
+  def has_next?
+    @index < @array.length
+  end
+  def item
+    @array[@index]
+  end
+  def next_item
+    value = @array[@index]
+    @index += 1
+    value
+  end
+end
+
+i = ExternalIterator.new([3,4,5])
+while i.has_next?
+  puts i.next_item
+end
+````
+####Internal
+
+
+
 ###<a name="command"></a>Command
 
-###Adapter
+###<a name="adapter">Adapter
 
-###Proxy
+###<a name="proxy">Proxy
 
-###Decorator
+###<a name="decorator">Decorator
 
 ###Singleton
 
