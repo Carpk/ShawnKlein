@@ -207,9 +207,9 @@ end
 
 Iterators pattern will provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
 
-####External
+#####External
 
-Is when the iterator is separate from the aggregate. 
+Is when the iterator is separate from the aggregate. The client drives the iteration, it will not call for the next element until it is ready for it. The external iterator will check if the array has an object available in the next field using `#has_next?`, then in the `#next_item` we pull the object out using the `@index` on the array, increment the `@index` by one, and use and implicit return with the `value` we initially set.
 
 ````
 class ExternalIterator
@@ -235,9 +235,13 @@ while i.has_next?
   puts i.next_item
 end
 ````
-####Internal
+#####Internal
 
+With internal iterators, the aggregate will push the code block to accept item after item.
 
+````
+array.each {|e| **do stuff**}
+````
 
 ###<a name="command"></a>Command
 
