@@ -243,6 +243,8 @@ With internal iterators, the aggregate will push the code block to accept item a
 array.each {|e| **do stuff**}
 ````
 
+Ruby iterators use the [Enumerable module](http://ruby-doc.org/core-2.3.0/Enumerable.html), more specifically, the `<=>` operator. The class you are iterating through needs some way for the iterator to compare values. If you are to create your own iterator, it would behoove us to include this mixin.
+
 ###<a name="command"></a>Command
 
 ###<a name="adapter">Adapter
