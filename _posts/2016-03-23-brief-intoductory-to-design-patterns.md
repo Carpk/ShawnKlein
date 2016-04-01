@@ -13,32 +13,22 @@ logo: 'assets/images/logo.png'
 This post is a work in progress, check back later for updates!
 
 * [Template](#template)
-
 * [Strategy](#strategy)
-
 * [Observer](#observer)
-
 * [Composite](#composite)
-
 * [Iterator](#iterator)
-
 * [Command](#command)
-
-* Adapter
-
-* Proxy
-
-* Decorator
-
-* Singleton
-
-* Factory
+* [Adapter](#adapter)
+* [Proxy](#proxy)
+* [Decorator](#decorator)
+* [Singleton](#singleton)
+* [Factory](#factory)
 
 ###<a name="template"></a>Template
 
 The template design pattern is useful when the application is prone to change at a given interval. While behaviors are initially defined in a base class (our "ReadHTMLFile" class), they can be inherited into a class that allows for greater customization.
 
-````
+````ruby
 class ReadHTMLFile
   ### omitted for brevity ###
   def html_version
@@ -66,13 +56,13 @@ end
 
 Our base class will read a HTML5 without any problems. But if we plan on reading some older XHTML1.0 Strict or HTML4.01 Trans files, we would instantiate one of the subclasses, which would overwrite our current `#html_version` with the correct doctype. So the Template strategy starts with a base class, and then its subclass will make the changes needed to suit to the given condition.
 
-One of the drawbacks of this design pattern, is that it relies heavily on inheritance. The subclasses will always depend on its baseclass, and will limit our flexibility.
+One of the drawbacks of this design pattern, is that it relies heavily on inheritance. The subclasses will always depend on its base class, and will limit our flexibility.
 
 ###<a name="strategy"></a>Strategy
 
-The Strategey design pattern is based on composition and delegation rather than inheritance. It is where you pull the varying algorithm into separate object, where it will then pass it into the initializing subclass. The strategy gets passed into the context. 
+The Strategy design pattern is based on composition and delegation rather than inheritance. It is where you pull the varying algorithm into separate object, where it will then pass it into the initializing subclass. The strategy gets passed into the context. 
 
-````
+````ruby
 class Accountant
   def work
     ### furiously presses numbers on keypad ###
@@ -98,11 +88,11 @@ end
 
 Another way we can utilize the Strategy pattern is for the context to pass its `self` into a strategy method. The example below also has an example if you were to pass the strategy in as a proc. We would bundle up our `#work` method into a proc object and pass it in when initializing our Person class. Which could be used when the strategy interface is a very simple design, such as our example below.
 
-````
+````ruby
 class Fireman
   def work(context)
     puts "Fireman #{context.name} climbs the tree to save kitten."
-    ### additional information reguarding Joe s life story ###
+    ### additional information regarding Joe's life story ###
   end
 end
 
@@ -122,13 +112,13 @@ end
 
 However, this way has increased the coupling between classes and the context still needs a way to call the strategy, so there is still an ivar with the strategy.
 
-The major benefit of strategy is the separation of concerns, varying elements have been taken out and put into thier own class.
+The major benefit of strategy is the separation of concerns, varying elements have been taken out and put into their own class.
 
 ###<a name="observer"></a>Observer
 
 If we have potential that multiple objects are interested in the connection, they can register using the `#add_observers()` method. Otherwise, the below `@observers` array could be a single instantiation of an observing class that gets passed in upon the subjects initialization. The below example removes that implicit coupling as it is not dependant on whether none, one or many observer classes are in the array.
 
-````
+````ruby
 class Logger
   def update(obj)
     @log_file << "#{obj} is attempting to make a connection"
@@ -166,14 +156,14 @@ Ruby comes with its own observer module that can be found in the [standard libra
 
 One variation is to use code blocks when passing in to the `#add_observable(&observer)` method.
 
-There are two differant techniques to notify the observer, the pull technique `observer.call(self)`, which just sends the subject. Then the push technique `observer.update(self,  :salary_changed, old_salary, new_salary)` or `observer.update_salary(self, old_salary, new_salary)` sends a great deal of additional information.
+There are two different techniques to notify the observer, the pull technique `observer.call(self)`, which just sends the subject. Then the push technique `observer.update(self,  :salary_changed, old_salary, new_salary)` or `observer.update_salary(self, old_salary, new_salary)` sends a great deal of additional information.
 
 
 ###<a name="composite"></a>Composite
 
-Composite pattern is a combination of multiple elements coming together to make one overall element. This tree-like structure starts at the top with the component, the very bottom of the tree are leaf classes, and the classes that fill in the inbetween are composite classes.
+Composite pattern is a combination of multiple elements coming together to make one overall element. This tree-like structure starts at the top with the component, the very bottom of the tree are leaf classes, and the classes that fill the between classes are composite classes.
 
-````
+````ruby
 class Company
   def initialize
     @job = Department.new
@@ -211,7 +201,7 @@ Iterators pattern will provide a way to access the elements of an aggregate obje
 
 Is when the iterator is separate from the aggregate. The client drives the iteration, it will not call for the next element until it is ready for it. The external iterator will check if the array has an object available in the next field using `#has_next?`, then in the `#next_item` we pull the object out using the `@index` on the array, increment the `@index` by one, and use and implicit return with the `value` we initially set.
 
-````
+````ruby
 class ExternalIterator
   def initialize(array)
     @array = array
@@ -239,25 +229,55 @@ end
 
 With internal iterators, the aggregate will push the code block to accept item after item.
 
-````
-array.each {|e| **do stuff**}
+````ruby
+array.each {|e| **code block**}
 ````
 
 Ruby iterators use the [Enumerable module](http://ruby-doc.org/core-2.3.0/Enumerable.html), more specifically, the `<=>` operator. The class you are iterating through needs some way for the iterator to compare values. If you are to create your own iterator, it would behoove us to include this mixin.
 
 ###<a name="command"></a>Command
 
-###<a name="adapter">Adapter
+The main idea of the Command pattern is to factor out the action code into its own object. It is the separation of concerns, from the code that does not change, to the code that does. to instantiate what the object is going to be executing. We are  
 
-###<a name="proxy">Proxy
+In our example below, we could have different Command classes. ShowCommand, HideCommand, SaveCommand, DeleteCommand, but the code that will not change with all these different commands is brought out into the UniveralButton class.
 
-###<a name="decorator">Decorator
+````ruby
+class ShowCommand
+  def description
+    "show " + @ivars
+  end
+  def execute
+    ## Something will be shown ##
+  end
+end
 
-###Singleton
+class UniveralButton
+  def initialize(command)
+    @command = command
+    @logger = File.open('/')
+  end
+  def push_button
+    @command.execute if @command
+    @log.append @command.description
+  end
+end
 
-###Factory
+button = UniversalButton.new(ShowCommand.new)
+````
 
-###Builder
+Using the Command pattern also helps to log executed commands. Our ShowCommand is a class, so it should have some state information to add to our description, then it can be logged to a file for future use. Perhaps you dont want to execute the same command twice? A safeguarded code block may check our log file to see if the code has already been ran. Or could be used as an undo, knowing which command was executed last could help determine what to do in order to 'undo' that last function.
 
-###Interpreter
+###<a name="adapter"></a>Adapter
+
+###<a name="proxy"></a>Proxy
+
+###<a name="decorator"></a>Decorator
+
+###<a name="singleton"></a>Singleton
+
+###<a name="factory"></a>Factory
+
+###<a name="builder"></a>Builder
+
+###<a name="interpreter"></a>Interpreter
 
