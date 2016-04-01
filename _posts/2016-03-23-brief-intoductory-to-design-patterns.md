@@ -265,9 +265,13 @@ end
 button = UniversalButton.new(ShowCommand.new)
 ````
 
-Using the Command pattern also helps to log executed commands. Our ShowCommand is a class, so it should have some state information to add to our description, then it can be logged to a file for future use. Perhaps you dont want to execute the same command twice? A safeguarded code block may check our log file to see if the code has already been ran. Or could be used as an undo, knowing which command was executed last could help determine what to do in order to 'undo' that last function.
+Using the Command pattern also helps to log executed commands. Our ShowCommand is a class, so it should have some state information to add to our description, then it can be logged to a file for future use. Perhaps you dont want to execute the same command twice? A safeguarded code block may check our log file to see if the code has already been ran. Or could be used as an undo, knowing which command was executed last could help determine what to do in order to 'undo' that last function. The [Madeleine](https://github.com/ghostganz/madeleine) is a great example of doing just that.
 
 ###<a name="adapter"></a>Adapter
+
+
+
+
 
 ###<a name="proxy"></a>Proxy
 
