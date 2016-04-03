@@ -269,11 +269,53 @@ Using the Command pattern also helps to log executed commands. Our ShowCommand i
 
 ###<a name="adapter"></a>Adapter
 
+An adapter is an object that crosses the chasm between the interface that you have and the interface that you need. Our below example has a `EmployeeManager` class, that would typically take an instanitated object of the `Employee` class. But we have a transfer from France, we would need a way for our french employee to interface with the employee manager. The `FrenchEmployeeConverter` will do just that, it will take our French employee and use its interface to coraspond with the changes it needs to make to be of use in the `EmployeeManager` class.
 
+````ruby
+class EmployeeManager
+  def initialize
+    @employee_list = []
+  end
+  ### Ommited different and fasinating ways to manage an employee ###
+end
+class Employee
+  attr_reader :name, :position, :id
+end
+class FrenchEmployeeConverter
+  def initialize(employé)
+    @employé = employé
+  end
+  def name
+    @employé.prénom
+  end
+  def position
+    @employé.poste
+  end
+  def id
+    @employé.ça
+  end
+end
+````
 
+Another easy way to do this, is to modify the class after its been instantiated, this will allow us to omit the adaptor class and use the original class as a regular `Employee` class.
 
+````ruby
+employee = FrenchEmployee.new
+
+class << employee
+  def name
+    prénom
+  end
+  ### etc. etc. ###
+end
+````
+
+This teqnique works well if the changes are simple, and we have deep knowledge of what our class is doing. However, if the changes are complex or we dont have a great understanding of what our class is doing, its safer to use `FrenchEmployeeConverter` class for our adaptor.
 
 ###<a name="proxy"></a>Proxy
+
+
+
 
 ###<a name="decorator"></a>Decorator
 

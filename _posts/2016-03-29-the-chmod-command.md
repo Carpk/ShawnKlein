@@ -1,7 +1,7 @@
 ---
 layout: post
 cover: 'assets/images/railroad_fog.jpg'
-title: The chmod Command
+title: The Chmod Command
 date:   2016-03-29 10:18:00
 tags: unix/linux 
 subclass: 'post tag-test tag-content'
