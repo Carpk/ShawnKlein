@@ -314,8 +314,23 @@ This teqnique works well if the changes are simple, and we have deep knowledge o
 
 ###<a name="proxy"></a>Proxy
 
+Proxy classes are have the real object, the subject, hidden inside themselves. Giving us a chance to change or manipulate the data when needed.
 
-
+````ruby
+class Employee
+  attr_reader :id, :name, :pay_rate
+end
+class EmployeeProxy
+  def initialize(employee = Employee.new)
+    @employee = employee
+  end
+  def name
+    @employee.name
+  end
+  def pay_rate
+  end
+end
+````
 
 ###<a name="decorator"></a>Decorator
 

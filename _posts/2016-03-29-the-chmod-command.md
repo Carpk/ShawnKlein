@@ -10,7 +10,7 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-The chmod command is an abbreviation of change mode. It is used to change access permissions to files directories. If we were to `ll` from out home directory, we many see something like this:
+The chmod command is an abbreviation of change mode. It is used to change access permissions to files directories. If we were to `ll`(short for `ls -l`) from out home directory, we many see something like this:
 
 ````
 drwxr-xr-x  56 shawn users   4096 Apr  1 12:32 .
@@ -31,8 +31,7 @@ drwxr-xr-x   4 shawn users   4096 Apr  1 12:32 .vim
 -rw-r--r--   1 shawn users    138 Feb 16 12:52 .vimrc
 ````
 
-We will take a look at the `Desktop` folder. The first set of characters `drwxr-xr-x` are the permissions of that file/folder. The first charater `d` states that this is a directory, the next three `rwx` (which stand for Read, Write, eXecute) are permissions 
-for the owner, preceeding three `r-x` are permissions for the group, and final three `r-x` are permissions for others (not owner or member of group).
+The first set of characters `drwxr-xr-x` are the permissions of that file/folder. The first charater `d` states that this is a directory, the next three `rwx` (which stand for Read, Write, eXecute) are permissions for the owner, preceeding three `r-x` are permissions for the group, and final three `r-x` are permissions for others (not owner or member of group).
 
 `drwxr-xr-x   3 shawn users` breakdown:
 
@@ -115,4 +114,14 @@ Using these numerical values, we are able to apply permisions quickly and easily
 
 `chmod 777 share.txt`
 
+How about rwx for owner, rx for group, and read for others:
+
+`chmod 754 share.txt`
+
 You can view that these permissions have taken place using `ls -l share.txt` command.
+
+While the `chmod` command offers a handful of options, the only one we will be covering is the recursive `-R` option. The recursive option allows us to apply the permissions to the current folder and all of its subdirectories.
+
+`chmod -R 775 my_folder/`
+
+This will apply rwx to owner and group, and rx to others, in for this folder and all of its sub folders/files.
