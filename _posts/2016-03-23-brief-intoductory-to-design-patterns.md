@@ -12,6 +12,8 @@ logo: 'assets/images/logo.png'
 
 This post is a work in progress, check back later for updates!
 
+We will be covering the following design patterns in this post:
+
 * [Template](#template)
 * [Strategy](#strategy)
 * [Observer](#observer)
@@ -23,8 +25,11 @@ This post is a work in progress, check back later for updates!
 * [Decorator](#decorator)
 * [Singleton](#singleton)
 * [Factory](#factory)
+* [Builder](#builder)
+* [Interpreter](#interpreter)
 
-###<a name="template"></a>Template
+
+##<a name="template"></a>Template
 
 The template design pattern is useful when the application is prone to change at a given interval. While behaviors are initially defined in a base class (our "ReadHTMLFile" class), they can be inherited into a class that allows for greater customization.
 
@@ -58,7 +63,7 @@ Our base class will read a HTML5 without any problems. But if we plan on reading
 
 One of the drawbacks of this design pattern, is that it relies heavily on inheritance. The subclasses will always depend on its base class, and will limit our flexibility.
 
-###<a name="strategy"></a>Strategy
+##<a name="strategy"></a>Strategy
 
 The Strategy design pattern is based on composition and delegation rather than inheritance. It is where you pull the varying algorithm into separate object, where it will then pass it into the initializing subclass. The strategy gets passed into the context. 
 
@@ -114,7 +119,7 @@ However, this way has increased the coupling between classes and the context sti
 
 The major benefit of strategy is the separation of concerns, varying elements have been taken out and put into their own class.
 
-###<a name="observer"></a>Observer
+##<a name="observer"></a>Observer
 
 If we have potential that multiple objects are interested in the connection, they can register using the `#add_observers()` method. Otherwise, the below `@observers` array could be a single instantiation of an observing class that gets passed in upon the subjects initialization. The below example removes that implicit coupling as it is not dependant on whether none, one or many observer classes are in the array.
 
@@ -159,7 +164,7 @@ One variation is to use code blocks when passing in to the `#add_observable(&obs
 There are two different techniques to notify the observer, the pull technique `observer.call(self)`, which just sends the subject. Then the push technique `observer.update(self,  :salary_changed, old_salary, new_salary)` or `observer.update_salary(self, old_salary, new_salary)` sends a great deal of additional information.
 
 
-###<a name="composite"></a>Composite
+##<a name="composite"></a>Composite
 
 Composite pattern is a combination of multiple elements coming together to make one overall element. This tree-like structure starts at the top with the component, the very bottom of the tree are leaf classes, and the classes that fill the between classes are composite classes.
 
@@ -193,7 +198,7 @@ end
 ````
 
 
-###<a name="iterator"></a>Iterator
+##<a name="iterator"></a>Iterator
 
 Iterators pattern will provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
 
@@ -235,7 +240,7 @@ array.each {|e| **code block**}
 
 Ruby iterators use the [Enumerable module](http://ruby-doc.org/core-2.3.0/Enumerable.html), more specifically, the `<=>` operator. The class you are iterating through needs some way for the iterator to compare values. If you are to create your own iterator, it would behoove us to include this mixin.
 
-###<a name="command"></a>Command
+##<a name="command"></a>Command
 
 The main idea of the Command pattern is to factor out the action code into its own object. It is the separation of concerns, from the code that does not change, to the code that does. to instantiate what the object is going to be executing. We are  
 
@@ -267,7 +272,7 @@ button = UniversalButton.new(ShowCommand.new)
 
 Using the Command pattern also helps to log executed commands. Our ShowCommand is a class, so it should have some state information to add to our description, then it can be logged to a file for future use. Perhaps you dont want to execute the same command twice? A safeguarded code block may check our log file to see if the code has already been ran. Or could be used as an undo, knowing which command was executed last could help determine what to do in order to 'undo' that last function. The [Madeleine](https://github.com/ghostganz/madeleine) is a great example of doing just that.
 
-###<a name="adapter"></a>Adapter
+##<a name="adapter"></a>Adapter
 
 An adapter is an object that crosses the chasm between the interface that you have and the interface that you need. Our below example has a `EmployeeManager` class, that would typically take an instanitated object of the `Employee` class. But we have a transfer from France, we would need a way for our french employee to interface with the employee manager. The `FrenchEmployeeConverter` will do just that, it will take our French employee and use its interface to coraspond with the changes it needs to make to be of use in the `EmployeeManager` class.
 
@@ -312,33 +317,58 @@ end
 
 This teqnique works well if the changes are simple, and we have deep knowledge of what our class is doing. However, if the changes are complex or we dont have a great understanding of what our class is doing, its safer to use `FrenchEmployeeConverter` class for our adaptor.
 
-###<a name="proxy"></a>Proxy
+##<a name="proxy"></a>Proxy
 
-Proxy classes are have the real object, the subject, hidden inside themselves. Giving us a chance to change or manipulate the data when needed.
+Proxy classes have the real object, the subject, hidden inside themselves. Giving us another seperation of concerns. In our example, our employee data is hidden behind a EmployeeDataProxy that verifies the current user is authorized to view the sensitive data regarding a particular employee.
 
 ````ruby
-class Employee
-  attr_reader :id, :name, :pay_rate
+class EmployeeData
+  attr_reader :id, :name, :ssn
 end
-class EmployeeProxy
+class EmployeeDataProxy
   def initialize(employee = Employee.new)
     @employee = employee
   end
   def name
     @employee.name
   end
-  def pay_rate
+  def ssn
+    @employee.ssn if auth_user
+  end
+  def auth_user
+    ### verifies permissions to view sensitive docs ###
   end
 end
 ````
 
-###<a name="decorator"></a>Decorator
+We can also use proxy classes for lazy loading. The employee subject does not get loaded until a method is called that needs to have the subject loaded. 
 
-###<a name="singleton"></a>Singleton
+````ruby
+class EmployeeDataProxy
+  def initialize(&creation_block)
+    @creation_block = creation_block
+  end
+  def name
+    e = subject
+    e.name
+  end
+  def subject
+    @subject ||= @creation_block.call
+  end
+end
+````
 
-###<a name="factory"></a>Factory
+Instead of having the `#subject` method instantiate a Employee class directly, we will pass in a proc object and use that code block when needed `EmployeeDataProxy.new(Employee.new)`. This lowers coupling and allows other ways of creating an employee subject, `EmployeeDataProxy.new(Employee.find(#))`.
 
-###<a name="builder"></a>Builder
+##<a name="decorator"></a>Decorator
 
-###<a name="interpreter"></a>Interpreter
+
+
+##<a name="singleton"></a>Singleton
+
+##<a name="factory"></a>Factory
+
+##<a name="builder"></a>Builder
+
+##<a name="interpreter"></a>Interpreter
 
