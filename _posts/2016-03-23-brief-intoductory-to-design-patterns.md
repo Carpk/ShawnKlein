@@ -364,6 +364,31 @@ Instead of having the `#subject` method instantiate a Employee class directly, w
 
 
 
+````ruby
+class BaseEmployee
+  def initialize(employee_hash)
+    @name = employee_hash
+  end
+end
+class EnhancedEmployee
+  def initialize
+    super(employee_hash)
+  end
+end
+class Accountant < EnhancedEmployee
+  def organizes_files
+    @files.sort_by {|f| f.num}
+  end
+end
+class Developer < EnhancedEmployee
+  def 
+end
+class DevoOps < EnhancedEmployee
+end
+
+
+````
+
 ##<a name="singleton"></a>Singleton
 
 ##<a name="factory"></a>Factory
