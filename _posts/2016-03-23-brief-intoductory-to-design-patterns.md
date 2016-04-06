@@ -362,32 +362,65 @@ Instead of having the `#subject` method instantiate a Employee class directly, w
 
 ##<a name="decorator"></a>Decorator
 
+Our design pattern takes a ConcreteComponent(the "real" object) that implements the base functionality and is passed in to our Decorator through the Component class. The Decorators act as specialty classes to give the base class additional functionality when instantiated.
 
 
 ````ruby
+### ConcreteComponent
 class BaseEmployee
   def initialize(employee_hash)
     @name = employee_hash
   end
-end
-class EnhancedEmployee
-  def initialize
-    super(employee_hash)
+  ### base set of behaviors ###
+  def work
+    "work"
   end
 end
+### Component
+class EnhancedEmployee
+  def initialize(employee)
+    @employee = employee
+  end
+  ### forward bevaviors to the base set ###
+  def work
+    @employee.work
+  end
+end
+### Decorators
 class Accountant < EnhancedEmployee
+  def initialize(employee)
+    super(employee)
+  end
   def organizes_files
-    @files.sort_by {|f| f.num}
   end
 end
 class Developer < EnhancedEmployee
-  def 
+  def initialize(employee)
+    super(employee)
+  end
+  def write_code 
+  end
 end
-class DevoOps < EnhancedEmployee
+class DevOps < EnhancedEmployee
+  def initialize(employee)
+    super(employee)
+  end
+  def fix_server
+  end
 end
-
-
+tom = Accountant.new( BaseEmployee.new(hash) )
+super_tom = DevOps.new( Developer.new( BaseEmployee.new(hash) ) )
 ````
+Another way to to get the decorator behaviors into out base class is to use modules. We would extend our instantiated class to include a Decorator if it has been defined as a module:
+
+````ruby
+module Developer
+  ### functionality here ###
+end
+tom = BaseEmployee.new
+tom.extend(Developer)
+````
+Now our tom object will have the additional funtionality from our Developer module.
 
 ##<a name="singleton"></a>Singleton
 
