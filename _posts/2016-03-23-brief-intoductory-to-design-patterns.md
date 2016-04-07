@@ -362,8 +362,7 @@ Instead of having the `#subject` method instantiate a Employee class directly, w
 
 ##<a name="decorator"></a>Decorator
 
-Our design pattern takes a ConcreteComponent(the "real" object) that implements the base functionality and is passed in to our Decorator through the Component class. The Decorators act as specialty classes to give the base class additional functionality when instantiated.
-
+Our design pattern takes a ConcreteComponent(the "real" object) that implements the base functionality and is passed in to our Decorator through a Component class. The Decorators act as specialty classes to give the base class additional functionality once instantiated. We are able to chain our decorators to give our `super_tom` object even more functionality.
 
 ````ruby
 ### ConcreteComponent
@@ -423,6 +422,8 @@ tom.extend(Developer)
 Now our tom object will have the additional funtionality from our Developer module.
 
 ##<a name="singleton"></a>Singleton
+
+
 
 ##<a name="factory"></a>Factory
 
