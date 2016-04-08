@@ -65,7 +65,7 @@ One of the drawbacks of this design pattern, is that it relies heavily on inheri
 
 ##<a name="strategy"></a>Strategy
 
-The Strategy design pattern is based on composition and delegation rather than inheritance. It is where you pull the varying algorithm into separate object, where it will then pass it into the initializing subclass. The strategy gets passed into the context. 
+The Strategy design pattern is based on composition and delegation rather than inheritance. It is where we pull the varying algorithm into a separate object, then pass it into the initializing subclass. The strategy class is what gets passed into the context. 
 
 ````ruby
 class Accountant
@@ -81,17 +81,17 @@ class Fireman
 end
 
 class Person
-  def initialize(type)
-    @type = type
+  def initialize(job)
+    @job = job
   end
 
   def preform_job
-    @type.work
+    @job.work
   end
 end
 ````
 
-Another way we can utilize the Strategy pattern is for the context to pass its `self` into a strategy method. The example below also has an example if you were to pass the strategy in as a proc. We would bundle up our `#work` method into a proc object and pass it in when initializing our Person class. Which could be used when the strategy interface is a very simple design, such as our example below.
+Another way we can utilize the Strategy pattern is for the context class to pass its `self` into a strategy method. The example below also has commented out code for passing the strategy in as a proc. We would bundle up the workings of our `#work` method into a proc object and pass it in when initializing our Person class. Which ideally used when the strategy interface is a very simple design, such as our example below.
 
 ````ruby
 class Fireman
@@ -102,22 +102,21 @@ class Fireman
 end
 
 class Person
-  def initialize(strategy) # or &strategy
+  def initialize(strategy) # &strategy
     @name = 'Joe'
     @job = strategy
   end
 
   def preform_job
     @job.work(self)
-      # or
     # @job.call(self)
   end
 end
 ````
 
-However, this way has increased the coupling between classes and the context still needs a way to call the strategy, so there is still an ivar with the strategy.
+However, this increases the coupling between classes. And the context still needs a way to call the strategy, forcing us to still use an ivar for the strategy.
 
-The major benefit of strategy is the separation of concerns, varying elements have been taken out and put into their own class.
+The overall major benefit of the strategy pattern is the separation of concerns, varying elements have been taken out and put into their own class.
 
 ##<a name="observer"></a>Observer
 
@@ -423,7 +422,37 @@ Now our tom object will have the additional funtionality from our Developer modu
 
 ##<a name="singleton"></a>Singleton
 
+The purpose of a singleton pattern is to avoid passing an object all over the place. Its a method that is called directy on the class itself, instead of an instantiated object of the class. Each way is a vaild approach to creating a class method. 
 
+````ruby
+class Network
+  def self.terminate_all
+  end
+  def Network.terminate_all
+  end
+  class < self
+    def terminate_all
+    end
+  end
+end
+def Network.terminate_all
+end
+Network.terminate_all
+````
+
+We could instantiate one, and only one object to pass around under our class methods. This object would be available anywhere the `Logger` class is available. However, we have to take precaution not to create additional objects with this type of pattern, there can be one, and only one instance of the singleton class. The `private_class_method :new` will ensure we dont instantiate any additional objects from this class.
+
+````ruby
+class Logger
+  @@instance = Logger.new
+  def self.instance
+    @@instance
+  end
+  private_class_method :new
+end
+````
+
+The above code is so common, that Ruby has the `singleton` module for it. Just `require 'singleton'` and `include Singleton` inside our class and we would be able to omit the above mentioned code. The only difference is the module lazy instantiates our `@@instance = Logger.new` class variable, where our example eagerly instantiates it.
 
 ##<a name="factory"></a>Factory
 
