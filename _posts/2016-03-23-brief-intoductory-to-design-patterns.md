@@ -454,6 +454,8 @@ end
 
 The above code is so common, that Ruby has the `singleton` module for it. Just `require 'singleton'` and `include Singleton` inside our class and we would be able to omit the above mentioned code. The only difference is the module lazy instantiates our `@@instance = Logger.new` class variable, where our example eagerly instantiates it.
 
+A singleton has a strong resemblance to the global variable, this give it the possibility to become tightly coupled with other sections of your program. Best application is when you are modeling things that occur only once. 
+
 ##<a name="factory"></a>Factory
 
 ##<a name="builder"></a>Builder
