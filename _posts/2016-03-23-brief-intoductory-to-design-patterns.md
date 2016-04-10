@@ -454,9 +454,50 @@ end
 
 The above code is so common, that Ruby has the `singleton` module for it. Just `require 'singleton'` and `include Singleton` inside our class and we would be able to omit the above mentioned code. The only difference is the module lazy instantiates our `@@instance = Logger.new` class variable, where our example eagerly instantiates it.
 
-A singleton has a strong resemblance to the global variable, this give it the possibility to become tightly coupled with other sections of your program. Best application is when you are modeling things that occur only once. 
+A singleton has a strong resemblance to the global variable, this give it the possibility to become tightly coupled with other sections of your program, there may also be difficulties locating where you have implemented the singleton when it could be in an arbitrary sections of code. The application of a singleton only works when you are modeling something that instantiates only once. 
+
+Testing a singleton pattern may be difficult due to its gobal variable behaviors, to fix this, we can break out our methods into a base class where we are able to instantiate and test our methods. And then have a separate class that inherits those methods for our implementation of our singleton.
+
+````ruby
+class SimpleLogger
+end
+class SingletonLogger < SimpleLogger
+  include Singeton
+end
+````
 
 ##<a name="factory"></a>Factory
+
+Factory pattern is very similar to the template pattern. As in it takes a base class and sends it to the creator class in which will create multiple instance of the base/product class. The creator is the base class that contains our factory methods, the products are the classes that we are creating.
+
+````ruby
+class Penguin # product
+end
+class Duck # product
+end
+class PenguinZoo # creator
+  def initialize(num)
+    @animals = []
+    num.times { @animals << new_animal }
+  end
+end
+class PenguinZoo < Zoo
+  def new_animal
+    Penguin.new
+  end
+end
+class ArticZooFactory # abstract factory
+  def new_animal
+    Penguin.new
+  end
+  def shelter
+    'iceburg'
+  end
+  def food
+    'fish'
+  end
+end
+````
 
 ##<a name="builder"></a>Builder
 
