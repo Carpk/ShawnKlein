@@ -269,11 +269,11 @@ end
 button = UniversalButton.new(ShowCommand.new)
 ````
 
-Using the Command pattern also helps to log executed commands. Our ShowCommand is a class, so it should have some state information to add to our description, then it can be logged to a file for future use. Perhaps you dont want to execute the same command twice? A safeguarded code block may check our log file to see if the code has already been ran. Or could be used as an undo, knowing which command was executed last could help determine what to do in order to 'undo' that last function. The [Madeleine](https://github.com/ghostganz/madeleine) is a great example of doing just that.
+Using the Command pattern also helps to log executed commands. Our ShowCommand is a class, so it should have some state information to add to our description, then it can be logged to a file for future use. Perhaps you do not want to execute the same command twice? A safeguarded code block may check our log file to see if the code has already been ran. Or could be used as an undo, knowing which command was executed last could help determine what to do in order to 'undo' that last function. The [Madeleine](https://github.com/ghostganz/madeleine) is a great example of doing just that.
 
 ##<a name="adapter"></a>Adapter
 
-An adapter is an object that crosses the chasm between the interface that you have and the interface that you need. Our below example has a `EmployeeManager` class, that would typically take an instanitated object of the `Employee` class. But we have a transfer from France, we would need a way for our french employee to interface with the employee manager. The `FrenchEmployeeConverter` will do just that, it will take our French employee and use its interface to coraspond with the changes it needs to make to be of use in the `EmployeeManager` class.
+An adapter is an object that crosses the chasm between the interface that you have and the interface that you need. Our below example has a `EmployeeManager` class, that would typically take an instantiated object of the `Employee` class. But we have a transfer from France, we would need a way for our French employee to interface with the employee manager. The `FrenchEmployeeConverter` will do just that, it will take our French employee and use its interface to correspond with the changes it needs to make to be of use in the `EmployeeManager` class.
 
 ````ruby
 class EmployeeManager
@@ -314,11 +314,11 @@ class << employee
 end
 ````
 
-This teqnique works well if the changes are simple, and we have deep knowledge of what our class is doing. However, if the changes are complex or we dont have a great understanding of what our class is doing, its safer to use `FrenchEmployeeConverter` class for our adaptor.
+This technique works well if the changes are simple, and we have deep knowledge of what our class is doing. However, if the changes are complex or we do not have a great understanding of what our class is doing, its safer to use `FrenchEmployeeConverter` class for our adaptor.
 
 ##<a name="proxy"></a>Proxy
 
-Proxy classes have the real object, the subject, hidden inside themselves. Giving us another seperation of concerns. In our example, our employee data is hidden behind a EmployeeDataProxy that verifies the current user is authorized to view the sensitive data regarding a particular employee.
+Proxy classes have the real object, the subject, hidden inside themselves. Giving us another separation of concerns. In our example, our employee data is hidden behind a EmployeeDataProxy that verifies the current user is authorized to view the sensitive data regarding a particular employee.
 
 ````ruby
 class EmployeeData
@@ -418,11 +418,11 @@ end
 tom = BaseEmployee.new
 tom.extend(Developer)
 ````
-Now our tom object will have the additional funtionality from our Developer module.
+Now our tom object will have the additional functionality from our Developer module.
 
 ##<a name="singleton"></a>Singleton
 
-The purpose of a singleton pattern is to avoid passing an object all over the place. Its a method that is called directy on the class itself, instead of an instantiated object of the class. Each way is a vaild approach to creating a class method. 
+The purpose of a singleton pattern is to avoid passing an object all over the place. Its a method that is called directly on the class itself, instead of an instantiated object of the class. Each way is a valid approach to creating a class method. 
 
 ````ruby
 class Network
@@ -440,7 +440,7 @@ end
 Network.terminate_all
 ````
 
-We could instantiate one, and only one object to pass around under our class methods. This object would be available anywhere the `Logger` class is available. However, we have to take precaution not to create additional objects with this type of pattern, there can be one, and only one instance of the singleton class. The `private_class_method :new` will ensure we dont instantiate any additional objects from this class.
+We could instantiate one, and only one object to pass around under our class methods. This object would be available anywhere the `Logger` class is available. However, we have to take precaution not to create additional objects with this type of pattern, there can be one, and only one instance of the singleton class. The `private_class_method :new` will ensure we do not instantiate any additional objects from this class.
 
 ````ruby
 class Logger
@@ -456,7 +456,7 @@ The above code is so common, that Ruby has the `singleton` module for it. Just `
 
 A singleton has a strong resemblance to the global variable, this give it the possibility to become tightly coupled with other sections of your program, there may also be difficulties locating where you have implemented the singleton when it could be in an arbitrary sections of code. The application of a singleton only works when you are modeling something that instantiates only once. 
 
-Testing a singleton pattern may be difficult due to its gobal variable behaviors, to fix this, we can break out our methods into a base class where we are able to instantiate and test our methods. And then have a separate class that inherits those methods for our implementation of our singleton.
+Testing a singleton pattern may be difficult due to its global variable behaviors, to fix this, we can break out our methods into a base class where we are able to instantiate and test our methods. And then have a separate class that inherits those methods for our implementation of our singleton.
 
 ````ruby
 class SimpleLogger
@@ -468,38 +468,85 @@ end
 
 ##<a name="factory"></a>Factory
 
-Factory pattern is very similar to the template pattern. As in it takes a base class and sends it to the creator class in which will create multiple instance of the base/product class. The creator is the base class that contains our factory methods, the products are the classes that we are creating.
+Factory pattern is very similar to the template pattern. As in it takes a base class and sends it to the creator class in which will create multiple instance of the base/product class. The creator is the class that contains our factory methods, the products are the classes that we are creating. In our example, we create the Zoo class and define our common set of methods, then our specialized classes `PenguinZoo` will inherit these methods and add its own specialized methods.
 
 ````ruby
 class Penguin # product
 end
 class Duck # product
 end
-class PenguinZoo # creator
-  def initialize(num)
+class Zoo # creator
+  def initialize(num, animal_type)
     @animals = []
-    num.times { @animals << new_animal }
+    num.times { @animals << create_animal }
   end
 end
 class PenguinZoo < Zoo
-  def new_animal
-    Penguin.new
+  def create_animal
+    Peguin.new
   end
 end
+````
+
+We could go even further and create abstract factories. Where its the classes job to create compatable sets of objects. 
+
+````ruby
 class ArticZooFactory # abstract factory
   def new_animal
     Penguin.new
   end
-  def shelter
-    'iceburg'
+  def landscape
+    Iceberg.new
   end
   def food
-    'fish'
+    Fish.new
+  end
+end
+class Zoo
+  def initialize(animal_num, landscape_num, exhibit_type)
+    @exhibit_type = exhibit_type
+    @animals = []
+    animal_num.times { @animals << @exhibit_type.new_animal }
+    ## create additional state from ArticZooFactory ##
   end
 end
 ````
 
 ##<a name="builder"></a>Builder
+
+A builder class takes charge of assemmbling all of the components of a complex object. Its purpose is to ease the burden of creating complex objects. We no longer have to know the specifics of a certain class, we just ask the builder for what we need.
+
+````ruby
+class Shell
+end
+class Cheese
+  def initialize(type)
+    @type = type
+  end
+end
+class Meat
+end
+class Taco
+  def cheese_layer(cheese)
+    @cheese << cheese
+  end
+end
+class TacoBuilder
+  attr_reader :taco
+  def initialize
+    @taco = Taco.new
+  end
+  def add_shell
+  end
+  def add_meat(beef=true)
+  end
+  def add_cheese(type)
+    @taco.cheese_layer << Cheese.new(type)
+  end
+  def add_salsa(spicy=true)
+  end
+end
+````
 
 ##<a name="interpreter"></a>Interpreter
 
