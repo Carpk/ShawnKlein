@@ -10,7 +10,7 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-The chmod command is an abbreviation of change mode. It is used to change access permissions to files directories. If we were to `ll`(short for `ls -l`) from out home directory, we many see something like this:
+The chmod command is an abbreviation of change mode. It is used to change access permissions to files directories. If we were to `ll`(short for `ls -l`) from our home directory, we many see something like this:
 
 ````
 drwxr-xr-x  56 shawn users   4096 Apr  1 12:32 .
@@ -38,9 +38,9 @@ The first set of characters `drwxr-xr-x` are the permissions of that file/folder
 <table>
   <tr>
     <th>dir</th>
-    <th>owner</th>
-    <th>group</th>
-    <th>others</th>
+    <th>owner-p</th>
+    <th>group-p</th>
+    <th>others-p</th>
     <th>sub-dir</th>
     <th>owner name</th>
     <th>group name</th>
@@ -56,7 +56,7 @@ The first set of characters `drwxr-xr-x` are the permissions of that file/folder
   </tr>
 </table>
 
-The first character `d` informs us this is a directory. The Owner, is quite obviously the owner of the file object,which in our example is `shawn` has Read, Write, and eXecute permissions. Group is set with group permissions, so any one in the `users` group would have those sets of permissions applied to them. The `users` group has Read and eXecute permissions. And finally is the `others` which is anyone besides the owner or members of the applied group, which they also have Read and eXecute permissions. sub-dir shows us how many directories that this path holds.
+As we initially stated, the first character `d` informs us this is a directory. The owner-p is the permissons for the owner of the file object, which in our example is `shawn` and he has Read, Write, and eXecute permissions. Group-p is for group permissions, so anyone in the `users` group would have those sets of permissions applied to them. The `users` group has Read and eXecute permissions. And finally is `others`, which is anyone besides the owner and/or members of the applied group, which they also have Read and eXecute permissions. sub-dir shows us how many directories that this path holds.
 
 Now that we understand how to determine what permissions are applied to a file object, we can change them using the `chmod` command.
 

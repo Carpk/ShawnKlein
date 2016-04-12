@@ -514,7 +514,7 @@ end
 
 ##<a name="builder"></a>Builder
 
-A builder class takes charge of assemmbling all of the components of a complex object. Its purpose is to ease the burden of creating complex objects. We no longer have to know the specifics of a certain class, we just ask the builder for what we need.
+A builder class takes charge of assembling all of the components of a complex object. Its purpose is to ease the burden of creating complex objects. We no longer have to know the specifics of a certain class, we just ask the builder for what we need. Builders are less concerned with picking the right class and more focued on helping you configure your object. Our below builder has a `#reset` method that allows us to reuse the builder. 
 
 ````ruby
 class Shell
@@ -525,6 +525,9 @@ class Cheese
   end
 end
 class Meat
+  def initialize(type)
+    @type = type
+  end
 end
 class Taco
   def cheese_layer(cheese)
@@ -536,17 +539,31 @@ class TacoBuilder
   def initialize
     @taco = Taco.new
   end
+  def reset
+    @taco = Taco.new
+  end
   def add_shell
   end
-  def add_meat(beef=true)
+  def add_meat(type="beef")
+    @taco.meat = Meat.new(type)
   end
   def add_cheese(type)
     @taco.cheese_layer << Cheese.new(type)
   end
   def add_salsa(spicy=true)
   end
+  def taco
+    raise "no shell" if @taco.shell.nil? == true
+  end
 end
 ````
 
+Our builder class will allow us to use constraints when we attempt to retrieve our `taco` object. In our example above, we will throw an error if there is no shell on hour taco. Also, notice the `#reset` method, this allows us to reused the builder after creating an instance of `Taco`.
+
 ##<a name="interpreter"></a>Interpreter
+
+Parser reads in the program text and produces a data structure called abstract syntax tree. 
+
+````ruby
+````
 
