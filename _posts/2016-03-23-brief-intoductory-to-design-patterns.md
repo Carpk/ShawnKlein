@@ -562,8 +562,55 @@ Our builder class will allow us to use constraints when we attempt to retrieve o
 
 ##<a name="interpreter"></a>Interpreter
 
-Parser reads in the program text and produces a data structure called abstract syntax tree. 
+Parser reads in the program text and produces a data structure called abstract syntax tree. The abstract syntax tree has terminals and nonterminals, much like leaf and a parent. 
 
 ````ruby
+class
+end
+class All
+  ### retrieves everything ###
+end
+class Not
+  def initialize(expression)
+    @expression = expression
+  end
+  def evaluate
+    All.new - @expression
+  end
+end
+class Writable
+  ### retrieves only writable objects ###
+end
+writable = Writable.new.evaluate
+read_only = Not.new( Writable.new ).evaluate
+````
+
+Typically we would use the `All` class to find all our objects, or `Writable` to just find the writable files, but now with have a nonterminal `Not` class that we could use to negate whatever we pass into it as an argment. The `Not` class will use two terminal classes, our `All` and `Writable` to remove all writable objects from the all group. This is a brief example, but we could also include other classes such as `Or` and `And`. These nonterminals could use other combinations of terminal classes such as `Readable` and `Executable`, giving us a larger tress structure that we could traverse.
+
+````ruby
+class Parser
+  302
+end
+````
+
+
+
+````ruby
+class Expression
+  def |(other)
+    Or.new(self, other)
+  end
+  def &(other)
+    And.new(self, other)
+  end
+  def writable
+    Writable.new
+  end
+  def but_not(arg) # avoiding collision with Rubys not operator
+    Not.new(arg)
+  end
+  ### We can use this for all our classes ###
+end
+( writable & but_not(executable) ) | find_filename("*.txt")
 ````
 
