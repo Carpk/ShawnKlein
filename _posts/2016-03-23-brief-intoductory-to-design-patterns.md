@@ -120,35 +120,25 @@ The overall major benefit of the strategy pattern is the separation of concerns,
 
 ##<a name="observer"></a>Observer
 
-If we have potential that multiple objects are interested in the connection, they can register using the `#add_observers()` method. Otherwise, the below `@observers` array could be a single instantiation of an observing class that gets passed in upon the subjects initialization. The below example removes that implicit coupling as it is not dependant on whether none, one or many observer classes are in the array.
+If we have the potential that multiple other objects are interested in a particular class and its actions, they can register using the `#add_observers()` method. Otherwise, the below `@observers` array could be a single instantiation of an observing class that gets passed in upon the subjects initialization. The below example removes that implicit coupling as it is not dependant on whether none, one or many observer classes are in the array.
 
 ````ruby
 class Logger
+  ### additional logging information omitted ###
   def update(obj)
     @log_file << "#{obj} is attempting to make a connection"
   end
 end
-
-class Subject
+class Connection
   def initialize
     @observers = [Logger.new]
   end
-
   def add_observer(obs)
     @observers << obs
   end
-
   def report_to_observers
-    @observers.each {|obs| obs.update(self)}
+    @observers.each {|observer| observer.update(self)}
   end
-end
-
-class Connection
-  include Subject
-  def initialize
-    super
-  end
-
   def connect
     ### attempts to connect ###
     report_to_observers
@@ -156,52 +146,51 @@ class Connection
 end
 ````
 
-Ruby comes with its own observer module that can be found in the [standard library](http://ruby-doc.org/stdlib-2.0.0/libdoc/observer/rdoc/Observable.html). 
+Brevity is key in our examples, but it would be best practice if we broke out the observer details into a module and included it in our `Connection` class.
 
-One variation is to use code blocks when passing in to the `#add_observable(&observer)` method.
+Our `@observer` array could also store procs, changing the `#add_observable(&observer)` and `observer.call(self)` methods would accomplish this. Our examples use the pull technique, `#update(self)`, is the act of sending the entire `self` object to the observer.  The push technique send a great deal of additional information regarding the changes `#update(self, old_salary, new_salary)` or `observer.update_salary(self, old_salary, new_salary)`.
 
-There are two different techniques to notify the observer, the pull technique `observer.call(self)`, which just sends the subject. Then the push technique `observer.update(self,  :salary_changed, old_salary, new_salary)` or `observer.update_salary(self, old_salary, new_salary)` sends a great deal of additional information.
-
+The observer pattern is so common, Ruby also comes with its own observer module that can be found in the [standard library](http://ruby-doc.org/stdlib-2.0.0/libdoc/observer/rdoc/Observable.html). 
 
 ##<a name="composite"></a>Composite
 
-Composite pattern is a combination of multiple elements coming together to make one overall element. This tree-like structure starts at the top with the component, the very bottom of the tree are leaf classes, and the classes that fill the between classes are composite classes.
+Composite pattern is a combination of multiple smaller elements coming together to make one larger element. This forms a tree-like structure, the starting point at the top is the component, the very bottom of the tree are leaf classes, and the classes that fill the between are composite classes.
 
 ````ruby
-class Company
+class BuildHouse
   def initialize
-    @job = Department.new
+    @build_walls = BuildWalls.new
   end
 end
-
-class Department
+  ### roof and other items have been omitted for brevity ###
+class BuildWalls
   def initialize
-    @location = String.new
-    @sub_tasks = []
+    @sub_tasks = [LayFoundation.new, PurchaseLumber.new]
   end
   def num_of_tasks
-    total = 0
+    total = 1
     @sub_tasks.each {|task| total += task.num_of_tasks}
     total
   end
 end
-
-class Position
+class LayFoundation
   def num_of_tasks
     total = 1
   end
 end
-
-class Employee
+class PurchaseLumber
+  def num_of_tasks
+    total = 1
+  end
 end
 ````
-
+Our overall goal is to build houses. We use the composite pattern to create a house, but we break this up into smaller individual classes. In order to build a house, we need walls. Walls need a foundation on which to stand and the material of the walls needs to be purchased. `BuildWalls` is our composite class, its leaf classes are `LayFoundation` and `PurchaseLumber`. It needs these leaf classes in order to complete its own task. It is also being depended on by our component class, `BuildHouse`. All these classes work together to help `BuildHouse` accomplish its function. The only actual functionality we have in our example is asking how many tasks in total our classes have. Each leaf task is 1, if we ask our `BuildWalls` class about how many tasks it has, the answer would be 3 (including itself). In a real setting, these methods would get broken out into their own class/module such as `Task` and inherited or included, then written over as needed.
 
 ##<a name="iterator"></a>Iterator
 
 Iterators pattern will provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
 
-#####External
+####External
 
 Is when the iterator is separate from the aggregate. The client drives the iteration, it will not call for the next element until it is ready for it. The external iterator will check if the array has an object available in the next field using `#has_next?`, then in the `#next_item` we pull the object out using the `@index` on the array, increment the `@index` by one, and use and implicit return with the `value` we initially set.
 
@@ -229,7 +218,7 @@ while i.has_next?
   puts i.next_item
 end
 ````
-#####Internal
+####Internal
 
 With internal iterators, the aggregate will push the code block to accept item after item.
 
@@ -237,43 +226,42 @@ With internal iterators, the aggregate will push the code block to accept item a
 array.each {|e| **code block**}
 ````
 
-Ruby iterators use the [Enumerable module](http://ruby-doc.org/core-2.3.0/Enumerable.html), more specifically, the `<=>` operator. The class you are iterating through needs some way for the iterator to compare values. If you are to create your own iterator, it would behoove us to include this mixin.
+Ruby iterators use the [Enumerable module](http://ruby-doc.org/core-2.3.0/Enumerable.html), more specifically, the `<=>` operator. The class you are iterating through needs some way for the iterator to compare values. If we were to create our own iterator, it would behoove us to include this mixin.
 
 ##<a name="command"></a>Command
 
-The main idea of the Command pattern is to factor out the action code into its own object. It is the separation of concerns, from the code that does not change, to the code that does. to instantiate what the object is going to be executing. We are  
+The main idea of the Command pattern is to factor out the action code into its own object. It is the separation of concerns, from the code that does not change, to the code that does. 
 
-In our example below, we could have different Command classes. ShowCommand, HideCommand, SaveCommand, DeleteCommand, but the code that will not change with all these different commands is brought out into the UniveralButton class.
+In our example below, we could have additional command classes. `ShowCommand`, `HideCommand`, `SaveCommand`, `DeleteCommand`, but the code that will not change with all these different commands is brought out into the `UniveralButton` class.
 
 ````ruby
 class ShowCommand
+  ### @ivar will represent some sort of state ###
   def description
-    "show " + @ivars
+    "show " + @ivar
   end
   def execute
-    ## Something will be shown ##
+    ### Something will be shown ###
   end
 end
-
 class UniveralButton
   def initialize(command)
     @command = command
-    @logger = File.open('/')
+    @logger = File.open('/var/log/command_app.log')
   end
   def push_button
     @command.execute if @command
     @log.append @command.description
   end
 end
-
 button = UniversalButton.new(ShowCommand.new)
 ````
 
-Using the Command pattern also helps to log executed commands. Our ShowCommand is a class, so it should have some state information to add to our description, then it can be logged to a file for future use. Perhaps you do not want to execute the same command twice? A safeguarded code block may check our log file to see if the code has already been ran. Or could be used as an undo, knowing which command was executed last could help determine what to do in order to 'undo' that last function. The [Madeleine](https://github.com/ghostganz/madeleine) is a great example of doing just that.
+Using the command pattern also helps to log executed commands. Our `ShowCommand` is a class, so it should have some state information to add to our description, then it can be logged to a file for future use. Perhaps you do not want to execute the same command twice, a safeguarded code block may check our log file to see if the code has already been ran. Or could be used as an undo, knowing which command was executed last could help determine what to do in order to 'undo' that last function. The [Madeleine](https://github.com/ghostganz/madeleine) gem is a great example of doing just that.
 
 ##<a name="adapter"></a>Adapter
 
-An adapter is an object that crosses the chasm between the interface that you have and the interface that you need. Our below example has a `EmployeeManager` class, that would typically take an instantiated object of the `Employee` class. But we have a transfer from France, we would need a way for our French employee to interface with the employee manager. The `FrenchEmployeeConverter` will do just that, it will take our French employee and use its interface to correspond with the changes it needs to make to be of use in the `EmployeeManager` class.
+An adapter is an object that crosses the chasm between the interface that you have and the interface that you need. Our below example has a `EmployeeManager` class, that would typically take an instantiated object of the `Employee` class. But we have a transfer from France, we would need a way for our French employee to interface with the employee manager. The `FrenchEmployeeConverter` will do just that, it will take our French employee and use its interface to correspond with the changes it needs to make to be of use to the `EmployeeManager` class.
 
 ````ruby
 class EmployeeManager
@@ -286,17 +274,17 @@ class Employee
   attr_reader :name, :position, :id
 end
 class FrenchEmployeeConverter
-  def initialize(employé)
-    @employé = employé
+  def initialize(employe)
+    @employe = employe
   end
   def name
-    @employé.prénom
+    @employe.prenom
   end
   def position
-    @employé.poste
+    @employe.poste
   end
   def id
-    @employé.ça
+    @employe.ca
   end
 end
 ````
@@ -308,9 +296,9 @@ employee = FrenchEmployee.new
 
 class << employee
   def name
-    prénom
+    prenom
   end
-  ### etc. etc. ###
+  ### additional changes to follow ###
 end
 ````
 
@@ -318,7 +306,7 @@ This technique works well if the changes are simple, and we have deep knowledge 
 
 ##<a name="proxy"></a>Proxy
 
-Proxy classes have the real object, the subject, hidden inside themselves. Giving us another separation of concerns. In our example, our employee data is hidden behind a EmployeeDataProxy that verifies the current user is authorized to view the sensitive data regarding a particular employee.
+Proxy classes hold the real object, which we refer to as the 'subject', hidden away inside themselves. Giving us another separation of concerns. In our example, our employee data is hidden behind a EmployeeDataProxy that verifies the current user is authorized to view the sensitive data regarding a particular employee.
 
 ````ruby
 class EmployeeData
