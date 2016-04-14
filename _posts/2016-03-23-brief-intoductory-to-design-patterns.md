@@ -306,13 +306,13 @@ This technique works well if the changes are simple, and we have deep knowledge 
 
 ##<a name="proxy"></a>Proxy
 
-Proxy classes hold the real object, which we refer to as the 'subject', hidden away inside themselves. Giving us another separation of concerns. In our example, our employee data is hidden behind a EmployeeDataProxy that verifies the current user is authorized to view the sensitive data regarding a particular employee.
+Proxy classes hide away the real object within themselves, we refer to these real object as the "subject". This pattern is another separation of concerns. In our example, our employee data is hidden behind a EmployeeProxy that verifies the current user is authorized to view the sensitive data regarding a particular employee.
 
 ````ruby
-class EmployeeData
+class Employee
   attr_reader :id, :name, :ssn
 end
-class EmployeeDataProxy
+class EmployeeProxy
   def initialize(employee = Employee.new)
     @employee = employee
   end
@@ -331,29 +331,28 @@ end
 We can also use proxy classes for lazy loading. The employee subject does not get loaded until a method is called that needs to have the subject loaded. 
 
 ````ruby
-class EmployeeDataProxy
+class EmployeeProxy
   def initialize(&creation_block)
     @creation_block = creation_block
+  end
+  def subject
+    @subject ||= @creation_block.call
   end
   def name
     e = subject
     e.name
   end
-  def subject
-    @subject ||= @creation_block.call
-  end
 end
 ````
 
-Instead of having the `#subject` method instantiate a Employee class directly, we will pass in a proc object and use that code block when needed `EmployeeDataProxy.new(Employee.new)`. This lowers coupling and allows other ways of creating an employee subject, `EmployeeDataProxy.new(Employee.find(#))`.
+Instead of instantiating a Employee class directly, we will pass in a proc object and use that code block when needed `EmployeeProxy.new(Employee.new)`. This lowers coupling and allows other ways of creating an employee subject, `EmployeeProxy.new(Employee.find(#))`.
 
 ##<a name="decorator"></a>Decorator
 
-Our design pattern takes a ConcreteComponent(the "real" object) that implements the base functionality and is passed in to our Decorator through a Component class. The Decorators act as specialty classes to give the base class additional functionality once instantiated. We are able to chain our decorators to give our `super_tom` object even more functionality.
+Our Decorator design pattern takes a Concrete Component(the "real" object) that implements the base functionality and passes it to our Decorator through a Component class. The Decorators act as specialty classes to give the base class additional functionality once instantiated. We are able to chain our decorators to give our `super_tom` object even more functionality.
 
 ````ruby
-### ConcreteComponent
-class BaseEmployee
+class BaseEmployee ### ConcreteComponent ###
   def initialize(employee_hash)
     @name = employee_hash
   end
@@ -362,8 +361,7 @@ class BaseEmployee
     "work"
   end
 end
-### Component
-class EnhancedEmployee
+class EnhancedEmployee ### Component ###
   def initialize(employee)
     @employee = employee
   end
@@ -372,22 +370,21 @@ class EnhancedEmployee
     @employee.work
   end
 end
-### Decorators
-class Accountant < EnhancedEmployee
+class Accountant < EnhancedEmployee ### Decorator ###
   def initialize(employee)
     super(employee)
   end
   def organizes_files
   end
 end
-class Developer < EnhancedEmployee
+class Developer < EnhancedEmployee ### Decorator ###
   def initialize(employee)
     super(employee)
   end
   def write_code 
   end
 end
-class DevOps < EnhancedEmployee
+class DevOps < EnhancedEmployee ### Decorator ###
   def initialize(employee)
     super(employee)
   end
@@ -428,7 +425,7 @@ end
 Network.terminate_all
 ````
 
-We could instantiate one, and only one object to pass around under our class methods. This object would be available anywhere the `Logger` class is available. However, we have to take precaution not to create additional objects with this type of pattern, there can be one, and only one instance of the singleton class. The `private_class_method :new` will ensure we do not instantiate any additional objects from this class.
+We could instantiate one object to pass around under our class methods. This object would be available anywhere the `Logger` class is available. However, we have to take precaution not to create additional objects with this type of pattern, there can be one, and only one instance of the singleton class. The `private_class_method :new` will ensure we do not instantiate any additional objects from this class.
 
 ````ruby
 class Logger
