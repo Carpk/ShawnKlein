@@ -453,13 +453,9 @@ end
 
 ##<a name="factory"></a>Factory
 
-Factory pattern is very similar to the template pattern. As in it takes a base class and sends it to the creator class in which will create multiple instance of the base/product class. The creator is the class that contains our factory methods, the products are the classes that we are creating. In our example, we create the Zoo class and define our common set of methods, then our specialized classes `PenguinZoo` will inherit these methods and add its own specialized methods.
+Factory patterns are very similar to the template patterns. It takes a base class and sends it to a creator class which will create multiple instance of the base/product class. The creator is the class that contains our factory methods, the products are the classes that we are creating. In our example, we create the Zoo class and define our common set of methods, then our specialized classes `PenguinZoo` will inherit these methods and add its own specialized methods.
 
 ````ruby
-class Penguin # product
-end
-class Duck # product
-end
 class Zoo # creator
   def initialize(num, animal_type)
     @animals = []
@@ -468,15 +464,17 @@ class Zoo # creator
 end
 class PenguinZoo < Zoo
   def create_animal
-    Peguin.new
+    Penguin.new
   end
+end
+class Penguin # product
 end
 ````
 
 We could go even further and create abstract factories. Where its the classes job to create compatable sets of objects. 
 
 ````ruby
-class ArticZooFactory # abstract factory
+class ArcticZooFactory # abstract factory
   def new_animal
     Penguin.new
   end
@@ -492,10 +490,12 @@ class Zoo
     @exhibit_type = exhibit_type
     @animals = []
     animal_num.times { @animals << @exhibit_type.new_animal }
-    ## create additional state from ArticZooFactory ##
+    ## create additional state from ArcticZooFactory ##
   end
 end
 ````
+
+This allows grouping of objects that have common properties. We could create other abstract factories such as `SafariZooFactory`, `TropicalZooFactory`, and `DesertZooFactory`. All would contain their respective classes. 
 
 ##<a name="builder"></a>Builder
 
