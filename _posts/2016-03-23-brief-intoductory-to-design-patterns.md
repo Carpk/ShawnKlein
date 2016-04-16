@@ -10,23 +10,21 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-This post is a work in progress, check back later for updates!
+This post is a brief overview of software design patterns from the Design Patterns in Ruby book. The book is a Ruby version of the original Gang of Four book- Design Patterns. We will be covering the following patterns in this post:
 
-We will be covering the following design patterns in this post:
-
-* [Template](#template)
-* [Strategy](#strategy)
-* [Observer](#observer)
-* [Composite](#composite)
-* [Iterator](#iterator)
-* [Command](#command)
-* [Adapter](#adapter)
-* [Proxy](#proxy)
-* [Decorator](#decorator)
-* [Singleton](#singleton)
-* [Factory](#factory)
-* [Builder](#builder)
-* [Interpreter](#interpreter)
+* [Template](#template) changes at a particular step
+* [Strategy](#strategy) different algorithms to accomplish task
+* [Observer](#observer) classes watching another class for changes
+* [Composite](#composite) collection of objects that act as one
+* [Iterator](#iterator) stores objects but allows access
+* [Command](#command) wraps instructions in object
+* [Adapter](#adapter) fixes interface mismatch
+* [Proxy](#proxy) connects to networked object
+* [Decorator](#decorator) adds additional behaviors to object
+* [Singleton](#singleton) single instance everyone can use
+* [Factory](#factory) subclass produces objects
+* [Builder](#builder) builds complex objects
+* [Interpreter](#interpreter) customize interface to solve problem
 
 
 ##<a name="template"></a>Template
