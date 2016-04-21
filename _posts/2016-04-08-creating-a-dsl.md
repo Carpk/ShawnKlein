@@ -27,7 +27,7 @@ def event(name)
 end
 ````
 
-Our above method will be loaded when we read the `events.rb` file, and each event will get treated as a method call `event("we are cranking out blog topics") { **code block** }`. The description will be passed in as an argument, and when our event's code block returns `true`, the argument will be passed in allowing our output to be created, resulting in: `Alert: we are cranking out blog topics`. We could continue with creating events as long as we have variables to check. We of course not limited to writing things to the command prompt, as long as we have a defined method that promotes some functionality, we can have have our DSL calling those functions with the appropriate arguments.  
+Our above method will be loaded when we read the `events.rb` file, and each event will get treated as a method call `event("we are cranking out blog topics") { **code block** }`. The description will be passed in as an argument, and when our event's code block returns `true`, the argument will be passed in allowing our output to be created, resulting in: `Alert: we are cranking out blog topics`. We could continue with creating events as long as we have variables to check. And we, of course, are not limited to writing things to the command prompt. As long as we have a defined method that promotes some functionality, we can have have our DSL calling those functions with the appropriate arguments.  
 
 ````ruby
 event "site is recieve lots of views" {
@@ -37,11 +37,11 @@ event "someone shared a post" {
   twitter.shared? || facebook.shared? || g_plus.shared?
 }
 log "an error occured" {
-  log.write(msg, errors.show) if errors?
+  log.write(msg, errors.all) if errors?
 }
 ````
 
-And external DSL could be a little more user friendly, as it doesnt have to use valid Ruby syntax. Because we will be building a parser from scratch. It might look something such as `report warning low toner`, that is definetly not Ruby syntax! Lets build a parser for it.
+An external DSL might be a little more user friendly, as it doesnt have be written using valid Ruby syntax, because we will be building a parser from scratch. It might look something such as `report warning low toner`, that is definetly not Ruby syntax! Lets build a parser for it.
 
 ````ruby
 class ReportParser
@@ -49,7 +49,7 @@ class ReportParser
   def actions(cmds)
     case cmds.first
     when "report"
-      Email.send_email(type: cmds[1], message: cmds[2,-1].split[2..-1].join(" ")
+      Email.send_email(type: cmds[1], message: cmds[2,-1].join(" ")
     end
   end
 end    

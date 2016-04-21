@@ -545,11 +545,9 @@ Our builder class will allow us to use constraints when we attempt to retrieve o
 
 ##<a name="interpreter"></a>Interpreter
 
-Parser reads in the program text and produces a data structure called abstract syntax tree. The abstract syntax tree has terminals and nonterminals, much like leaf and a parent. 
+A parser reads in some program text and produces a data structure called abstract syntax tree. The abstract syntax tree(AST) has terminals and nonterminals, much like leaf and a parent. These nonterminals extend to the terminal leaf nodes. 
 
 ````ruby
-class
-end
 class All
   ### retrieves everything ###
 end
@@ -570,13 +568,23 @@ read_only = Not.new( Writable.new ).evaluate
 
 Typically we would use the `All` class to find all our objects, or `Writable` to just find the writable files, but now with have a nonterminal `Not` class that we could use to negate whatever we pass into it as an argment. The `Not` class will use two terminal classes, our `All` and `Writable` to remove all writable objects from the all group. This is a brief example, but we could also include other classes such as `Or` and `And`. These nonterminals could use other combinations of terminal classes such as `Readable` and `Executable`, giving us a larger tress structure that we could traverse.
 
+Another way to create a AST is to build a parser. We could define our syntax to look like `all except writable`, our class would parse through out command, taking `all` and setting a base set of files to work with, and our `except` would negate those file against ones that are `writable`.
+
 ````ruby
 class Parser
-  302
+  def expression
+    case next_token
+    when 'writable'
+      Writable.new
+    when 'all'
+      All.new
+    when 'except'
+      Except.new(next_token)
+    end
+  end
 end
+all except writable
 ````
-
-
 
 ````ruby
 class Expression
@@ -589,7 +597,7 @@ class Expression
   def writable
     Writable.new
   end
-  def but_not(arg) # avoiding collision with Rubys not operator
+  def but_not(arg) # avoiding collision with Rubys 'not' operator
     Not.new(arg)
   end
   ### We can use this for all our classes ###
