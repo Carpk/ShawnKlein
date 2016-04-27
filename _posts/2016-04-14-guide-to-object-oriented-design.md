@@ -156,8 +156,15 @@ module GearWrapper
 end
 ````
 
-It's best to focus on the messages, not the objects. If we fixate on the domain objects, we tend to coerce behavior onto them.
+It's best to focus on the messages, not the objects. If we fixate on the domain objects, we tend to coerce behavior onto them. Changing the fundamental design question from “I know I need this class, what should it do?” to “I need to send this message, who should respond to it?” is the first step in that direction. You don’t send messages because you have objects, you have objects because you send messages. Asks for what the sender wants instead of sending a message telling the receiver how to behave.
 
+
+![sequence diagram](/assets/images/sequence_diagram.png)
+
+In the first sequence diagram, `Trip` is telling `Mechanic` how to behave. It's very procedural code. The second sequence diagram is more object-oriented. `Trip` asks `Mechanic` to prepare a `Bicycle`. This lets `Mechanic` have a smaller public interface. And in the last, Trip knows nothing about Mechanic but still manages to collaborate with it to get bicycles ready. `Trip` merely tells `Mechanic` what it wants, which is to be prepared, and passes itself along as an argument. Then `Mechanic` knows the argument can respond to `#bicycles` and is able to preform its duties. Mechanic class is saying "Hey, I'm a bicycle mechanic, I expect to be given bicycles".
+
+This way, we can populate the `Trip`'s array with certain set of objects and have a preparer that knows how to prepare how to interact with those objects. You can *extend* `Trip` without *modifying* it. `Trip` trusts the preparing class that it knows how to get what it needs.
+ 
 
 
 
