@@ -164,6 +164,19 @@ It's best to focus on the messages, not the objects. If we fixate on the domain 
 In the first sequence diagram, `Trip` is telling `Mechanic` how to behave. It's very procedural code. The second sequence diagram is more object-oriented. `Trip` asks `Mechanic` to prepare a `Bicycle`. This lets `Mechanic` have a smaller public interface. And in the last, Trip knows nothing about Mechanic but still manages to collaborate with it to get bicycles ready. `Trip` merely tells `Mechanic` what it wants, which is to be prepared, and passes itself along as an argument. Then `Mechanic` knows the argument can respond to `#bicycles` and is able to preform its duties. Mechanic class is saying "Hey, I'm a bicycle mechanic, I expect to be given bicycles".
 
 This way, we can populate the `Trip`'s array with certain set of objects and have a preparer that knows how to prepare how to interact with those objects. You can *extend* `Trip` without *modifying* it. `Trip` trusts the preparing class that it knows how to get what it needs.
+
+Message chains like customer.bicycle.wheel.rotate occur when your design thoughts are unduly influenced by objects you already know. Your familiarity with the public interfaces of known objects may lead you to string together long message chains to get at distant behavior.Focusing on messages reveals objects that might otherwise be overlooked. When messages are trusting and ask for what the sender wants instead of telling the receiver how to behave, objects naturally evolve public interfaces that are flexible and reusable in novel and unexpected ways. Its not the class of the object that matters, its what the object *does*.
+
+````ruby
+class Trip
+  attr_reader :bicycles
+  def prepare(mechanic)
+    mechanic.prepare_bicycles(bicycles)
+  end
+end
+````
+
+
  
 
 
