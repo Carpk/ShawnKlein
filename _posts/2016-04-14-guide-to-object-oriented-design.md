@@ -165,7 +165,7 @@ In the first sequence diagram, `Trip` is telling `Mechanic` how to behave. It's 
 
 This way, we can populate the `Trip`'s array with certain set of objects and have a preparer that knows how to prepare how to interact with those objects. You can *extend* `Trip` without *modifying* it. `Trip` trusts the preparing class that it knows how to get what it needs.
 
-Message chains like customer.bicycle.wheel.rotate occur when your design thoughts are unduly influenced by objects you already know. Your familiarity with the public interfaces of known objects may lead you to string together long message chains to get at distant behavior.Focusing on messages reveals objects that might otherwise be overlooked. When messages are trusting and ask for what the sender wants instead of telling the receiver how to behave, objects naturally evolve public interfaces that are flexible and reusable in novel and unexpected ways. Its not the class of the object that matters, its what the object *does*.
+Message chains like `customer.bicycle.wheel.rotate` occur when your design thoughts are unduly influenced by objects you already know. Your familiarity with the public interfaces of known objects may lead you to string together long message chains to get at distant behavior.Focusing on messages reveals objects that might otherwise be overlooked. When messages are trusting and ask for what the sender wants instead of telling the receiver how to behave, objects naturally evolve public interfaces that are flexible and reusable in novel and unexpected ways. Its not the class of the object that matters, its what the object *does*.
 
 ````ruby
 class Trip
@@ -173,8 +173,13 @@ class Trip
   def prepare(mechanic)
     mechanic.prepare_bicycles(bicycles)
   end
+  def plan
+    travel_agent.plan(self)
+  end
 end
 ````
+
+
 
 
  

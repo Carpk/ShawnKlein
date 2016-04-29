@@ -28,15 +28,23 @@ Rakefile:  (FRAMEWORKS - %w(activerecord)).each do |project|
 ````
 And we have a first hand look at how Rails builds it's framework tasks, if you are in rails's root directory.
 
+If we have no need to traverse multiple files and subfolders, we can specifiy a specific file by using grep in its most basic form, `grep pattern filename.txt' we follow the `grep` command with the pattern to match `pattern` and then the file to search, `filename.txt` in this case.
 
+One of the more useful options is to show the line number of our match. We would accomplish this by adding `-n` after `grep`. 
 
+````bash
+~$ grep -n task Rakefile
+4:require "tasks/release"
+5:require 'railties/lib/rails/api/task'
+8:task :build => "all:build"
+11:task :prep_release => "all:prep_release"
+  ### dont worry, there was alot more ###
+````
+The `-i` option will ignore case sensitivity.
 
+`-v` will invert match, that is, display everything except line that match our pattern. 
 
-
-
-
-
-
+`-c` display the line count of our matches
 
 
 
