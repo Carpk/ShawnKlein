@@ -30,6 +30,11 @@ And we have a first hand look at how Rails builds it's framework tasks, if you a
 
 If we have no need to traverse multiple files and subfolders, we can specifiy a specific file by using grep in its most basic form, `grep pattern filename.txt' we follow the `grep` command with the pattern to match `pattern` and then the file to search, `filename.txt` in this case.
 
+````bash
+~$ grep require load_paths.rb
+require 'bundler'
+````
+
 One of the more useful options is to show the line number of our match. We would accomplish this by adding `-n` after `grep`. 
 
 ````bash
@@ -46,5 +51,33 @@ The `-i` option will ignore case sensitivity.
 
 `-c` display the line count of our matches
 
+<table>
+  <tr>
+    <th>option</th>
+    <th>full name</th>
+    <th>description</th>
+  </tr>
+  <tr>
+    <td>`-i`</td>
+    <td>`--ignore-case`</td>
+    <td>ignore case distinctions</td>
+  </tr>
+  <tr>
+    <td>`-v`</td>
+    <td>`--invert-match`</td>
+    <td>display everything except our pattern match</td>
+  </tr>
+  <tr>
+    <td>`-c`</td>
+    <td>`--count`</td>
+    <td>display only the number of line matches</td>
+  </tr>
+  <tr>
+    <td>`-n`</td>
+    <td>`--line-number`</td>
+    <td>prefix line with its line number match</td>
+  </tr>
+</table>
 
+And there are quite a few more options that come with `grep`, these can be found by using the `man grep` command.
 
