@@ -10,7 +10,7 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-The grep command is without a doubt currently my favorite command. Lets say we are writing a large complex application, and we have some method that we dont know who calls it, or some code that is passed in and we have no idea from where or why. We can easily locate our elusive method call with `grep -r my_method`. The `-r` option will recursively search the contents of all the file in and below our current directory. We can also call this command as `rgrep search_pattern`.
+The grep command is without a doubt currently my favorite command. Lets say we are writing a large complex application, and we have some method that we don't know who calls it, or some code that is passed in and we have no idea from where or why. We can easily locate our elusive method call with `grep -r my_method`. The `-r` option will recursively search the contents of all the files in and below our current directory. We can also call this command as `rgrep search_pattern`.
 
 ````bash
 ~$ grep -r FRAMEWORKS
@@ -28,7 +28,7 @@ Rakefile:  (FRAMEWORKS - %w(activerecord)).each do |project|
 ````
 And we have a first hand look at how Rails builds it's framework tasks, if you are in rails's root directory.
 
-If we have no need to traverse multiple files and subfolders, we can specifiy a specific file by using grep in its most basic form, `grep pattern filename.txt' we follow the `grep` command with the pattern to match `pattern` and then the file to search, `filename.txt` in this case.
+If we have no need to traverse multiple files and subfolders, we can specify a specific file by using grep in its most basic form, `grep pattern filename.txt` we follow the `grep` command with the pattern to match `pattern` and then the file to search, `filename.txt` in this case.
 
 ````bash
 ~$ grep require load_paths.rb
@@ -43,13 +43,9 @@ One of the more useful options is to show the line number of our match. We would
 5:require 'railties/lib/rails/api/task'
 8:task :build => "all:build"
 11:task :prep_release => "all:prep_release"
-  ### dont worry, there was alot more ###
+  ### don't worry, there was a lot more ###
 ````
-The `-i` option will ignore case sensitivity.
-
-`-v` will invert match, that is, display everything except line that match our pattern. 
-
-`-c` display the line count of our matches
+We can call options by specifying either single character `-i` or writing the full name `--ignore-case`.
 
 <table>
   <tr>
@@ -79,5 +75,5 @@ The `-i` option will ignore case sensitivity.
   </tr>
 </table>
 
-And there are quite a few more options that come with `grep`, these can be found by using the `man grep` command.
+And there are quite a few more options that come with `grep`, these can be found by using the `man grep` or `grep --help` commands.
 

@@ -178,7 +178,9 @@ class Trip
   end
 end
 ````
+treat your objects as if they are defined by their behavior rather than by their class. 
 
+Polymorphism in OOP refers to the ability of many different objects to respond to the same message.
 
 
 
