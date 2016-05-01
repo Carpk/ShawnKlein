@@ -12,11 +12,22 @@ logo: 'assets/images/logo.png'
 
 Duck typing is a design technique that relies on our ability to recognize the places where our application would benefit from across-class interfaces. Duck types are public interfaces that are not tied to any specific class. Its one that has an agreement about its public interface. If an object quacks like a duck and walks like a duck, then its class is immaterial, it’s a duck.
 
-86
+When using an object we should not be concerned about its class. Class is just one way for an object to acquire a public interface. It’s not what an object is that matters, it’s what it does. We are looking to create an object that trusts all others to be what it expects at any given moment, and any of those objects can be any kind of thing.
 
+Its when we bring our objects behaviors to a more absract level and the `BodyShop` doesnt care about the engine or upolstery, it only cares that the object being passed has something body related that it can respond to. 
 
+````ruby
+class Car
+  attr_reader :body, :engine, :upholstry, 
+  def fix_with(type)
+    type.repair(self)
+  end
+end
 
-
+gto67.fix_with(BodyShop.new)
+gto67.fix_with(GasMechanic.new)
+gto67.fix_with(Upolstery.new)
+````
 
 You may already have ducks hidden somewhere in your codebase. Using some of the methods below is good indication that we may have duck types in our code.
 
@@ -62,5 +73,5 @@ class Car
   end
 end
 ````
-
+106
 
