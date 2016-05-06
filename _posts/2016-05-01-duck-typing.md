@@ -25,9 +25,9 @@ class GasMechanic
     ### fixes gas engines ####
   end
 end
-class Upholstery
+class UpholsteryService
   def repair
-    #### repairs interior ###
+    #### services interior ###
   end
 end
 ````
@@ -37,26 +37,26 @@ If need be, that interface can except `self` for which ever attributes our duck 
 ````ruby
 class Car
   attr_reader :body, :engine, :upholstery, 
-  def fix_with(type)
-    type.repair(self)
+  def fix_at(repair_shop)
+    repair_shop.repair(self)
   end
 end
 
-gto67.fix_with(BodyShop.new)
-gto67.fix_with(GasMechanic.new)
-gto67.fix_with(Upholstery.new)
+gto68.fix_at(BodyShop.new)
+gto68.fix_at(GasMechanic.new)
+gto68.fix_at(UpholsteryService.new)
 ````
-The `Car` class doesn't know what type of object was passed in for `#fix_with()`'s argument, nor should it care. If the object has the behavior of `#repair()` and does it like a `GasMechanic` and does other `GasMachanic` things, then it must be a `GasMechanic`. This is where we apply "If an object quacks like a duck and walks like a duck, then its class is immaterial, it’s a duck".
+The `Car` class doesn't know what type of object was passed in for `#fix_at()`'s argument, nor should it care. If the object has the behavior of `#repair()` and does it like a `GasMechanic` and does other `GasMachanic` things, then it must be a `GasMechanic`. This is where we apply "If an object quacks like a duck and walks like a duck, then its class is immaterial, it’s a duck".
 
-We are looking to create an object that trusts all others to be what it expects at any given moment, and any of those objects can be any kind of thing. What helps direct us, is the fact that the `#fix_with()` method serves a single purpose. Its argument arrives wishing to accomplish a single goal. This is where the argument's class is less important than what the `#fix_with()` needs to do. Its goal is to fix something, and the design allows the passing object to do so.
+We are looking to create an object that trusts all others to be what it expects at any given moment, and any of those objects can be any kind of thing. What helps direct us, is the fact that the `#fix_at()` method serves a single purpose. Its argument arrives wishing to accomplish a single goal, it's class is less important than what the `#fix_at()` needs to do. Its goal is to repair something, and the design allows the passing object to do so.
 
-We may already have ducks hidden somewhere in our codebase. Using some of the methods below may be an indication that we have duck types hidden in our code.
+We may already have ducks hidden somewhere in our codebase. A good indication may be the usage of some of the methods below.
 
 * `case` statements that switch on class
 * `kind_of?` and `is_a?`
 * `responds_to?`
 
-Having `case` statements that switch on class is a sign of a hidden duck. `kind_of?` will directly ask if it is a specific class. `responds_to?` is better because it helps remove the hard coded class name, but we can still do a lot better.
+Having `case` statements that switch on class is a sign of a hidden duck. `kind_of?` will also directly ask if it is of a specific class. `responds_to?` is better because it helps remove the hard coded class name, but we can still do a lot better.
 
 ````ruby
 parts.each do |part|
@@ -81,7 +81,7 @@ elsif part.responds_to?(:wipe_with_cleaner)
   ## omitting the rest ##
 ````
 
-In the top section of our example, we depend on a concrete class, which makes it dangerous to extend. These types of methods to find out who the object is an instance of to figure out what they do, breaks the type of trust for objects to collaborate on an abstract level. Its the interface that matters, not the class of the object that implements it. Flexible applications are built on objects that operate on trust; it is our job to make your objects trustworthy. This type of code also introduces dependencies that make code difficult to change.
+In the first section of our example, we depend on a concrete class, which makes it dangerous to extend. These types of methods that try to find out who the object is an instance of, in order to figure out what they do, breaks the type of trust for objects to collaborate on an abstract level. Its the interface that matters, not the class of the object that implements it. Flexible applications are built on objects that operate on trust; it is our job to make your objects trustworthy. This type of code also introduces dependencies that make code difficult to change.
 
 All of these `part` objects share something in common, on a higher abstract level, they clean something.
 
