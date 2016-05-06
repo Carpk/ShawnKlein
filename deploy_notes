@@ -1,7 +1,11 @@
 
-to deploy, use following command:
+To deploy:
 
 aws s3 sync . s3://shawnklein.net/
+
+aws s3 sync duck-typing s3://shawnklein.net/duck-typing
+
+To compile:
 
 bundle exec jekyll build
 

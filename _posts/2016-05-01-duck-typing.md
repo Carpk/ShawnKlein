@@ -10,11 +10,29 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-Duck typing is an object oriented design technique that lets us generalize the type of object we have in order to let us invoke methods that are common across a set of classes. To implement this technique, we need to be able to recognize the places in our code that our application would benefit from having similar interfaces. These are public interfaces, that are not unique to their respective class, and are common on an abstract level.
+Duck typing is an object oriented design technique that lets us determine an object by using its properties and its methods. We are not concerned with the class type of a duck object, it's the public interface that will dictate how we may interact with the object. Our goal is to utilize a duck's public interface with other similar ducks and allow them to share their interfaces in an abstract manner. We are trying to recognize the places in our code that our application would benefit from having similar interfaces.
 
-When using an object we should not be concerned about its class, what we want to look at is the public interface. We are looking to create an object that trusts all others to be what it expects at any given moment, and any of those objects can be any kind of thing. If an object quacks like a duck and walks like a duck, then its class is immaterial, it’s a duck.
+If we have a common behavior among our classes, they can share a public interface.
 
-Duck typing happens when we bring our object's behaviors to a more abstract level. If we have a common behavior among our classes, they can share that public interface, and if need be, that interface can except `self` for which ever attributes it would need. In our example below, the `BodyShop` object doesn't care about the car's engine or upholstery, it only cares that the object being passed to itself has something body related that it can respond to. 
+````ruby
+class BodyShop
+  def repair
+    ### preforms body work ###
+  end
+end
+class GasMechanic
+  def repair
+    ### fixes gas engines ####
+  end
+end
+class Upholstery
+  def repair
+    #### repairs interior ###
+  end
+end
+````
+
+If need be, that interface can except `self` for which ever attributes our duck object may need. In our example below, the `BodyShop` object doesn't care about the car's engine or upholstery, it only cares that the object being passed to itself has something body related that it can respond to.
 
 ````ruby
 class Car
@@ -28,9 +46,9 @@ gto67.fix_with(BodyShop.new)
 gto67.fix_with(GasMechanic.new)
 gto67.fix_with(Upholstery.new)
 ````
-The `Car` class doesn't know what type of object was passed in for `#fix_with()`'s argument, nor should it care. If the object has the behavior of `#repair()` and does it like a `GasMechanic` and does other `GasMachanic` things, then it must be a `GasMechanic`.
+The `Car` class doesn't know what type of object was passed in for `#fix_with()`'s argument, nor should it care. If the object has the behavior of `#repair()` and does it like a `GasMechanic` and does other `GasMachanic` things, then it must be a `GasMechanic`. This is where we apply "If an object quacks like a duck and walks like a duck, then its class is immaterial, it’s a duck".
 
-What helps direct us, is the fact that the `#fix_with()` method serves a single purpose. Its argument arrives wishing to accomplish a single goal. This is where the argument's class is less important than what the `#fix_with()` needs to do. Its goal is to fix something, and the design allows the passing object to do so.
+We are looking to create an object that trusts all others to be what it expects at any given moment, and any of those objects can be any kind of thing. What helps direct us, is the fact that the `#fix_with()` method serves a single purpose. Its argument arrives wishing to accomplish a single goal. This is where the argument's class is less important than what the `#fix_with()` needs to do. Its goal is to fix something, and the design allows the passing object to do so.
 
 We may already have ducks hidden somewhere in our codebase. Using some of the methods below may be an indication that we have duck types hidden in our code.
 
