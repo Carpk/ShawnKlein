@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/crashing_waves.jpg'
 title: Using Modules and Mixins
 date:   2016-05-07 10:18:00
-tags: oop ruby
+tags: ruby
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True
