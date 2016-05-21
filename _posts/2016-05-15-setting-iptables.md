@@ -94,7 +94,7 @@ Each table has a list of chains, and may include some user defined chains. A cha
 
 #### Commands
 
-After either specifying a table, or using the default `filter` table, first 3 (of many) basic commands are:
+After either specifying a table, or using the default `filter` table, first 4 (of many) basic commands are:
 
 <table>
   <tr>
@@ -142,7 +142,7 @@ After one of our commands, we would typically specify a chain such as `-A INPUT`
   <tr>
     <td>-p</td>
     <td>protocol</td>
-    <td>follows with `protocol`, `tcp`, `udp`, `udplite`, `icmp` or `all`</td>
+    <td>follows with a protocol: `tcp`, `udp`, `udplite`, `icmp` or `all`</td>
   </tr>
   <tr>
     <td>-D</td>
@@ -153,7 +153,7 @@ After one of our commands, we would typically specify a chain such as `-A INPUT`
 
 #### Targets
 
-We can target an item from the list below, another user defined chain, or an extension.
+We can target an item from the list below, a user defined chain, or an extension.
 
 <table>
   <tr>
@@ -183,15 +183,15 @@ Now with the basics out of the way, we will have a basic understanding of what i
 
 `sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT`
 
-We are telling `iptables` to `--append` to the `INPUT` chain for incomming packets, with a `--match` from `conntrack` where the connection state `--ctstate` is `ESTABLISHED` or `RELATED`, and for packets that meet this rule, to `--jump` to the target, `ACCEPT` in this case.
+We are telling `iptables` to `--append` to the `INPUT` chain for incomming packets, with a `--match` from the `conntrack` extension where the connection state `--ctstate` is `ESTABLISHED` or `RELATED`, and for packets that meet this rule, to `--jump` to the target, `ACCEPT` in this case.
 
-The `conntrack` module extension provides provides access to the connection tracking state. passing in `--ctstate` allows us to match connection state, other states to match include: `INVALID`, `NEW`, `UNTRACKED`, `NONE`, `EXPECTED`. More info regarding this and other modules and can be found in `man iptables-extensions`. But in our case, `ESTABLISHED` matches a packet that is associated with a connection which has seen packets in both directions. `RELATED` will match a packet that is starting a new connection, but is associated with an existing connection.
+The `conntrack` module extension provides provides access to the connection tracking state. Passing in `--ctstate` allows us to match connection state, other states to match include: `INVALID`, `NEW`, `UNTRACKED`, `NONE`, `EXPECTED`. More info regarding this and other modules and can be found in `man iptables-extensions`. But in our case, `ESTABLISHED` matches a packet that is associated with a connection which has seen packets in both directions. `RELATED` will match a packet that is starting a new connection, but is associated with an existing connection.
 
 Next, we will allow incoming traffic on port 22 for SSH. 
 
 `sudo iptables -A INPUT -p tcp --dport ssh -j ACCEPT`
 
-`iptables` will `--append` to the `INPUT` chain for incomming packets, the `--protocol` of `tcp` where destination port `--dport` matches `ssh`, these will `--jump` to the `ACCEPT` target.
+`iptables` will `--append` to the `INPUT` chain for incomming packets, the `--protocol` of `tcp` where destination port `--dport` matches `ssh`, these will `--jump` to the `ACCEPT` target. When the `--protocol` is used, it will load the module of the protocol type. So in the above command, iptables is loading the `tcp` module, and could be easily found in `man iptables-extensions` if we search for `--protocol tcp`, where we can see other commands that tcp will accept, such as `--sport`, `--tcp-flags`, `--syn`, and `--tcp-option`.
 
 Command for allowing all web traffic
 
