@@ -1,9 +1,9 @@
 ---
 layout: post
 cover: 'assets/images/railroad_fog.jpg'
-title: Rails File Structure
+title: Module Paths in Rails
 date:   2016-05-21 20:24:00
-tags: unix/linux 
+tags: ruby 
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True
@@ -29,7 +29,7 @@ module Products
 end
 ````
 
-Rails should autoload the below mentioned directories, if it does not, for whatever reason, you can tell rails to load a particular directory by specifying it in our application file.
+Rails autoloads everything under the `/app` directory. When loading `/lib` files, which is not under `/app`, you either specify when you need that file loaded, or add it to the other auto loading paths:
 
 ````ruby
 # /config/application.rb
