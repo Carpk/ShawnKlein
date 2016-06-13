@@ -2,7 +2,7 @@
 layout: post
 cover: 'assets/images/railroad_fog.jpg'
 title: DNS Overview
-date:   2016-04-26 20:24:00
+date:   2016-06-13 17:03:00
 tags: general 
 subclass: 'post tag-test tag-content'
 categories: 'casper'
@@ -32,13 +32,13 @@ A Domain Name System (DNS) is typically provided by your ISP. It is used to look
   </tr>
   <tr>
     <td>CCA</td>
-    <td>Canonical name</td>
-    <td>Alias of one name to another, DNS lookup will continue with new name</td>
+    <td>Certification Authority Authorization</td>
+    <td>specifies which certificate authorities may be regarded as authoritative</td>
   </tr>
   <tr>
     <td>CERT</td>
     <td>Certificate</td>
-    <td>Stores PGP</td>
+    <td>Stores PGP, and other keys</td>
   </tr>
   <tr>
     <td>CNAME</td>
@@ -48,7 +48,7 @@ A Domain Name System (DNS) is typically provided by your ISP. It is used to look
   <tr>
     <td>MX</td>
     <td>Mail exchange</td>
-    <td>prefix line with its line number match</td>
+    <td>Maps domain to a list of message transfer agents</td>
   </tr>
   <tr>
     <td>SOA</td>
@@ -62,19 +62,20 @@ A Domain Name System (DNS) is typically provided by your ISP. It is used to look
   </tr>
 </table>
 
-This is only a small sample of DNS record types, a full list can be found on ![wikipedia.org](https://en.wikipedia.org/wiki/List_of_DNS_record_types)
+This is only a small sample of DNS record types, a full list can be found on [wikipedia.org/wiki/List-of-DNS-record-types](https://en.wikipedia.org/wiki/List_of_DNS_record_types)
 
 It is helpful to note that a URL is a type of URI. A URL being `http://ShawnKlein.net/awesome_page`, so a URI can refer to the same, in addition to URNs such as `urn:isbn:0-486-27557-4`.
 
 
-![DNS query diagram](/images/dns_queries.gif)
+![DNS query diagram](/assets/images/dns_queries.gif)
 
+We (DNS client) start by asking (1) the DNS server for the IP address we seek. The DNS server then asks (2) the Root name server.
 
-The root name server begins the proccess by reading the domain name from right to left. Directing us to another server that matches our TLD (.net, .com, .uk, .gov).
+The root name server begins the proccess by reading the domain name from right to left. Directing us (3,4) to another server that matches our TLD (.net, .com, .uk, .gov).
 
-Our com. nameserver can then resolve the hostname, which would be the `example` in `http://www.example.com`
+Our com. nameserver can then resolve the hostname, which would be the `example` in `http://www.example.com` (5,6)
 
-Then the example.com nameserver can respond to the final portion, being a `www` request, it will return the appropriate IP address. 
+Then the example.com nameserver can respond (7) to the final portion, being a `www` request, it will return (8) the appropriate IP address. 
 
 
 
