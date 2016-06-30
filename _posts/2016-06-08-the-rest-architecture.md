@@ -14,17 +14,14 @@ Representational State Transfer (REST) is the architectural style used in the de
 
 It was designed with several factors in mind:
 
-* Performance - does not utilize much bandwidth
-
-* Scalable - able to suppport a large number of components
-
-* Simplistic - non-complex interfaces
- 
-* Visibility - communication is seen by service agents
-
-* Portable - send code with data
-
-* Reliable - resistent to failure
+<ul>
+  <li>Performance - does not utilize much bandwidth</li>
+  <li>Scalable - able to suppport a large number of components</li>
+  <li>Simplistic - non-complex interfaces</li>
+  <li>Visibility - communication is seen by service agents</li>
+  <li>Portable - send code with data</li>
+  <li>Reliable - resistent to failure</li>
+</ul>
 
 To meet these demands, REST dictates a list of 6 constraints. 
 

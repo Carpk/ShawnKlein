@@ -10,7 +10,7 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-The Open Systems Interconnection (OSI) model is a way to help us conceptualize how data gets transfered from one point to another.
+The Open Systems Interconnection (OSI) model is a way to help us conceptualize how data gets transfered from one point to another. This post describes the recommended 7 layered model, where 1 is the lowest layer in this model.
 
 <table style="width:100%">
   <tr>
@@ -25,7 +25,7 @@ The Open Systems Interconnection (OSI) model is a way to help us conceptualize h
     <td>Application</td>
     <td>Data</td> 
     <td>resource sharing, remote file access, directory services</td>
-    <td>LADP, SSH, HTTP, FTP, SMTP, DNS</td>
+    <td>HTTP, LADP, SSH, FTP, SMTP, DNS</td>
   </tr>
   <tr>
     <td>6</td>
@@ -81,12 +81,10 @@ Each layer is built on the one below it. So we will decompile it from the bottom
 K55N:~/Projects $ traceroute example.com
 traceroute to example.com (93.184.216.34), 30 hops max, 60 byte packets
 1  homeportal (192.168.1.254)  1.589 ms  3.571 ms  4.364 ms
-2  107-207-56-3.lightspeed.cicril.sbcglobal.net (107.208.54.2)  358.589 ms  360.831 ms  362.335 ms
+2  107-207-56-3.lgtspeed.ciril.sbglobal.net (107.208.54.2)  358.589 ms  360.831 ms  362.335 ms
 3  71.145.65.208 (71.145.65.208)  358.151 ms  358.471 ms  362.285 ms
 4  12.83.43.53 (12.83.43.53)  363.783 ms  363.237 ms 12.83.43.49 (12.83.43.49)  364.004 ms
 5  gar13.cgcil.ip.att.net (12.122.132.121)  364.762 ms  365.137 ms  365.140 ms
-6  dcr1-so-4-0-0.atlanta.savvis.net (192.205.32.118)  365.710 ms  348.934 ms  349.680 ms
-7  93.184.216.34 (93.184.216.34)  350.635 ms  159.642 ms  128.408 ms
 ````
   </li>
   <li>Networking layer provides the end to end connection. It would be the connection from our PC to the web server to view this page. The above Data Link layer doesn't know how to get to this point, instead it says "but I know someone who does" and keeps transfering the next router. 
@@ -109,7 +107,7 @@ traceroute to example.com (93.184.216.34), 30 hops max, 60 byte packets
   </tr>
 </table>
 
-  This is an simplified version of a routing table, if the router recieves traffic destined to `198.0.0.78`, it checks the table, which states to send that traffic out on port 6. The reciever on that end continues the same process until it narrows down to the node.
+  This is an over simplified version of a routing table, if the router recieves traffic destined to `198.0.0.78`, it checks the table, which states to send that traffic out on port 6. The reciever on that end continues the same process until it narrows down to the node.
   </li>
   <li>Now that we can get information from one node to another, the next set of layers are more concerned with that actual moving of our data. Transport layer provides reliable, and multiplexing ports.
   
@@ -137,7 +135,7 @@ traceroute to example.com (93.184.216.34), 30 hops max, 60 byte packets
 
   Speacial note for multiplexing: when you send a HTTP request for a webpage, the request will be on port 80, which how the server knows to translate it as an HTTP request. But the returning port will be an arbitrary number with the requestee's IP address. This arbitrary number is how our local machine is able to multiplex and keep track of which application sends the request.
   </li>
-  <li>The Session layer sets up, coordinates, and terminates conversations, exchanges, and dialogues between the applications at each end. It deals with session and connection coordination. </li>
+  <li>The Session layer sets up, coordinates, and terminates conversations, exchanges, and dialogues between the applications at each end. It deals with session and connection coordination. SQL is in this layer as our application needs to set up and cordinate with our database server.</li>
   <li>The presentation layer works to transform data into the form that the application layer can accept. This layer formats and encrypts data to be sent across a network, providing freedom from compatibility problems</li>
   <li>Everything at this layer is application-specific. This layer provides application services for file transfers, e-mail, and other network software services. Telnet and FTP are applications that exist entirely in the application level.</li>
 </ol>
