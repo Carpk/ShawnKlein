@@ -1,7 +1,7 @@
 ---
 layout: post
 cover: 'assets/images/rocky_river.jpg'
-title: HTTP Standard
+title: HTTP Guide
 date:   2016-06-27 9:48:00
 tags: general
 subclass: 'post tag-test tag-content'
@@ -12,13 +12,15 @@ logo: 'assets/images/logo.png'
 
 HTTP is a request/response protocol that is used for transmitting hypermedia documents such as HTML. HTTP connections start by a client sending a request to the server in the form of a [request method](#methods), [URI](#uri), and [protocol version](#versions), followed by a MIME-like message containing request modifiers, client information, and possible body content over a connection with a server. 
 
+The request method, URI and protocol version make up the __request line__. Followed by __request headers__ defining the parameters of the HTTP transaction. Both of these are what make up the __request message header__. Then lastly a __blank line__ and the optional __request message body__.
+
 ![image of HTTP request](/assets/images/http_request.jpg)
 
-The server responds with a status line that includes the message's [protocol version](#versions) and a [response code](#codes) for success or error, followed by a MIME-like message containing server information, entity metainformation, and possible entity-body content.
+The server responds with a __status line__ that includes the message's [protocol version](#versions) and a [response code](#codes) for success or error, followed by by a MIME-like message containing server information, entity metainformation, which is our __request headers__ and possible a entity-body content being __request message body__.
 
 ![image of HTTP request](/assets/images/http_response.jpg)
 
-HTTP is also used as a generic protocol for communication between user agents and proxies/gateways to other Internet systems, including those supported by the SMTP, FTP, Gopher, and WAIS protocols.
+HTTP is also used as a generic protocol for communication between user agents(browsers, web crawlers) and proxies/gateways to other Internet systems, including those supported by the SMTP, FTP, Gopher, and WAIS protocols. In this way, HTTP allows basic hypermedia access to resources available from diverse applications.
 
 * MIME (Multipurpose Internet Mail Extensions) were designed for SMTP/email service, however, it became important when using HTTP to enable browsers to display or output files that are not in HTML format.
 
@@ -90,12 +92,12 @@ Was a simple protocol for raw data transfer. connection is closed after a single
 
 ##### HTTP/1.0
 
-Improved the protocol by allowing messages to be in the format of MIME-like messages, containing metainformation about the data transferred and modifiers on the request/response semantics.
+Improved the protocol by allowing messages to be in the format of MIME-like messages, contain metainformation about the data transferred and modifiers on the request/response semantics.
 A separate connection to the same server is made for each resource request. connection is closed after a single request/response pair
 
 ##### HTTP/1.1
 
-Can reuse a connection multiple times to download resources. Such as images, scripts, and stylesheets, after the page has been delivered. keep-alive-mechanism was introduced, allowing a connection to be reused for more than one request. This greatly reduced latency, as the connection does not need to re-negotiate the 3-way handshake. 
+Can reuse a connection multiple times to download resources. Such as images, scripts, and stylesheets, after the page has been delivered. Keep-alive-mechanism was introduced, allowing a connection to be reused for more than one request. This greatly reduced latency, as the connection does not need to re-negotiate the 3-way handshake. 
 
 ##### HTTP/2.0
 
@@ -180,7 +182,9 @@ Hypertext Transfer Protocol (HTTP) is an application level protocol. We covered 
 
 ![image of 3 way handshake for TCP connection](/assets/images/3-way-handshake.jpg)
 
-While HTTP is stateless protocol, TCP is a stateful protocol, and IP is also stateless. This stacking of stateless and stateful protocols serves to give support on the layer that is needed. HTTP follows the RESTful archetechture, TCP maintains state in the form of window size for data transmission. While HTTP is stateless, a web client can hold information in cookies or session IDs, such as anthentication credentials to emulate a session is occuring while keeping within the RESTful archetechture constraints.
+#### Sessions
+
+While TCP is a stateful protocol, it depends on, and is dependant of two differant stateless protocols, TCP/IP. This stacking of stateless and stateful protocols serves to give support on the layer that is needed. HTTP follows the RESTful archetechture, while TCP maintains state in the form of window size for data transmission. With HTTP being stateless, a web client can hold information in cookies or session IDs, such as anthentication credentials to emulate a session is occuring while keeping within the RESTful archetechture constraints.
 
 ###### Notes
 
