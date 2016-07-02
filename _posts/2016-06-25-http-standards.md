@@ -103,7 +103,70 @@ Goal of HTTP/2.0 is to improve performance by reducing latency and the number of
 
 ####<a name="codes"></a>Response Codes
 
-404
+The status line of an HTTP response includes a numeric status code and a textual reason phrase. Below is a small sample set, but servers can even have custom codes and proprietarty codes from server appliacation vendors.
+
+<table style="width:100%">
+  <tr>
+    <th>Code</th>
+    <th>Status</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>100</td>
+    <td>Continue</td>
+    <td>For large body requests, server has recieved the header and is ready for request body</td>
+  </tr>
+  <tr>
+    <td>200</td>
+    <td>OK</td>
+    <td>Standard response for HTTP requests</td>
+  </tr>
+  <tr>
+    <td>201</td>
+    <td>Created</td>
+    <td>Request has been fullfilled</td> 
+  </tr>
+  <tr>
+    <td>202</td>
+    <td>Accepted</td>
+    <td>Request has been accepted for processing, but processing has not been completed</td> 
+  </tr>
+  <tr>
+    <td>301</td>
+    <td>Moved Permanently</td>
+    <td>This and all future requests should be directed to the given URI</td> 
+  </tr>
+  <tr>
+    <td>400</td>
+    <td>Bad Request</td>
+    <td>Server cannot proccess the request due to error</td> 
+  </tr>
+  <tr>
+    <td>401</td>
+    <td>Unauthorized</td>
+    <td>Athentication has failed</td> 
+  </tr>
+  <tr>
+    <td>403</td>
+    <td>Forbidden</td>
+    <td>User does not have proper permission for request</td> 
+  </tr>
+  <tr>
+    <td>404</td>
+    <td>Not Found</td>
+    <td>Returns supported HTTP methods for specified URL. Used to check functionality</td> 
+  </tr>
+  <tr>
+    <td>500</td>
+    <td>Internal Server Error</td>
+    <td>Generic error, no specific information is available</td> 
+  </tr>
+  <tr>
+    <td>502</td>
+    <td>Bad Gateway</td>
+    <td>Server was acting as proxy/gateway and recieved invalid response from upstream server</td>
+  </tr>
+</table>
 
 #### TCP/IP
 
@@ -111,12 +174,13 @@ Hypertext Transfer Protocol (HTTP) is an application level protocol. We covered 
 
 <ol>
   <li>The client will sent a `syn` packet, requesting the server to establish a session.</li>
-  <li>Server will respond to `syn` with `syn-ack`, stating it wishes to synchronize with the requesting client, and ackowleges its initial request.</li>
-  <li>Finally, the client will validate the server's synchronize request by sending a `ack` to acknowledge its synchronize request. 
+  <li>Server will respond to `syn` with `syn-ack`, stating it wishes to synchronize with the requesting client, and ackowledges its initial request.</li>
+  <li>Finally, the client will respond with `ack` to acknowledge the server's synchronize request. 
 </ol>
 
 ![image of 3 way handshake for TCP connection](/assets/images/3-way-handshake.jpg)
 
+While HTTP is stateless protocol, TCP is a stateful protocol, and IP is also stateless. This stacking of stateless and stateful protocols serves to give support on the layer that is needed. HTTP follows the RESTful archetechture, TCP maintains state in the form of window size for data transmission. While HTTP is stateless, a web client can hold information in cookies or session IDs, such as anthentication credentials to emulate a session is occuring while keeping within the RESTful archetechture constraints.
 
 ###### Notes
 
