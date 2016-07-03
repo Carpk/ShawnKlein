@@ -1,7 +1,7 @@
 ---
 layout: post
 cover: 'assets/images/rocky_river.jpg'
-title: HTTP Guide
+title: Guide to HTTP
 date:   2016-06-27 9:48:00
 tags: general
 subclass: 'post tag-test tag-content'
@@ -87,13 +87,12 @@ The first version was documentated in 1991.
 
 ##### HTTP/0.9
 
-Was a simple protocol for raw data transfer. connection is closed after a single request/response pair
+Was a simple protocol for raw data transfer. Connection is closed after a single request/response pair
 
 
 ##### HTTP/1.0
 
-Improved the protocol by allowing messages to be in the format of MIME-like messages, contain metainformation about the data transferred and modifiers on the request/response semantics.
-A separate connection to the same server is made for each resource request. connection is closed after a single request/response pair
+Improved the protocol by allowing messages to be in the format of MIME-like messages, contain metainformation about the data transferred and modifiers on the request/response semantics. Connection is still closed after a single request/response pair
 
 ##### HTTP/1.1
 
@@ -170,9 +169,11 @@ The status line of an HTTP response includes a numeric status code and a textual
   </tr>
 </table>
 
-#### TCP/IP
+#### TCP
 
-Hypertext Transfer Protocol (HTTP) is an application level protocol. We covered application level protocols in the [OSI model blog post](/the-osi-model). An HTTP client initiates a session by using a TCP connection to port 80 of the server. This session  starts with a 3 way handshake.
+Hypertext Transfer Protocol (HTTP) is an application level protocol. We covered application level protocols in the [OSI model blog post](/the-osi-model). HTTP was designed to use TCP of the transport layer, but can be used with other protocols such as UDP. 
+
+An HTTP client initiates by starting a TCP session to port 80 of the server. The server's TCP stack uses Transmission Control Block for distinct connections. Now we begin with a 3 way handshake.
 
 <ol>
   <li>The client will sent a `syn` packet, requesting the server to establish a session.</li>
@@ -182,11 +183,14 @@ Hypertext Transfer Protocol (HTTP) is an application level protocol. We covered 
 
 ![image of 3 way handshake for TCP connection](/assets/images/3-way-handshake.jpg)
 
+TCP will then commence with data transmission, and will close the session upon completion.
+
 #### Sessions
 
-While TCP is a stateful protocol, it depends on, and is dependant of two differant stateless protocols, TCP/IP. This stacking of stateless and stateful protocols serves to give support on the layer that is needed. HTTP follows the RESTful archetechture, while TCP maintains state in the form of window size for data transmission. With HTTP being stateless, a web client can hold information in cookies or session IDs, such as anthentication credentials to emulate a session is occuring while keeping within the RESTful archetechture constraints.
+HTTP is a stateless protocol, that is depenant on a stateful TCP protocol, which relies on IP that is also stateless. Stateless protocols treat requests an independant transactions unrelated to any previous requests. HTTP follows the RESTful archetechture, while TCP maintains state in the form of window size for data transmission. With HTTP being stateless, a web client can hold information in cookies or session IDs, such as anthentication credentials to keep a session but still be stateless.
 
-###### Notes
+#### Encryption
 
-With the keep-alive mechanism being introduced in HTTP/1.1, allowing more than one request to be made during a connection. This _persistent connection_ 
+HTTPS is the protocol for secure communication over the network. Its encrypted by the Transport Layer Security (SSL) or Secure Socket Layer (SSL), which is also found on the application layer of the OSI model.
+
 
