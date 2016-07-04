@@ -35,19 +35,19 @@ State session is held in the client. There is no client context that is stored o
 
 #### Cacheable
 
-Responses must define themselves as cachable or not, to prevent stale or inappropriate data for future requests.
+Responses must define themselves as cachable or not, to prevent stale or inappropriate data for future requests. Improves efficiency, scalability, and performance by partially or completely removing some interactions.  
 
 #### Uniformed Interface
 
-The uniform interface simplifies and decouples the architecture, which allows each part to evolve independently.
+The uniform interface simplifies and decouples the architecture, which allows each part to evolve independently. REST is defined by four interface constraints: identification of resources, manipulation of resources through representations, self-descriptive messages, and hypermedia as the engine of application state.
 
 #### Layered System
 
-A client cannot typically tell if it is connected to the end server or an intermediary along the way, that improves system scalability by providing load balacing with shared caches.
+A client cannot typically tell if it is connected to the end server or an intermediary along the way. This improves system scalability by providing load balacing with shared caches, limits overall system complexity, and promtes substrate independence.
 
 #### Code On Demand
 
-Servers can temporarily extend or customize the view, by transfering execuateable code such as Java applets, and JavaScript.
+Servers can temporarily extend or customize the view, by transfering execuateable code such as Java applets, and JavaScript. An optional contraint used if the architecture gains in benefit. 
 
 For more information, Roy Fielding's doctoral dissertation is hosted on [University of California, Irvine](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm).
 
