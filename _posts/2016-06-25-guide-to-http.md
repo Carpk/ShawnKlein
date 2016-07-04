@@ -16,13 +16,13 @@ The request method, URI and protocol version make up the __request line__. Follo
 
 ![image of HTTP request](/assets/images/http_request.jpg)
 
-The server responds with a __status line__ that includes the message's [protocol version](#versions) and a [response code](#codes) for success or error, followed by by a MIME-like message containing server information, entity metainformation, which is our __request headers__ and possible a entity-body content being __request message body__.
+The server responds with a __status line__ that includes the message's [protocol version](#versions) and a [response code](#codes) for success or error, followed by by a MIME-like message containing server information, entity meta-information, which is our __response headers__ and possible a entity-body content being __response message body__.
 
 ![image of HTTP request](/assets/images/http_response.jpg)
 
 HTTP is also used as a generic protocol for communication between user agents(browsers, web crawlers) and proxies/gateways to other Internet systems, including those supported by the SMTP, FTP, Gopher, and WAIS protocols. In this way, HTTP allows basic hypermedia access to resources available from diverse applications.
 
-* MIME (Multipurpose Internet Mail Extensions) were designed for SMTP/email service, however, it became important when using HTTP to enable browsers to display or output files that are not in HTML format.
+* MIME (Multipurpose Internet Mail Extensions) was designed for SMTP/email service, however, it became important when using HTTP to enable browsers to display or output files that are not in HTML format.
 
 ####<a name="methods"></a>Request methods
 
@@ -55,7 +55,7 @@ HTTP defines methods to indicate the desired action to be preformed on the ident
   </tr>
   <tr>
     <td>TRACE</td>
-    <td>Echoes the recieved request, to see if any changes are made by intermediate servers</td> 
+    <td>Echoes the received request, to see if any changes are made by intermediate servers</td> 
   </tr>
   <tr>
     <td>OPTIONS</td>
@@ -71,28 +71,25 @@ HTTP defines methods to indicate the desired action to be preformed on the ident
   </tr>
 </table>
 
-
 ####<a name="uri"></a>URI
 
-A URL is a type of URI. HTTP will use a URL such as `http://www.example.com/` or `ftp://example.com`, to send requests. It includes the prefixes access mechanism, being `http` and `ftp` in our examples. 
+A URL is a type of URI. HTTP will use a URL such as `http://www.example.com/` or `ftp://example.com`, to send requests. It includes a prefixed *access mechanism*, being `http` and `ftp` in our examples. 
 
-A URN is also a type of URI, although it is much simplier as it only refers to the name of a resource `example.com` `urn:isbn:0451450523`. As you can see, there is no application layer protocols associated in these examples.
+A URN is also a type of URI, although it is much simpler as it only refers to the name of a resource `example.com` or `urn:isbn:0451450523`. As you can see, there is no application layer protocols associated in these examples.
 
-URIs are used 
+Now that we have an overview of different types of URIs, we can now say that URIs are a string of characters that are used to identify a resource.
 
 ####<a name="versions"></a>Protocol Versions
 
-Intro to protocol versions
-The first version was documentated in 1991.
+HTTP went through different versions starting from 1991, when HTTP/0.9 was first documented.
 
 ##### HTTP/0.9
 
-Was a simple protocol for raw data transfer. Connection is closed after a single request/response pair
-
+Simple protocol for raw data transfer. Connection is closed after a single request/response pair
 
 ##### HTTP/1.0
 
-Improved the protocol by allowing messages to be in the format of MIME-like messages, contain metainformation about the data transferred and modifiers on the request/response semantics. Connection is still closed after a single request/response pair
+Improved the protocol by allowing messages to be in the format of MIME-like messages, contain meta-information about the data transferred and modifiers on the request/response semantics. Connection is still closed after a single request/response pair
 
 ##### HTTP/1.1
 
@@ -100,11 +97,11 @@ Can reuse a connection multiple times to download resources. Such as images, scr
 
 ##### HTTP/2.0
 
-Goal of HTTP/2.0 is to improve performance by reducing latency and the number of TCP requests. Its utilizes multiplexing, header compression, server push, and resource prioritization.
+Goal of HTTP/2.0 is to improve performance by reducing latency and the number of TCP requests. Its utilizes multiplexing for multiple TCP connections, header compression reduces sending the same headers repeatedly, server push handles resource dependencies, and resource prioritization judges what the user will need first.
 
 ####<a name="codes"></a>Response Codes
 
-The status line of an HTTP response includes a numeric status code and a textual reason phrase. Below is a small sample set, but servers can even have custom codes and proprietarty codes from server appliacation vendors.
+The status line of an HTTP response includes a numeric status code and a textual reason phrase. Below is a small sample set, but servers can even have custom codes and proprietary codes from vendors.
 
 <table style="width:100%">
   <tr>
@@ -115,7 +112,7 @@ The status line of an HTTP response includes a numeric status code and a textual
   <tr>
     <td>100</td>
     <td>Continue</td>
-    <td>For large body requests, server has recieved the header and is ready for request body</td>
+    <td>For large body requests, server has received the header and is ready for request body</td>
   </tr>
   <tr>
     <td>200</td>
@@ -125,7 +122,7 @@ The status line of an HTTP response includes a numeric status code and a textual
   <tr>
     <td>201</td>
     <td>Created</td>
-    <td>Request has been fullfilled</td> 
+    <td>Request has been fulfilled</td> 
   </tr>
   <tr>
     <td>202</td>
@@ -140,12 +137,12 @@ The status line of an HTTP response includes a numeric status code and a textual
   <tr>
     <td>400</td>
     <td>Bad Request</td>
-    <td>Server cannot proccess the request due to error</td> 
+    <td>Server cannot process the request due to error</td> 
   </tr>
   <tr>
     <td>401</td>
     <td>Unauthorized</td>
-    <td>Athentication has failed</td> 
+    <td>Authentication has failed</td> 
   </tr>
   <tr>
     <td>403</td>
@@ -165,7 +162,7 @@ The status line of an HTTP response includes a numeric status code and a textual
   <tr>
     <td>502</td>
     <td>Bad Gateway</td>
-    <td>Server was acting as proxy/gateway and recieved invalid response from upstream server</td>
+    <td>Server was acting as proxy/gateway and received invalid response from upstream server</td>
   </tr>
 </table>
 
@@ -173,11 +170,11 @@ The status line of an HTTP response includes a numeric status code and a textual
 
 Hypertext Transfer Protocol (HTTP) is an application level protocol. We covered application level protocols in the [OSI model blog post](/the-osi-model). HTTP was designed to use TCP of the transport layer, but can be used with other protocols such as UDP. 
 
-An HTTP client initiates by starting a TCP session to port 80 of the server. The server's TCP stack uses Transmission Control Block for distinct connections. Now we begin with a 3 way handshake.
+An HTTP client initiates by starting a TCP session to port 80 of the server. The server's TCP stack uses Transmission Control Block (TCB) for distinct connections. Now we begin with a 3 way handshake.
 
 <ol>
   <li>The client will sent a `syn` packet, requesting the server to establish a session.</li>
-  <li>Server will respond to `syn` with `syn-ack`, stating it wishes to synchronize with the requesting client, and ackowledges its initial request.</li>
+  <li>Server will respond to `syn` with `syn-ack`, stating it wishes to synchronize with the requesting client, and acknowledges its initial request.</li>
   <li>Finally, the client will respond with `ack` to acknowledge the server's synchronize request. 
 </ol>
 
@@ -187,7 +184,7 @@ TCP will then commence with data transmission, and will close the session upon c
 
 #### Sessions
 
-HTTP is a stateless protocol, that is depenant on a stateful TCP protocol, which relies on IP that is also stateless. Stateless protocols treat requests an independant transactions unrelated to any previous requests. HTTP follows the RESTful archetechture, while TCP maintains state in the form of window size for data transmission. With HTTP being stateless, a web client can hold information in cookies or session IDs, such as anthentication credentials to keep a session but still be stateless.
+HTTP is a stateless protocol, that is dependent on a stateful TCP protocol, which relies on IP that is also stateless. Stateless protocols treat requests an independent transactions unrelated to any previous requests. HTTP follows the RESTful architecture, while TCP maintains state in the form of window size for data transmission. With HTTP being stateless, a web client can hold information in cookies or session IDs, such as authentication credentials to keep a session but still be stateless.
 
 #### Encryption
 

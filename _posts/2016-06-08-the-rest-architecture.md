@@ -27,11 +27,11 @@ To meet these demands, REST dictates a list of 6 constraints.
 
 #### Client-Server
 
-There is a separation of concerns where clients (such as your browser) are not concerned with data storage, and the servers are not concerned with the user interface. 
+There is a separation of concerns where clients (such as your browser) are not concerned with data storage, and the servers are not concerned with the user interface. This improves the portability of the user interface across multiple platforms, improves scalability by simplifying components, and allows components to evolve independently.
 
 #### Stateless
 
-State session is held in the client. There is no client context that is stored on the server between requests. 
+State session is held in the client. There is no client context that is stored on the server between requests. Each request must contain all the necessary information to process the request. Visibility is improved because a monitoring system does not have to look beyond a single request in order to understand the request. It is reliable due to the ease of recovering from partial failures. And Scalable with the server not having to store data between requests allows to free up resources.
 
 #### Cacheable
 
