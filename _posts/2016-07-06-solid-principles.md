@@ -25,7 +25,7 @@ Let's take a look at each principle.
 
 > A class should have one, and only one, reason to change.
 
-The class should have only a single responsibility. When the requirements change, that change will be shown through a change in responsibility amongst the classes. If a class assumes more than one responsibility, then there will be more than one reason for it to change. And responsibilities are an axis of change. Responsibilities become coupled, changes to one, may impair or inhibit the class's ability to meet the others. This leads to fragile designs that break in unexpected ways when changed.
+A class should have only a single responsibility. When the requirements change, that change will be shown through a change in responsibility amongst the classes. If a class assumes more than one responsibility, then there will be more than one reason for it to change. And responsibilities are an axis of change. Responsibilities become coupled, changes to one, may impair or inhibit the class's ability to meet the others. This leads to fragile designs that break in unexpected ways when changed.
 
 Our code below is very simplistic example, its meant to highlight that our `Person` class is performing more than one responsibility. It is in charge of keeping track of money, and performing a job.
 
@@ -163,10 +163,7 @@ The instance of `Square` class will not behave the same way as an instance of `R
 
 > Make fine grained interfaces that are client specific.
 
-
-
-many client specific interfaces are better than one general purpose interface
-
+Ruby's dynamic typing makes a lot Interface Segregation go away on its own, but using `#is_a?` and `#responds_to?` are a form of 
 
 
 
