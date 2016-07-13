@@ -176,7 +176,7 @@ Ruby's dynamic typing makes a lot Interface Segregation go away on its own, but 
 
 > Depend on abstractions, not on concretions.
 
-This principle suggests we use duck typing to implement our classes. We did this in the open/close principle above. 
+This principle suggests we abstract out any concrete implementations. We do not want our classes to have any hard coded dependencies, instead, they should be passed in when instantiating or setter method. This allows us to use duck typing when implementing out classes. We did this in the open/close principle above. 
 
 ````ruby
 class FileParser
@@ -202,5 +202,26 @@ class CsvParser
 end
 ````
 
+
+````ruby
+class MixBatter
+  def initialize(batter_type)
+    @batter = batter_type
+  end
+  def mix_it
+    @batter.combine
+  end
+end
+class PizzaBatter
+  def combine
+    #process for combining an ingredents_array
+  end
+end
+class CakeBatter
+  def combine
+    #process for combining an ingredents_array
+  end
+end
+````
 Instead of hard coding in a `XmlParser.new` or `CsvParser.new` somewhere in the `FileParser`, we will pass these objects in when instantiating our file parser. The file parser does not care whether we want to parse an XML, JSON, or CSV file, it only cares that the `@parser` object will respond to `#parse`.  
 
