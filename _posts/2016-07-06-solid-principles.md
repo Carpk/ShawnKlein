@@ -67,7 +67,7 @@ Now we have two smaller classes that handle each specific task. Our `BankAccount
 
 > code should be open for extension, but closed for modification
 
-Let's take a closer look at what means to be open for extension and closed for modification:
+Let's break this up and take a closer look at each portion of our open/closed principle:
 
 <ul>
   <li>Code should be open for extension. This means that the behavior of the module can be extended. That we can make the module behave in new and different ways as the requirements of the application change, or to meet the needs of new applications.</li>
@@ -77,57 +77,55 @@ Let's take a closer look at what means to be open for extension and closed for m
 Code that follows the open/closed principle is easy to extend functionality without having to modifiying the existing code. Below, we have a file parser that requires us to make modifications when changing how the file will parser with certain file formats.
 
 ````ruby
-class FileParser
-  def initialize(file)
-    @file = file
+class BuildTaco
+  def initialize(order)
+    @order = order
   end
-  def parse
-    case @file.file_format
-      when :xml
-        parse_xml
-      when :csv
-        parse_csv
+  def create
+    case @order.shell
+      when :hard_taco
+        prep_with_hard_shell
+      when :soft_taco
+        prep_with_soft_shell
     end
-    @file.timestamp = Time.now
-    @file.save!
+    # finish making taco
   end
-  def parse_xml
-    # parse xml
+  def prep_with_hard_shell
+    # put shell in taco box
   end
-  def parse_csv
-    # parse csv
+  def prep_with_soft_shell
+    # wrap shell in paper
   end
 end
 ````
 
-We would have to modify our `FileParser` when having to make changes to the way it parses xml, csv, or different type of files. This violates the open/closed principle.  
+We would have to modify our `BuildTaco` when having to make changes to the way it preps with a shell. It would also require many changes if/when we decide to add a new type of shell, such as wrapped in lettuce? This violates the open/closed principle, there is no way to extend our class to include our lettuce wrap, and we would have to modify the code to make any changes.
 
 
 ````ruby
-class FileParser
-  def initialize(file, parser)
-    @file = file
-    @parser = parser
+class BuildTaco
+  def initialize(order, shell)
+    @order = order
+    @shell = shell
   end
-  def parse(file)
-    @parser.parse(file)
-    @file.timestamp = Time.now
-    @file.save!
-  end
-end
-class XmlParser
-  def parse(file)
-    # parse xml
+  def create
+    @shell.prep
+    # finish making taco
   end
 end
-class CsvParser
-  def parse(file)
-    # parse csv
+class HardShell
+  def prep
+    # put shell in taco box
+  end
+end
+class SoftShell
+  def prep
+    # wrap shell in paper
   end
 end
 ````
 
-Now we have the ability to add new parsers without changing any code. It is simple to create a `YamlParser` class and pass it in to our `FileParser` with the file to be parsed and the code will do the rest.
+Now we have the ability to add new types of wraps without changing any code. It is simple to create a `LettuceWrap` class and pass it in to our `BuildTaco` with the rest of the order and the duck type will do the rest.
 
 ### Liskov Substitution
 
@@ -176,32 +174,7 @@ Ruby's dynamic typing makes a lot Interface Segregation go away on its own, but 
 
 > Depend on abstractions, not on concretions.
 
-This principle suggests we abstract out any concrete implementations. We do not want our classes to have any hard coded dependencies, instead, they should be passed in when instantiating or setter method. This allows us to use duck typing when implementing out classes. We did this in the open/close principle above. 
-
-````ruby
-class FileParser
-  def initialize(file, parser)
-    @file = file
-    @parser = parser
-  end
-  def parse(file)
-    @parser.parse(file)
-    @file.timestamp = Time.now
-    @file.save!
-  end
-end
-class XmlParser
-  def parse(file)
-    # parse xml
-  end
-end
-class CsvParser
-  def parse(file)
-    # parse csv
-  end
-end
-````
-
+This principle suggests we abstract out any concrete implementations. We do not want our classes to have any hard coded dependencies, instead, they should be passed in when instantiating or set with a method. This allows us to use duck typing when implementing out classes.
 
 ````ruby
 class MixBatter
@@ -223,5 +196,6 @@ class CakeBatter
   end
 end
 ````
-Instead of hard coding in a `XmlParser.new` or `CsvParser.new` somewhere in the `FileParser`, we will pass these objects in when instantiating our file parser. The file parser does not care whether we want to parse an XML, JSON, or CSV file, it only cares that the `@parser` object will respond to `#parse`.  
+Instead of hard coding in a `@pizza_batter = PizzaBatter.new` or `@cake_batter = CakeBatter.new` somewhere in the `MixBatter`, we will pass these objects in when instantiating our class. The 'MixBatter` class does not care whether its mixing pizza batter, cake batter, or an egg batter, it only cares that the injected class is able to respond to `#combine`.
+ 
 
