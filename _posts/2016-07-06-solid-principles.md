@@ -161,7 +161,7 @@ The instance of `Square` class will not behave the same way as an instance of `R
 
 > Make fine grained interfaces that are client specific.
 
-Ruby's dynamic typing makes a lot Interface Segregation go away on its own, but using `#is_a?` and `#responds_to?` are a form of 
+Ruby's dynamic typing makes a lot Interface Segregation go away on its own, 
 
 
 
@@ -174,7 +174,7 @@ Ruby's dynamic typing makes a lot Interface Segregation go away on its own, but 
 
 > Depend on abstractions, not on concretions.
 
-This principle suggests we abstract out any concrete implementations. We do not want our classes to have any hard coded dependencies, instead, they should be passed in when instantiating or set with a method. This allows us to use duck typing when implementing out classes.
+This principle suggests we abstract out any concrete implementations. We do not want our classes to have any hard coded dependencies, instead, they should be passed in when instantiating or set with a method. This allows us to use duck typing when implementing our classes.
 
 ````ruby
 class MixBatter
@@ -196,6 +196,6 @@ class CakeBatter
   end
 end
 ````
-Instead of hard coding in a `@pizza_batter = PizzaBatter.new` or `@cake_batter = CakeBatter.new` somewhere in the `MixBatter`, we will pass these objects in when instantiating our class. The 'MixBatter` class does not care whether its mixing pizza batter, cake batter, or an egg batter, it only cares that the injected class is able to respond to `#combine`.
+Instead of hard coding in a `@pizza_batter = PizzaBatter.new` or `@cake_batter = CakeBatter.new` somewhere in the `MixBatter` class, we will pass these objects in when instantiating our class. The `MixBatter` class does not care whether its mixing pizza batter, cake batter, or an egg batter, it only cares that the injected class is able to respond to `#combine`.
  
 
