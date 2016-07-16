@@ -25,7 +25,7 @@ Let's take a look at each principle.
 
 > A class should have one, and only one, reason to change.
 
-A class should have only a single responsibility. When the requirements change, that change will be shown through a change in responsibility amongst the classes. If a class assumes more than one responsibility, then there will be more than one reason for it to change. And responsibilities are an axis of change. Responsibilities become coupled, changes to one, may impair or inhibit the class's ability to meet the others. This leads to fragile designs that break in unexpected ways when changed.
+A class should have only a single responsibility. When the requirements change, that change will be shown through a change in responsibility amongst the classes. If a class assumes more than one responsibility, then there will be more than one reason for it to change, and responsibilities are an axis of change. Responsibilities become coupled, changes to one, may impair or inhibit the class's ability to meet the others. This leads to fragile designs that break in unexpected ways when changed.
 
 Our code below is very simplistic example, its meant to highlight that our `Person` class is performing more than one responsibility. It is in charge of keeping track of money, and performing a job.
 
@@ -161,14 +161,19 @@ The instance of `Square` class will not behave the same way as an instance of `R
 
 > Make fine grained interfaces that are client specific.
 
-Ruby's dynamic typing makes a lot Interface Segregation go away on its own, 
+The principle states that a client should not be forced to depend on methods that it does not use. When designing a class, we should not have a "fat" public interface full of methods other classes wont use.
 
-
-
-
-
-
-
+````java
+class Salad
+  def eat_with_fork
+  end
+end
+class Soup
+  def eat_with_fork
+  end
+end
+````
+We certainly cannot eat soup with a fork, so this is a poor interface implementation.
 
 ### Dependency Inversion
 
