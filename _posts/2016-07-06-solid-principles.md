@@ -19,7 +19,7 @@ The SOLID principals are five basic principles of object oriented programming an
 * [Interface](#interface) segregation principle
 * [Dependency](#dependency) inversion principle
 
-Let's take a look at each principle. 
+We are going to take a look at each principle, and break it down with some simple Ruby examples.
 
 ### Single Responsibility
 
@@ -61,7 +61,9 @@ class BankAccount
 end
 ````
 
-Now we have two smaller classes that handle each specific task. Our `BankAccount` class will proccess any bank related activities, and our `Person` class will handle any people type behaviors. The classes are also transparent, it’s easy to understand the code and it’s clear what will happen if it changes.
+Now we have two smaller classes that handle each specific task. Our `BankAccount` class will process any bank related activities, and our `Person` class will handle any people type behaviors. The classes are also transparent, it’s easy to understand the code and it’s clear what will happen if it changes.
+
+While the original documentation spoke in terms of classes for the SRP, it can also be applied to methods. A good rule of thumb is if you need to use the words "and" or "or" to describe what your method does, then it is doing too much.
 
 ### Open/Closed Principle
 
@@ -74,7 +76,7 @@ Let's break this up and take a closer look at each portion of our open/closed pr
   <li>Code should be closed for modification. The source code of such a module is inviolate. No one is allowed to make source code changes to it.</li>
 </ul>
 
-Code that follows the open/closed principle is easy to extend functionality without having to modifiying the existing code. Below, we have a file parser that requires us to make modifications when changing how the file will parser with certain file formats.
+Code that follows the open/closed principle is easy to extend functionality without having to modifying the existing code. Below, we have a file parser that requires us to make modifications when changing how the file will parser with certain file formats.
 
 ````ruby
 class BuildTaco
@@ -99,7 +101,7 @@ class BuildTaco
 end
 ````
 
-We would have to modify our `BuildTaco` when having to make changes to the way it preps with a shell. It would also require many changes if/when we decide to add a new type of shell, such as wrapped in lettuce? This violates the open/closed principle, there is no way to extend our class to include our lettuce wrap, and we would have to modify the code to make any changes.
+We would have to modify our `BuildTaco` when having to make changes to the way it preps with a shell. It would also require many changes if/when we decide to add a new type of shell, such as wrapped in lettuce. This violates the open/closed principle, there is no way to extend our class to include our lettuce wrap, and we would have to modify the code to make any changes.
 
 
 ````ruby
@@ -131,7 +133,7 @@ Now we have the ability to add new types of wraps without changing any code. It 
 
 >   Derived classes must be substitutable for their base classes.
 
-This principle states that you should be a able to replace any instances of a parent class with one of its children, without unexpected or incorrect behaviors. Any children instances should be able to preform the same tasks as its parent class.
+This principle states that you should be able to replace any instances of a parent class with one of its children, without unexpected or incorrect behaviors. Any children instances should be able to preform the same tasks as its parent class.
 
 ````ruby
 class Rectangle
@@ -163,7 +165,7 @@ The instance of `Square` class will not behave the same way as an instance of `R
 
 The principle states that a client should not be forced to depend on methods that it does not use. When designing a class, we should not have a "fat" public interface full of methods other classes wont use.
 
-````java
+````ruby
 class Salad
   def eat_with_fork
   end
@@ -173,7 +175,7 @@ class Soup
   end
 end
 ````
-We certainly cannot eat soup with a fork, so this is a poor interface implementation.
+We certainly cannot eat soup with a fork, so this is a poor interface implementation. We are attempting to force clients of this interface to depend on these methods that they do not want to use.
 
 ### Dependency Inversion
 
@@ -192,12 +194,12 @@ class MixBatter
 end
 class PizzaBatter
   def combine
-    #process for combining an ingredents_array
+    #process for combining an ingredients_array
   end
 end
 class CakeBatter
   def combine
-    #process for combining an ingredents_array
+    #process for combining an ingredients_array
   end
 end
 ````
