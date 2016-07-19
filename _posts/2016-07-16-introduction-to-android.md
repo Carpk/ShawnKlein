@@ -79,6 +79,16 @@ public void onClick(View v) {
 }
 ````
 
+### generating getters and setters
+
+If we prefix our variable names with a letter `private int mCount;`, we can tell Android Studio to generate getters and setters for us.
+
+File>Other Settings>Default Settings>Editor>Code Style>Java>Code Generation[tab]
+
+For Field, we will set `m` in the Name prefix column;
+And for Static field, we set `s` in the same column.
+
+This is going to allow us to generate our methods on the fly. Right click the variable we want to generate `private int mCount;`, select the prefixed variables to generate and press `okay`. We should have populated out class with getters and setters for the prefixed methods we selected.
 
 
 
