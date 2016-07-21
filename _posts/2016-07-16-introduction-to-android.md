@@ -18,20 +18,27 @@ An activity is an instance of `Activity` and is responsible for managing user in
 
 widgets: can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
 
-linearLayout < ViewGroup < View, 
-LinearLayout inherits from ViewGroup, which is a widget that contains other widgets.
-ViewGroups are FrameLayout, TableLayout, RelativeLayout
+
+
+linearLayout < ViewGroup < View < Object
+⋅⋅* LinearLayout inherits from ViewGroup, which is a widget that contains other widgets.
+⋅⋅* ViewGroups are FrameLayout, TableLayout, RelativeLayout
+
+Button < TextView
+
+ImageButton < ImageView < View < Object
 
 android:layout_width and layout_height
-match_parent view will be as big as parent
-wrap_content view with be as big as contents require
+⋅⋅* match_parent view will be as big as parent
+⋅⋅* wrap_content view with be as big as contents require
 
 android:orientation
-On LinearLayout, determines if children will appear vertically or horizontally.
+⋅⋅* On LinearLayout, determines if children will appear vertically or horizontally.
 
 android:text
-string resources are places in a separate strings file,
-"@string/referenced_text"
+⋅⋅* string resources are places in a separate strings file, "@string/referenced_text"
+
+
 
 ### resources
 
@@ -91,7 +98,15 @@ And for Static field, we set `s` in the same column.
 This is going to allow us to generate our methods on the fly. Right click the variable we want to generate `private int mCount;`, select the prefixed variables to generate and press `okay`. We should have populated out class with getters and setters for the prefixed methods we selected.
 
 
+### resources
 
+Refreneces to a string will begin with `@string/` and refrences for a drawable will begin with `@drawable/`. Drawable resorces have differant files for different dpi screens.
+
+⋅⋅* __mdpi__ medium density screens(~160dpi)
+⋅⋅* __hdpi__ high density screens(~240dpi)
+⋅⋅* __xhdpi__ extra high density screens(~320dpi)
+⋅⋅* __xxhdpi__ extra extra high density screens(~480dpi)
+⋅⋅* __xxxhdpi__ extra extra extra high density screens(~640dpi)
 
 
 
