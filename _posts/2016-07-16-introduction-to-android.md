@@ -13,40 +13,106 @@ logo: 'assets/images/logo.png'
 
 Gradle build scripts are a DSL, they come with a top-level build file and build files for each module.
 
-#### activity
+### Activity
 An activity is an instance of `Activity` and is responsible for managing user interactions with a screen of information.
 
 widgets: can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
 
+`@Override` annotation ensures the class actually has the method you are attempting to override. The compiler will notify you if it does not possess this class.
 
+#### Classes
 
-linearLayout < ViewGroup < View < Object
-⋅⋅* LinearLayout inherits from ViewGroup, which is a widget that contains other widgets.
-⋅⋅* ViewGroups are FrameLayout, TableLayout, RelativeLayout
+Each class implements or inherits thier own attributes and methods
 
-Button < TextView
+<table style="width:100%">
+  <tr>
+    <th>Class</th>
+    <th>Inherits from</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>TextView</td>
+    <td>< View < Object</td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>Button</td>
+    <td>< TextView < View < Object</td> 
+    <td>determines if children will appear vertically or horizontally</td>
+  </tr>
+  <tr>
+    <td>LinearLayout</td>
+    <td>< ViewGroup < View < Object</td> 
+    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
+  </tr>
+  <tr>
+    <td>ImageButton</td>
+    <td>< ImageView < View < Object</td> 
+    <td>Displays a button with image instead of text.</td>
+  </tr>
+</table>
 
-ImageButton < ImageView < View < Object
+#### Attributes
 
-android:layout_width and layout_height
-⋅⋅* match_parent view will be as big as parent
-⋅⋅* wrap_content view with be as big as contents require
+<table style="width:100%">
+  <tr>
+    <th>Attribute</th>
+    <th>Inherits from</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>android:id</td>
+    <td></td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>android:orientation</td>
+    <td>LinearLayout</td> 
+    <td>determines if children will appear vertically or horizontally</td>
+  </tr>
+  <tr>
+    <td>android:layout_width</td>
+    <td>TextView</td> 
+    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
+  </tr>
+  <tr>
+    <td>android:layout_height</td>
+    <td>TextView</td> 
+    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
+  </tr>
+  <tr>
+    <td>android:onClick</td>
+    <td>View</td> 
+    <td>Invokes context when the view is clicked</td>
+  </tr>
+  <tr>
+    <td>android:text</td>
+    <td>TextView</td> 
+    <td>string resources are places in a separate strings file, "@string/referenced_text"</td>
+  </tr>
+  <tr>
+    <td>android:drawableRight</td>
+    <td>TextView</td> 
+    <td>drawable to be drawn to the right of the text</td>
+  </tr>
+  <tr>
+    <td>android:src</td>
+    <td>ImageView</td> 
+    <td>sets a drawable as the content "@[+][package:]type:name", "#rgb"</td>
+  </tr>
+</table>
 
-android:orientation
-⋅⋅* On LinearLayout, determines if children will appear vertically or horizontally.
-
-android:text
-⋅⋅* string resources are places in a separate strings file, "@string/referenced_text"
 
 
 
 ### resources
 
-resources are images, audio, and XML files that live in the res/ diretory. we use the resource ID 'R.layout.activity_main' to access these files. This ID returns an int set from `class layout` in R.java, this looks something like  `public static final int activity_main=0x7f04001a;`. 
+resources are images, audio, and XML files that live in the res/ diretory. we use the resource ID `R.layout.activity_main` to access these files. This ID returns an int set from `class layout` in R.java, this looks something like  `public static final int activity_main=0x7f04001a;`. 
 
-setContentView(R.layout.activity_main) is how our MainActivity.java file knows which layout to inflate. android:id="@+id/false_button" + is used during the creation of the id.
+`setContentView(R.layout.activity_main)` is how our `MainActivity.java` file knows which layout to inflate. In `android:id="@+id/false_button"` the `+` is used during the creation of the id.
 
-Android keeps all the strings all in one place, the strings.xml file. 
+Android keeps all the strings all in one place, the strings.xml file.
+
 ````java
 // strings.xml
 <resources>
@@ -109,13 +175,23 @@ Refreneces to a string will begin with `@string/` and refrences for a drawable w
 ⋅⋅* __xxxhdpi__ extra extra extra high density screens(~640dpi)
 
 
+### Logs
 
+Android sends log messages to a shared system level log when using `public static int d(String tag, String msg)`. The `d` is for "debug". 
 
+````java
+protected void onCreate(Bundle savedInstanceState){
+  Log.d("MainActivity", "onCreate(Bundle) has been called");
+  ....
+````
 
+### Lifecycle
 
+Upon initially starting the application, our first activity executes the `onCreate()` hook, followed by `onStart()`, and then `onResume()` to gives us our running activity. If we have another activity created, our application executes the `onPause()` method for our current activity, but will resume with `onResume()` once this activey returns to the foreground. The `onStop()` hook occurs when we hit home during the use of our application, if we return, our applicaiton will start up where we initially left. However, the OS can determine that it needs additional resources and can kill these processes on a need be basis. And these activities will execute `onDestroy()` when we are finished with the current activity.
 
+![DNS query diagram](/assets/images/activity_lifecycle.jpg)
 
-
+Rotating the screen to change its orientation will cause it to change the device configuration, which calls `onDestroy()` and `onCreate()` in order to inflate the new activity with the device configuration.
 
 
 
