@@ -31,6 +31,16 @@ Each class implements or inherits thier own attributes and methods
     <th>Description</th>
   </tr>
   <tr>
+    <td>LinearLayout</td>
+    <td>< ViewGroup < View < Object</td> 
+    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
+  </tr>
+  <tr>
+    <td>FrameLayout</td>
+    <td>< ViewGroup < View < Object</td> 
+    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
+  </tr>
+  <tr>
     <td>TextView</td>
     <td>< View < Object</td> 
     <td></td>
@@ -39,11 +49,6 @@ Each class implements or inherits thier own attributes and methods
     <td>Button</td>
     <td>< TextView < View < Object</td> 
     <td>determines if children will appear vertically or horizontally</td>
-  </tr>
-  <tr>
-    <td>LinearLayout</td>
-    <td>< ViewGroup < View < Object</td> 
-    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
   </tr>
   <tr>
     <td>ImageButton</td>
@@ -185,13 +190,74 @@ protected void onCreate(Bundle savedInstanceState){
   ....
 ````
 
+<table style="width:100%">
+  <tr>
+    <th>Level</th>
+    <th>Medthod</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Verbose</td>
+    <td>v</td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>Debug</td>
+    <td>d</td> 
+    <td>determines if children will appear vertically or horizontally</td>
+  </tr>
+  <tr>
+    <td>Info</td>
+    <td>i</td> 
+    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
+  </tr>
+  <tr>
+    <td>Warning</td>
+    <td>w</td> 
+    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
+  </tr>
+  <tr>
+    <td>Error</td>
+    <td>e</td> 
+    <td>Invokes context when the view is clicked</td>
+  </tr>
+</table>
+
+Some may even take a third argument for an instance of `Throwable`, which logs information about a thrown exception.
+
+````java
+try {
+  question = mQuestionBank[mCurrentIndex];
+} catch (ArrayIndexOutOfBoundsException ex) {
+  Log.e(TAG, "Index was oout of bounds", ex);
+}
+````
+
 ### Lifecycle
 
-Upon initially starting the application, our first activity executes the `onCreate()` hook, followed by `onStart()`, and then `onResume()` to gives us our running activity. If we have another activity created, our application executes the `onPause()` method for our current activity, but will resume with `onResume()` once this activey returns to the foreground. The `onStop()` hook occurs when we hit home during the use of our application, if we return, our applicaiton will start up where we initially left. However, the OS can determine that it needs additional resources and can kill these processes on a need be basis. And these activities will execute `onDestroy()` when we are finished with the current activity.
+Upon initially starting the application, our first activity executes the `onCreate()` hook, followed by `onStart()`, and then `onResume()` to gives us our running activity. If we have another activity created, our application executes the `onPause()` method for our current activity, but will resume with `onResume()` once this activey returns to the foreground. The `onStop()` hook occurs when we hit home during the use of our application, if we return, our applicaiton will start up where we initially left. However, the OS can determine that it needs additional resources and can kill these processes on a need be basis. And these activities will execute `onDestroy()` when we are finished with the current activity. Home button will cause the activity to execute `onPause()` and `onStop()`. Using the back button will also call `onDestroy()` which will also destroy any stashed state.
 
 ![DNS query diagram](/assets/images/activity_lifecycle.jpg)
 
 Rotating the screen to change its orientation will cause it to change the device configuration, which calls `onDestroy()` and `onCreate()` in order to inflate the new activity with the device configuration.
+
+To persist our data upon changing the device configuration, we will use `protected void onSaveInstanceState(Bundle outState)` method. This method is called by the system before `onPause()`, `onStop()`, and `onDestroy`. And requires the data passed in as as a Bundle object.
+
+````java
+private static final String KEY_INDEX = "index";
+@Override
+public void onSaveInstanceState(Bundle savedInstanceState) {
+  super.onSaveInstanceState(savedInstanceState);
+  savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+}
+````
+
+
+
+
+
+
+
 
 
 
