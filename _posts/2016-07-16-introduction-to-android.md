@@ -10,8 +10,28 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
+### Files of Interest
+
+app/build.gradle
 
 Gradle build scripts are a DSL, they come with a top-level build file and build files for each module.
+
+app/src/main/AndroidManifest.xml
+
+This file contains metadata that describes our application ot the OS. File is always named AndroidManifest.xml and lives in the root directory of our project.
+
+When creating new activities, we need to add it to our AndroidManifest file so our OS can access it. The dot at the start of this attribute’s value tells the OS that this activity’s class is in the package specified in the package attribute in the manifest element at the top of the file.
+
+````xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.shawnklein.carpk.cloudorder" >
+
+    <activity android:name=".NewActivity"
+              android:label="@string/app_name" />
+
+</manifest>
+````
+
 
 ### Activity
 An activity is an instance of `Activity` and is responsible for managing user interactions with a screen of information.
@@ -19,6 +39,8 @@ An activity is an instance of `Activity` and is responsible for managing user in
 widgets: can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
 
 `@Override` annotation ensures the class actually has the method you are attempting to override. The compiler will notify you if it does not possess this class.
+
+We start an activity by using the `Activity` method. `public void startActivity(Intent intent)` This sends a call to a part of the OS called the 'ActivityManager', which creates `Activity` instances and calls `onCreate()`. An intent is an object that a component can use to communicate with the OS, which are activities, services, broadcast recievers, and content providers. `public Intent(Context packageContext, Class<?> cls)`
 
 #### Classes
 
@@ -107,7 +129,8 @@ Each class implements or inherits thier own attributes and methods
   </tr>
 </table>
 
-
+android:name
+android:label
 
 
 ### resources
