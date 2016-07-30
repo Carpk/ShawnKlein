@@ -12,7 +12,7 @@ logo: 'assets/images/logo.png'
 
 ### Files of Interest
 
-app/build.gradle
+_app/build.gradle_
 
 Gradle build scripts are a DSL, they come with a top-level build file and build files for each module.
 
@@ -25,10 +25,8 @@ When creating new activities, we need to add it to our AndroidManifest file so o
 ````xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shawnklein.carpk.cloudorder" >
-
     <activity android:name=".NewActivity"
               android:label="@string/app_name" />
-
 </manifest>
 ````
 
@@ -36,11 +34,25 @@ When creating new activities, we need to add it to our AndroidManifest file so o
 ### Activity
 An activity is an instance of `Activity` and is responsible for managing user interactions with a screen of information.
 
-widgets: can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
+Inside an activity are widgets: can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
 
 `@Override` annotation ensures the class actually has the method you are attempting to override. The compiler will notify you if it does not possess this class.
 
-We start an activity by using the `Activity` method. `public void startActivity(Intent intent)` This sends a call to a part of the OS called the 'ActivityManager', which creates `Activity` instances and calls `onCreate()`. An intent is an object that a component can use to communicate with the OS, which are activities, services, broadcast recievers, and content providers. `public Intent(Context packageContext, Class<?> cls)`
+We start an activity by using the `startActivity` method. `public void startActivity(Intent intent)` This sends a call to a part of the OS called the 'ActivityManager', which creates `Activity` instances and calls `onCreate()`. An intent is an object that a component can use to communicate with the OS, which are activities, services, broadcast recievers, and content providers. `public Intent(Context packageContext, Class class)` the Class specifies which activity the ActivityManager should start, Context tells which package the Class object can be found in. We can add additional information to the intent by calling `public Intent putExtra(String name, boolean value)`, this allows us to pass information between our current activity and the one will will be creating.
+
+````java
+// MainActivity.java
+Intent i = new Intent(MainActivity.this, SideActivity.class);
+i.putExtra(SideActivity.MY_EXTRA_VALUE, myValue);
+startActivity(i);
+// SideActivity.java
+public static final String MY_EXTRA_VALUE = "net.ShawnKlein.testapp";
+mMyValue = getIntent().getBooleanExtra(MY_EXTRA_VALUE, false);
+````
+
+The ActivityManager will then check the package's manifest for a declaration with the same name as the specified Class. If no declaration is found, it will respond with a ActivityNotFoundException. We call `Activity.getIntent()` to return the intent that started this activity and `public boolean getBooleanExtra(String name, boolean defaultValue)` to pull the information out of the intent. It is also important to note that we should define keys for extras on the activities that retrieve and use them, we do this with `public static final String MY_EXTRA_VALUE = "net.ShawnKlein.testapp";`.
+
+The above example is a an _explicit intent_, when an activity wants to start an activity in another application, it would be considered and _implicit intent_.
 
 #### Classes
 
@@ -80,6 +92,8 @@ Each class implements or inherits thier own attributes and methods
 </table>
 
 #### Attributes
+
+Attributes will go inside our class widgets, they describe how the widget should function.
 
 <table style="width:100%">
   <tr>
