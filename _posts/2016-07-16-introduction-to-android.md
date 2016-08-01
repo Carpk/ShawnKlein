@@ -54,10 +54,10 @@ The ActivityManager will then check the package's manifest for a declaration wit
 
 The above example is a an _explicit intent_, when an activity wants to start an activity in another application, it would be considered and _implicit intent_.
 
-For our child activity to return data back to our main activity, we will use `public void startActivityForResult(Intent intent, int requestCode)` instead of `startActivity(i)`. The Child activity will use `public final void setResult(int resultCode)` or `public final void setResult(int resultCode, Intent data)`, if no result code is set, and the parent expects a return, the OS will send RESULT_CANCELED as the `resultCode`. 
+For our child activity to return data back to our main activity, we will use `public void startActivityForResult(Intent intent, int requestCode)` instead of `startActivity(i)` and `protected void onActivityResult(int requestCode, int resultCode, Intent data)` to actually retrive the returning data. The Child activity will use `public final void setResult(int resultCode)` or `public final void setResult(int resultCode, Intent data)`, if no result code is set, and the parent expects a return, the OS will send RESULT_CANCELED as the `resultCode`. 
 
 ````java
-// side_activity.java
+// SideActivity.java
 public static final String RETURNING_DATA =
     "net.shawnklein.testapp.data_result"
 private void setReturningDataResult(boolen myValue) {
@@ -65,7 +65,15 @@ private void setReturningDataResult(boolen myValue) {
     data.putExtra(RETURNING_DATA, myValue);
     setResult(RESULT_OK, data);
 }
+// MainActivity.java
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    myVariable = data.getBooleanExtra(Sideactivity.RETURNING_DATA, false);
+}
 ````
+
+To retrieve our returing data, we use `protected void onActivityResult()`
+
 
 #### Classes
 
