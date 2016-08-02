@@ -29,7 +29,7 @@ When creating new activities, we need to add it to our AndroidManifest file so o
               android:label="@string/app_name" />
 </manifest>
 ````
-
+This file also tells the OS which Activity is the launcher activity, that is the activity that first starts when the OS calls on the application. The manifest declaration specifies this with `intent-filter` element (pg109).
 
 ### Activity
 An activity is an instance of `Activity` and is responsible for managing user interactions with a screen of information.
