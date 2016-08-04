@@ -10,13 +10,15 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-### Files of Interest
+This introduction serves as a reference guide for people new to developing Android applications. 
 
-_app/build.gradle_
+### Notable Files
+
+###### app/build.gradle
 
 Gradle build scripts are a DSL, they come with a top-level build file and build files for each module.
 
-app/src/main/AndroidManifest.xml
+###### app/src/main/AndroidManifest.xml
 
 This file contains metadata that describes our application ot the OS. File is always named AndroidManifest.xml and lives in the root directory of our project.
 
@@ -31,12 +33,35 @@ When creating new activities, we need to add it to our AndroidManifest file so o
 ````
 This file also tells the OS which Activity is the launcher activity, that is the activity that first starts when the OS calls on the application. The manifest declaration specifies this with `intent-filter` element (pg109).
 
+###### app/src/main/java/tld/company/user/project/*.java
+
+These files hold the code that preforms the functionality we need our app to accomplish.
+
+###### app/src/main/res/layout/*.xml
+
+These files hold widgets that interprept what our activities will look like.
+
+###### app/build/generated/source/r/debug/tld/company/user/project/R.java
+
+The `R.java` file is our resources file.
+
+````java
+public static final class string {
+    public static final int abc_action_bar_home_description=0x7f060000;
+    public static final int abc_action_bar_home_description_format=0x7f060001;
+    public static final int abc_action_bar_home_subtitle_description_format=0x7f060002;
+    public static final int abc_action_bar_up_description=0x7f060003;
+}
+````    
+
 ### Activity
 An activity is an instance of `Activity` and is responsible for managing user interactions with a screen of information.
 
 Inside an activity are widgets: can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
 
 `@Override` annotation ensures the class actually has the method you are attempting to override. The compiler will notify you if it does not possess this class.
+
+A `@TargetApi(11)` annotation is used to suppress build errors from Lint. It is used to say that the below method will only be referenced by an OS version that is passed in as an argument. In our case, version `11`, Honeycomb, instead of the version what is declared in our manifest.
 
 We start an activity by using the `startActivity` method. `public void startActivity(Intent intent)` This sends a call to a part of the OS called the 'ActivityManager', which creates `Activity` instances and calls `onCreate()`. An intent is an object that a component can use to communicate with the OS, which are activities, services, broadcast recievers, and content providers. `public Intent(Context packageContext, Class class)` the Class specifies which activity the ActivityManager should start, Context tells which package the Class object can be found in. We can add additional information to the intent by calling `public Intent putExtra(String name, boolean value)`, this allows us to pass information between our current activity and the one will will be creating.
 
@@ -75,9 +100,9 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 To retrieve our returing data, we use `protected void onActivityResult()`
 
 
-#### Classes
+### Classes
 
-Each class implements or inherits thier own attributes and methods
+Classes are found in both the `.java` and `.xml` files. We are able to reference the `.xml` widgets using `findViewById(int id)` method in our `.java` file. Each class implements or inherits thier own attributes and methods
 
 <table style="width:100%">
   <tr>
@@ -112,9 +137,9 @@ Each class implements or inherits thier own attributes and methods
   </tr>
 </table>
 
-#### Attributes
+### Attributes
 
-Attributes will go inside our class widgets, they describe how the widget should function.
+Attributes are found will go inside our class widgets, they describe how the widget should function.
 
 <table style="width:100%">
   <tr>
@@ -168,7 +193,7 @@ android:name
 android:label
 
 
-### resources
+### Resources
 
 resources are images, audio, and XML files that live in the res/ diretory. we use the resource ID `R.layout.activity_main` to access these files. This ID returns an int set from `class layout` in R.java, this looks something like  `public static final int activity_main=0x7f04001a;`. 
 
@@ -185,7 +210,17 @@ Android keeps all the strings all in one place, the strings.xml file.
 
 public View findViewById(int id) takes ID of widget and returns a View object. We will prefix with "Button" to return a button instead of a view `mTrueButton = (Button)findViewById(R.id.true_button)`
 
-### listening
+Other files 
+
+Refreneces to a string will begin with `@string/` and refrences for a drawable will begin with `@drawable/`. Drawable resorces have differant files for different dpi screens.
+
+* __mdpi__ medium density screens(~160dpi)
+* __hdpi__ high density screens(~240dpi)
+* __xhdpi__ extra high density screens(~320dpi)
+* __xxhdpi__ extra extra high density screens(~480dpi)
+* __xxxhdpi__ extra extra extra high density screens(~640dpi)
+
+### Listening
 
 Android applications are typically event-driven, they start and then wait for an event, such as the user pressing a button. We say it waits by listening for an event, such as `View.OnClickListener` interface.
 
@@ -202,7 +237,7 @@ This listener is implemented as an anonymous inner class. With OnClickListener's
 
 (If your knowledge of anonymous inner classes, listeners, or interfaces is rusty, you may want to review some Java before continuing or at least keep a reference nearby.)
 
-### toasting
+### Toasting
 
 To create a toast, we will call `public static Toast makeText(Context context, int resId, int duration)` from the Toast class. Then use `Toast.show()` to display it.
 
@@ -225,17 +260,6 @@ For Field, we will set `m` in the Name prefix column;
 And for Static field, we set `s` in the same column.
 
 This is going to allow us to generate our methods on the fly. Right click the variable we want to generate `private int mCount;`, select the prefixed variables to generate and press `okay`. We should have populated out class with getters and setters for the prefixed methods we selected.
-
-
-### resources
-
-Refreneces to a string will begin with `@string/` and refrences for a drawable will begin with `@drawable/`. Drawable resorces have differant files for different dpi screens.
-
-⋅⋅* __mdpi__ medium density screens(~160dpi)
-⋅⋅* __hdpi__ high density screens(~240dpi)
-⋅⋅* __xhdpi__ extra high density screens(~320dpi)
-⋅⋅* __xxhdpi__ extra extra high density screens(~480dpi)
-⋅⋅* __xxxhdpi__ extra extra extra high density screens(~640dpi)
 
 
 ### Logs
