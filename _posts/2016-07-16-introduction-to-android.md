@@ -99,6 +99,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 To retrieve our returing data, we use `protected void onActivityResult()`
 
+### Fragments
+
+Is a controller object that an activity can deputize to perform tasks. Such as managing a user interface.
+
 
 ### Classes
 
@@ -342,4 +346,4 @@ public void onSaveInstanceState(Bundle savedInstanceState) {
 
 
 
-
+ 
