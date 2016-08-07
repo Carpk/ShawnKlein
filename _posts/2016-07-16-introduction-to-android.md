@@ -54,7 +54,7 @@ public static final class string {
 }
 ````    
 
-### Activity
+### Activities
 An activity is an instance of `Activity` and is responsible for managing user interactions with a screen of information.
 
 Inside an activity are widgets: can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
@@ -101,8 +101,26 @@ To retrieve our returing data, we use `protected void onActivityResult()`
 
 ### Fragments
 
-Is a controller object that an activity can deputize to perform tasks. Such as managing a user interface.
+Is a controller object that an activity can deputize to perform tasks. Such as managing a user interface. To set our class as a fragment, we replace `Activity` with `FragmentActivity`
 
+````java
+public class TestActivity extends FragmentActivity {
+  ....
+}
+````
+
+Now that we have created our fragment, we need 2 things to host a UI fragment, a spot in the layout for the fragment's view, and manage the lifecycle of the fragment. Fragments lifecycle are called by the hosting activity, instead of the OS. You can add a fragment to either the hosting activity's _layout_ or _code_.
+
+###### Layout
+
+A layout fragment is simple, but inflexable. We hard code the fragment and its view to the activity's view and cannot swap out the fragment during the activity's lifetime.
+
+
+
+
+###### Code
+
+A code fragment gives us more control of how our fragment willl interact with our activity. It will allow us to determine when to add the fragment to the host activity, remove it, replace it with another, and add the initial fragment back again.
 
 ### Classes
 
