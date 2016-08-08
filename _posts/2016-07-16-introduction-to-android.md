@@ -101,13 +101,27 @@ To retrieve our returing data, we use `protected void onActivityResult()`
 
 ### Fragments
 
-Is a controller object that an activity can deputize to perform tasks. Such as managing a user interface. To set our class as a fragment, we replace `Activity` with `FragmentActivity`
+Is a controller object that an activity can deputize to perform tasks. Such as managing a user interface. To set our class to use a fragment, we replace `Activity` with `FragmentActivity`
 
 ````java
 public class TestActivity extends FragmentActivity {
   ....
 }
 ````
+
+Our fragment class does not inflate using the `onCreate()` such as avtvity would, it inflates using `onCreateView()`.
+
+````java
+public class TestFragment extends Fragment {
+  // ....
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+    View v = inflater.inlfate(R.layout.fragment_test, parent, false);
+    return v;
+  }
+}
+````
+
 
 Now that we have created our fragment, we need 2 things to host a UI fragment, a spot in the layout for the fragment's view, and manage the lifecycle of the fragment. Fragments lifecycle are called by the hosting activity, instead of the OS. You can add a fragment to either the hosting activity's _layout_ or _code_.
 
@@ -117,10 +131,15 @@ A layout fragment is simple, but inflexable. We hard code the fragment and its v
 
 
 
-
 ###### Code
 
-A code fragment gives us more control of how our fragment willl interact with our activity. It will allow us to determine when to add the fragment to the host activity, remove it, replace it with another, and add the initial fragment back again.
+A code fragment gives us more control of how our fragment will interact with our activity. It will allow us to determine when to add the fragment to the host activity, remove it, replace it with another, and add the initial fragment back again.
+
+
+
+
+
+
 
 ### Classes
 
@@ -344,6 +363,8 @@ Upon initially starting the application, our first activity executes the `onCrea
 ![DNS query diagram](/assets/images/activity_lifecycle.jpg)
 
 Rotating the screen to change its orientation will cause it to change the device configuration, which calls `onDestroy()` and `onCreate()` in order to inflate the new activity with the device configuration.
+
+### Saving State
 
 To persist our data upon changing the device configuration, we will use `protected void onSaveInstanceState(Bundle outState)` method. This method is called by the system before `onPause()`, `onStop()`, and `onDestroy`. And requires the data passed in as as a Bundle object.
 
