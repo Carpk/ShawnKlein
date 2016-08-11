@@ -101,11 +101,19 @@ To retrieve our returing data, we use `protected void onActivityResult()`
 
 ### Fragments
 
-Is a controller object that an activity can deputize to perform tasks. Such as managing a user interface. To set our class to use a fragment, we replace `Activity` with `FragmentActivity`
+Is a controller object that an activity can deputize to perform tasks. Such as managing a user interface. To set our class to use a fragment, we replace `Activity` with `FragmentActivity`. We use `getSuportFragmentManager()`....pg142...... We use a fragment transaction with `beginTransaction()` returns an instance of FragmentTransaction, which we use to add, remove, attach, detach, or replace fragments in the fragment list. Our `add()` method takes 2 parameters, the container view ID and our TestFragment.
 
 ````java
 public class TestActivity extends FragmentActivity {
-  ....
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    FragmentManager fm = getSupportFragmentManager();
+    Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
+    if (fragment == null) {
+      fragment = new TestFragment();
+      fragment.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+    }
+  }
 }
 ````
 
