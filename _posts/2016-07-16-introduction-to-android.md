@@ -119,6 +119,8 @@ public class TestActivity extends FragmentActivity {
 
 A workflow is as follows, we ask FragmentManager for fragment, if in list, FragmentManager will return it. If `null`, a new CrimeFragment will be created.
 
+PAUSE on PAGE 145
+
 
 
 Our fragment class does not inflate using the `onCreate()` such as activity would, it inflates using the `onCreateView()` method. and we explicitly inflate the the fragments view by calling `LayoutInflater.inflate()`. The first parameter is the resource ID, second is the parent's view, and third tells the inflater whether to add the inflated view to the parent.
@@ -240,10 +242,43 @@ Attributes are found will go inside our class widgets, they describe how the wid
     <td>ImageView</td> 
     <td>sets a drawable as the content "@[+][package:]type:name", "#rgb"</td>
   </tr>
+  <tr>
+    <td>android:name</td>
+    <td></td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>android:label</td>
+    <td></td> 
+    <td>"</td>
+  </tr>
 </table>
 
-android:name
-android:label
+Attributes that begin with `layout_` are directed to the widget's parent, these are known as _layout parameters_. When `layout_` is ommited, the widget calls a method to configure itself based on the attribute and its value.
+
+<table style="width:100%">
+  <tr>
+    <th>Unit</th>
+    <th>Size</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>dp or dip</td>
+    <td>density independent pixel</td> 
+    <td>find more of me on page 155</td>
+  </tr>
+  <tr>
+    <td>sp</td>
+    <td>scale independent pixel</td> 
+    <td>density dependent pixels take into account user font preference, used for text size</td>
+  </tr>
+  <tr>
+    <td>pt, mm, in</td>
+    <td>points, millimeters, inches</td> 
+    <td>Scaled units(points are 1/72 of an inch)</td>
+  </tr>
+</table>
+
 
 
 ### Resources
