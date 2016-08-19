@@ -12,7 +12,7 @@ logo: 'assets/images/logo.png'
 
 This introduction serves as a reference guide for people new to developing Android applications. 
 
-### Notable Files
+### Files
 
 ###### app/build.gradle
 
@@ -26,7 +26,7 @@ When creating new activities, we need to add it to our AndroidManifest file so o
 
 ````xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shawnklein.carpk.cloudorder" >
+    package="net.shawnklein.carpk.testapp" >
     <activity android:name=".NewActivity"
               android:label="@string/app_name" />
 </manifest>
@@ -55,7 +55,7 @@ public static final class string {
 ````    
 
 ### Activities
-An activity is an instance of `Activity` and is responsible for managing user interactions with a screen of information.
+An activity is an instance of the `Activity` class and is responsible for managing user interactions with a screen of information.
 
 Inside an activity are widgets: can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
 
@@ -250,11 +250,26 @@ Attributes are found will go inside our class widgets, they describe how the wid
   <tr>
     <td>android:label</td>
     <td></td> 
-    <td>"</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>android:padding</td>
+    <td></td> 
+    <td>padding describes how much bigger the widget's size is over the content</td>
+  </tr>
+  <tr>
+    <td>android:layout_margin</td>
+    <td></td> 
+    <td>margin is used by parent widget to space the calling widget from other widgets</td>
+  </tr>
+  <tr>
+    <td>android:layout_weight</td>
+    <td></td> 
+    <td>In regards to only 2 widgets, if both values are the same, it wil split the space 50/50. if 2 and 1, 2/3 and 1/3 respectively</td>
   </tr>
 </table>
 
-Attributes that begin with `layout_` are directed to the widget's parent, these are known as _layout parameters_. When `layout_` is ommited, the widget calls a method to configure itself based on the attribute and its value.
+Attributes that begin with `layout_` are directed to be used by the widget's parent, these are known as _layout parameters_. When `layout_` is ommited, the widget calls a method to configure itself based on the attribute and its value.
 
 <table style="width:100%">
   <tr>
