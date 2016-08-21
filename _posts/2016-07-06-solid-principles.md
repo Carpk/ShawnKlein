@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/mountainous_lake.jpg'
 title: Solid Principles
 date:   2016-07-06 10:18:00
-tags: general ruby
+tags: general ruby coding
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

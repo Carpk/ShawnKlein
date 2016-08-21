@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/mountainous_lake.jpg'
 title: Creating a Cronjob
 date:   2016-05-11 10:18:00
-tags: linux/unix
+tags: linux/unix devops
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/railroad_fog.jpg'
 title: Module Paths in Rails
 date:   2016-05-21 20:24:00
-tags: ruby 
+tags: ruby coding
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

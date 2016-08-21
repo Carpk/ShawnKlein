@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/mountainous_lake.jpg'
 title: Dynamic methods in Ruby
 date:   2016-03-10 10:18:00
-tags: ruby
+tags: ruby coding
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

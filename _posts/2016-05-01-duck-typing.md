@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/rocky_river.jpg'
 title: Duck Typing
 date:   2016-05-01 15:18:00
-tags: ruby
+tags: ruby coding oop
 subclass: 'post tag-test tag-content'
 categories: 'Casper'
 navigation: True

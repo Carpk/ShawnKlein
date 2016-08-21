@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/forest_path.jpg'
 title: Guide to Object Oriented Design
 date:   2016-04-14 10:18:00
-tags: ruby 
+tags: ruby coding oop
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

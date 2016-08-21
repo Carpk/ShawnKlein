@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/rocky_river.jpg'
 title: Calling Shell Commands
 date:   2016-05-29 17:09:00
-tags: ruby
+tags: ruby coding
 subclass: 'post tag-test tag-content'
 categories: 'Casper'
 navigation: True

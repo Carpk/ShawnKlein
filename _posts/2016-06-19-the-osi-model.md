@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/sloping_mountains.jpg'
 title: The OSI Model
 date:   2016-06-19 10:18:00
-tags: general 
+tags: general devops
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

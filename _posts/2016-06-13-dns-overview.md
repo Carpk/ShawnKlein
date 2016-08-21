@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/railroad_fog.jpg'
 title: DNS Overview
 date:   2016-06-13 17:03:00
-tags: general 
+tags: general devops
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

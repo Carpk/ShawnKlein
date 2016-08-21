@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/mountainous_lake.jpg'
 title: The REST Architecture
 date:   2016-06-08 9:27:00
-tags: general
+tags: general devops coding
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/sloping_mountains.jpg'
 title: Creating a DSL
 date:   2016-04-05 10:18:00
-tags: ruby 
+tags: ruby coding
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

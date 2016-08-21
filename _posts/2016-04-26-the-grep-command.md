@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/railroad_fog.jpg'
 title: The Grep Command
 date:   2016-04-26 20:24:00
-tags: unix/linux 
+tags: unix/linux devops
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True
