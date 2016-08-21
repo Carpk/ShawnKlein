@@ -364,6 +364,8 @@ And for Static field, we set `s` in the same column.
 
 This is going to allow us to generate our methods on the fly. Right click the variable we want to generate `private int mCount;`, select the prefixed variables to generate and press `okay`. We should have populated out class with getters and setters for the prefixed methods we selected.
 
+It is idiomatic to have a prefix of `s` for static interfaces. Such as `sCommonVariable`.
+
 
 ### Logs
 
