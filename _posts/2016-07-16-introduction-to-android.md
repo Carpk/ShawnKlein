@@ -10,6 +10,8 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
+## This post is a work in progress! We have expanded past the realms of just Ruby, and this uneditied post is here as filler for my java tag.
+
 This introduction serves as a reference guide for people new to developing Android applications. 
 
 ### Files
@@ -27,8 +29,15 @@ When creating new activities, we need to add it to our AndroidManifest file so o
 ````xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.shawnklein.carpk.testapp" >
-    <activity android:name=".NewActivity"
-              android:label="@string/app_name" />
+    <application>
+        <activity android:name=".NewActivity"
+                  android:label="@string/app_name" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>
 ````
 This file also tells the OS which Activity is the launcher activity, that is the activity that first starts when the OS calls on the application. The manifest declaration specifies this with `intent-filter` element (pg109).
@@ -55,9 +64,8 @@ public static final class string {
 ````    
 
 ### Activities
-An activity is an instance of the `Activity` class and is responsible for managing user interactions with a screen of information.
 
-Inside an activity are widgets: can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
+An activity is an instance of the `Activity` class and is responsible for managing user interactions with a screen of information. Inside an activity are widgets: which can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
 
 `@Override` annotation ensures the class actually has the method you are attempting to override. The compiler will notify you if it does not possess this class.
 
@@ -149,7 +157,7 @@ A layout fragment is simple, but inflexable. We hard code the fragment and its v
 
 A code fragment gives us more control of how our fragment will interact with our activity. It will allow us to determine when to add the fragment to the host activity, remove it, replace it with another, and add the initial fragment back again.
 
-
+Fragments also have some convenience methods such as `getActivity()` which returns the hosting activity
 
 
 
@@ -189,6 +197,82 @@ Classes are found in both the `.java` and `.xml` files. We are able to reference
     <td>ImageButton</td>
     <td>< ImageView < View < Object</td> 
     <td>Displays a button with image instead of text.</td>
+  </tr>
+</table>
+
+###### Activity
+
+Table of some of the more popular methods from the `Activity` class.
+
+<table style="width:100%">
+  <tr>
+    <th>Returns</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Intent</td>
+    <td>getIntent()</td> 
+    <td>Return the intent that started this activity.</td>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>setTitle(int titleId)</td> 
+    <td>Change the title associated with this activity.</td>
+  </tr>
+  <tr>
+    <td>View</td>
+    <td>findViewById(int id)</td> 
+    <td>Finds a view that was identifiesd by the id attribute from the XML that was processed in onCreate(Bundle).</td>
+  </tr>
+  <tr>
+    <td>Void</td>
+    <td>setContentview(View/int view.layoutResId)</td> 
+    <td>Set the activity content to an explicit view or from a layout resource.</td>
+  </tr>
+</table>
+
+###### Fragment
+
+Table of some of the more popular methods from the `Fragment` class.
+
+<table style="width:100%">
+  <tr>
+    <th>Returns</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>final Activity</td>
+    <td>getActivity()</td> 
+    <td>Return the Activity this fragment is currently associated with.</td>
+  </tr>
+  <tr>
+    <td>View</td>
+    <td>onCreateView(LayoutInflater, ViewGrou, Bundle)</td> 
+    <td>Called to have the fragment instantiate its user interface view.</td>
+  </tr>
+</table>
+
+###### FragmentManager
+
+Table of some of the more popular methods from the abstract `FragmentManager` class.
+
+<table style="width:100%">
+  <tr>
+    <th>Returns</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>abstract Fragment</td>
+    <td>findFragmentById(int id)</td> 
+    <td>Finds a fragment that was identified by the given id.</td>
+  </tr>
+  <tr>
+    <td>abstract FragmentTransactiopn</td>
+    <td>beginTransaction()</td> 
+    <td>Start a series of edit operations on the Fragments associated with this FragmentManager.</td>
   </tr>
 </table>
 
