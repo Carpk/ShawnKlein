@@ -198,6 +198,11 @@ Classes are found in both the `.java` and `.xml` files. We are able to reference
     <td>< ImageView < View < Object</td> 
     <td>Displays a button with image instead of text.</td>
   </tr>
+  <tr>
+    <td>ListView</td>
+    <td></td> 
+    <td>Displays stuff.</td>
+  </tr>
 </table>
 
 ###### Activity
@@ -273,6 +278,55 @@ Table of some of the more popular methods from the abstract `FragmentManager` cl
     <td>abstract FragmentTransactiopn</td>
     <td>beginTransaction()</td> 
     <td>Start a series of edit operations on the Fragments associated with this FragmentManager.</td>
+  </tr>
+</table>
+
+###### ListFragment
+
+Table of some of the more popular methods from the abstract `FragmentManager` class.
+
+<table style="width:100%">
+  <tr>
+    <th>Returns</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>setListAdapter(ListAdapter adapter)</td> 
+    <td>Provide the cursor for the list view.</td>
+  </tr>
+  <tr>
+    <td>ListView</td>
+    <td>getListView</td> 
+    <td>Get the activity's list view widget.</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>onListItemClick()</td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>ListAdapter</td>
+    <td>getListAdapter()</td> 
+    <td>Get the ListAdapter associated with this fragment's ListView.</td>
+  </tr>
+</table>
+
+###### Adapter
+
+Table of some of the more popular methods from the public `Adapter` interface.
+
+<table style="width:100%">
+  <tr>
+    <th>Returns</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>abstract object</td>
+    <td>getItem(int position)</td> 
+    <td>Get the data item associated with the specified position in the data set.</td>
   </tr>
 </table>
 
@@ -525,7 +579,26 @@ public void onSaveInstanceState(Bundle savedInstanceState) {
 }
 ````
 
+### Adaptor
 
+An Adapter object acts as a bridge between an AdapterView and the underlying data for that view. The Adapter provides access to the data items. The Adapter is also responsible for making a View for each item in the data set.
+
+Known subclasses are:
+
+ArrayAdapter<T>, BaseAdapter, CursorAdapter, HeaderViewListAdapter, ListAdapter, ResourceCursorAdapter, SimpleAdapter, SimpleCursorAdapter, SpinnerAdapter, ThemedSpinnerAdapter, WrapperListAdapter
+
+Adaptor is responisble for:
+
+* creating the necessary view object
+* populating it with the data from the model layer
+* returning the view object to the ListView
+
+
+### R.layout
+
+Are built in XML layout documents, a small sample set is as follows:
+
+activity_list_item, browser_link_context_header, list_content, select_dialog_item, simple_dropdown_item1line, simple_expandable_list_item_1, simple_list_item_1, simple_list_activated_2, simple_list_multiple_choice, simple_spinner_item, two_line_list_item
 
 
 
