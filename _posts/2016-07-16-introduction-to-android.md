@@ -160,6 +160,42 @@ A code fragment gives us more control of how our fragment will interact with our
 Fragments also have some convenience methods such as `getActivity()` which returns the hosting activity
 
 
+### Intent
+
+An intent is an abstract description of an operation to be performed. It can be used with startActivity to launch an Activity, broadcastIntent to send it to any interested BroadcastReceiver components, and startService(Intent) or bindService(Intent, ServiceConnection, int) to communicate with a background Service.
+
+An Intent provides a facility for performing late runtime binding between the code in different applications. Its most significant use is in the launching of activities, where it can be thought of as the glue between activities. It is basically a passive data structure holding an abstract description of an action to be performed.
+
+<table style="width:100%">
+  <tr>
+    <th>Returns</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Object</td>
+    <td>clone()</td> 
+    <td>Creates and returns a copy of this object.</td>
+  </tr>
+  <tr>
+    <td>Intent</td>
+    <td>putExtra(String name, Serializable value)</td> 
+    <td>Add extended data to the intent. Takes other 2nd arguments, UUID is a Serializable object</td>
+  </tr>
+</table>
+
+https://developer.android.com/reference/android/content/Intent.html
+
+### UUID
+
+A class that represents an immutable universally unique identifier (UUID). A UUID represents a 128-bit value.
+
+There exist different variants of these global identifiers. The methods of this class are for manipulating the Leach-Salz variant, although the constructors allow the creation of any variant of UUID (described below).
+
+The layout of a variant 2 (Leach-Salz) UUID is as follows: The most significant long consists of the following unsigned fields:
+
+https://developer.android.com/reference/java/util/UUID.html
+
 
 
 
@@ -322,6 +358,11 @@ Table of some of the more popular methods from the public `Adapter` interface.
     <th>Returns</th>
     <th>Method</th> 
     <th>Description</th>
+  </tr>
+  <tr>
+    <td>abstract object</td>
+    <td>getItem(int position)</td> 
+    <td>Get the data item associated with the specified position in the data set.</td>
   </tr>
   <tr>
     <td>abstract object</td>
