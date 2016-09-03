@@ -10,6 +10,12 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
+To creae a runnable Java object, we need to compile our source code. After compiled, we have Java _bytecode_, that can be ran on numerous devices.
+
+````
+~$ javac Test.java
+~$ java Test
+````
 
 ###### Keywords
 
