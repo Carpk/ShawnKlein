@@ -12,7 +12,7 @@ logo: 'assets/images/logo.png'
 
 This post is intended for people with work working knowledge of Object Oriented Programming, and some basic Java skill. We touch on the topic of keywords and thier usage, some commonly used classes, and some light troubleshoting skill.
 
-To creae a runnable Java object, we need to compile our source code. After compiled, we have Java _bytecode_, that can be ran on numerous devices.
+To create a runnable Java object, we need to compile our source code using `javac` and our `.java` file. After compiled, we have Java _bytecode_, that can be ran on numerous devices. 
 
 ````
 ~$ javac Test.java
@@ -23,7 +23,7 @@ Your `CLASSPATH` env variable has to be set to our working folder to get `java T
 
 ###### Keywords
 
-These keywords will define addition behaviors when defining a class or method.
+We use these keywords when defining and class and its methods. 
 
 <table>
   <tr>
@@ -54,6 +54,10 @@ These keywords will define addition behaviors when defining a class or method.
     <td>implements</td>
     <td>specify one or more interfaces that are implemented by the current class</td>
   </tr>
+  <tr>
+    <td>abstract</td>
+    <td>In front of a `class` keyword, prevents this class to be directly instantiated. In front of a method signature, allows the implementation of this method to be deferred to an inheriting class.</td>
+  </tr>
 </table>
 
 
@@ -79,6 +83,58 @@ Access Modifiers are also keywords, but are in thier own category as you typical
   <tr>
     <td>public</td>
     <td>accessible to all classes</td>
+  </tr>
+</table>
+
+###### Primitive Types
+
+If we assign a variable and attempt to refrence it without assigning it a variable, it will attempt to make sense of whatever remaining bits were left at that allocated block of memory. And if we attempt to assign a value that is too large for our value range, it will again attempt to make sense of whatever bits it had in that block.
+
+<table style="width:100%">
+  <tr>
+    <th>Type</th>
+    <th>Bit Depth</th> 
+    <th>Value Range</th>
+  </tr>
+  <tr>
+    <td>boolean</td>
+    <td>JVM specific</td> 
+    <td>true or false</td>
+  </tr>
+  <tr>
+    <td>char</td>
+    <td>16bits</td> 
+    <td>0 to 65535</td>
+  </tr>
+  <tr>
+    <td>byte</td>
+    <td>8bits</td> 
+    <td>-128 to 127</td>
+  </tr>
+  <tr>
+    <td>short</td>
+    <td>16bits</td> 
+    <td>-32768 to 32767</td>
+  </tr>
+  <tr>
+    <td>int</td>
+    <td>32bits</td> 
+    <td>-2147483648 to 2147483647</td>
+  </tr>
+  <tr>
+    <td>long</td>
+    <td>64bits</td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>float</td>
+    <td>32bits</td> 
+    <td>varies</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>64bits</td> 
+    <td>varies</td>
   </tr>
 </table>
 
