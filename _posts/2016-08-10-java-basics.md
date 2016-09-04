@@ -10,12 +10,16 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
+This post is intended for people with work working knowledge of Object Oriented Programming, and some basic Java skill. We touch on the topic of keywords and thier usage, some commonly used classes, and some light troubleshoting skill.
+
 To creae a runnable Java object, we need to compile our source code. After compiled, we have Java _bytecode_, that can be ran on numerous devices.
 
 ````
 ~$ javac Test.java
 ~$ java Test
 ````
+
+Your `CLASSPATH` env variable has to be set to our working folder to get `java Test` to run. Otherwise you have to specify it from our root directory `java -cp /home/user/Projects/ Test`. Our `-cp` is short for `-classpath`, meaning class search path of directories and zip/jar files.
 
 ###### Keywords
 
