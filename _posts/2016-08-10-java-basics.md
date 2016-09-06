@@ -138,6 +138,14 @@ If we assign a variable and attempt to refrence it without assigning it a variab
   </tr>
 </table>
 
+##### arrays
+
+````java
+int [] numbers = new int[7];
+// or
+int[] nums;
+nums = new int[7]
+````
 
 ### Concepts
 
