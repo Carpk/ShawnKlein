@@ -2,7 +2,7 @@
 layout: post
 cover: 'assets/images/mountainous_lake.jpg'
 title: Java Basics
-date:   2016-05-11 10:18:00
+date:   2016-08-10 10:18:00
 tags: coding java
 subclass: 'post tag-test tag-content'
 categories: 'casper'
@@ -10,16 +10,16 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-This post is intended for people with work working knowledge of Object Oriented Programming, and some basic Java skill. We touch on the topic of keywords and thier usage, some commonly used classes, and some light troubleshoting skill.
+We are going to cover some Java basics. This post is intended to be an ideal reference guide. We will talk about some commonly used keywords, classes, and cover some light troubleshooting skills.
 
 To create a runnable Java object, we need to compile our source code using `javac` and our `.java` file. After compiled, we have Java _bytecode_, that can be ran on numerous devices. 
 
 ````
-~$ javac Test.java
+~$ javac test.java
 ~$ java Test
 ````
 
-Your `CLASSPATH` env variable has to be set to our working folder to get `java Test` to run. Otherwise you have to specify it from our root directory `java -cp /home/user/Projects/ Test`. Our `-cp` is short for `-classpath`, meaning class search path of directories and zip/jar files.
+Your `CLASSPATH` env variable has to be set to our working folder to get `java Test` to run properly. Otherwise you have to specify it from our root directory `java -cp /home/user/Projects/ Test`. Our `-cp` is short for `-classpath`, meaning class search path of directories and zip/jar files.
 
 ###### Keywords
 
@@ -124,7 +124,7 @@ If we assign a variable and attempt to refrence it without assigning it a variab
   <tr>
     <td>long</td>
     <td>64bits</td> 
-    <td></td>
+    <td>-2<sup>63</sup> to 2<sup>63</sup>-1</td>
   </tr>
   <tr>
     <td>float</td>
@@ -140,6 +140,8 @@ If we assign a variable and attempt to refrence it without assigning it a variab
 
 ##### arrays
 
+Arrays can be defined a couple different ways depending on thier context. We maybe able to declare our nums in a `class` scope, but if we needed to use it in the `static` context, we need to declare it in the `static` scope.
+
 ````java
 int [] numbers = new int[7];
 // or
@@ -149,7 +151,8 @@ nums = new int[7]
 
 ### Concepts
 
-I'm going to skip classes, objects, and inheritance, and touch on a couple things that are unique to java.
+This section us going to cover some commonly used class, 
+
 
 ###### Interface
 
@@ -166,11 +169,6 @@ interface Bicycle {
 class ACMEBicycle implements Bicycle {
 
     int speed = 0;
-
-   // The compiler will now require that methods
-   // changeCadence, changeGear, speedUp, and applyBrakes
-   // all be implemented. Compilation will fail if those
-   // methods are missing from this class.
 
     void speedUp(int increment) {
          speed = speed + increment;   
@@ -211,8 +209,23 @@ Conext is a public interface. As the name suggests, it's the context of current 
   </tr>
   <tr>
     <td>void</td>
+    <td>bind(String name, Object obj)</td> 
+    <td>Binds name to object.</td>
+  </tr>
+  <tr>
+    <td>void</td>
     <td>close()</td> 
     <td>Closes this context.</td>
+  </tr>
+  <tr>
+    <td>Hashtable</td>
+    <td>getEnvironment()</td> 
+    <td>Retrieves the environment in effect for this context.</td>
+  </tr>
+  <tr>
+    <td>Object</td>
+    <td>lookup(String name)</td> 
+    <td>Retrieves the named object.</td>
   </tr>
 </table>
 

@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/crashing_waves.jpg'
 title: Introduction to Android
 date:   2016-07-16 10:18:00
-tags: general coding java
+tags: coding java
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True
