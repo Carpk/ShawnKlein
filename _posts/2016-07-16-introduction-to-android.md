@@ -26,7 +26,7 @@ When creating new activities, we need to add it to our AndroidManifest file so o
 
 ````xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.shawnklein.carpk.testapp" >
+          package="net.shawnklein.carpk.testapp" >
     <application>
         <activity android:name=".MainActivity"
                   android:label="@string/app_name" />
@@ -89,7 +89,40 @@ public void onSaveInstanceState(Bundle savedInstanceState) {
 ````
 ###### Starting an activity
 
-We can start an activity by using the `startActivity` method. This sends a call to a part of the OS called the 'ActivityManager', which creates `Activity` instances and calls `onCreate()`. An intent is an object that a component can use to communicate with the OS, which are activities, services, broadcast recievers, and content providers. `public Intent(Context packageContext, Class class)` the Class specifies which activity the ActivityManager should start, Context tells which package the Class object can be found in. We can add additional information to the intent by calling `public Intent putExtra(String name, boolean value)`, this allows us to pass information between our current activity and the one will will be creating.
+We can start an activity by using the `startActivity(intent)` method. This sends a call to a part of the OS called the `ActivityManager`, which creates `Activity` instances and calls `onCreate()`. An intent is an object that a component can use to communicate with the OS. Components are activities, services, broadcast recievers, and content providers. 
+
+<table style="width:100%">
+  <tr>
+    <th>Constructor</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Intent()</td>
+    <td>Create an empty intent.</td>
+  </tr>
+  <tr>
+    <td>Intent(Intent o)</td>
+    <td>Copy constructor.</td>
+  </tr>
+  <tr>
+    <td>Intent(String action)</td>
+    <td>Create an intent with a given action.</td>
+  </tr>
+  <tr>
+    <td>Intent(String action, Uri uri)</td>
+    <td>Create an intent with a given action and for a given data url.</td>
+  </tr>
+  <tr>
+    <td>Intent(Context packageContext, Class<?> cls)</td>
+    <td>Create an intent for a specific component.</td>
+  </tr>
+  <tr>
+    <td>Intent(String action, Uri uri, Context packageContext, Class<?> cls)</td>
+    <td>Create an intent for a specific component with a specified action and data.</td>
+  </tr>
+</table>
+
+The `Intent` class specifies which activity the `ActivityManager` class should start. Our below example uses the `Intent(Context packageContext, Class cls)` contructor. `Context` tells which package the class object can be found in, and `Class` is what we want to start. We can add additional information to the intent by calling `public Intent putExtra(String name, boolean value)`, this allows us to pass information between our current activity and the one will will be creating.
 
 ````java
 // MainActivity.java
@@ -101,11 +134,9 @@ public static final String MY_EXTRA_VALUE = "net.ShawnKlein.testapp";
 mMyValue = getIntent().getBooleanExtra(MY_EXTRA_VALUE, false);
 ````
 
-The ActivityManager will then check the package's manifest for a declaration with the same name as the specified Class. If no declaration is found, it will respond with a ActivityNotFoundException. We call `Activity.getIntent()` to return the intent that started this activity and `public boolean getBooleanExtra(String name, boolean defaultValue)` to pull the information out of the intent. It is also important to note that we should define keys for extras on the activities that retrieve and use them, we do this with `public static final String MY_EXTRA_VALUE = "net.ShawnKlein.testapp";`.
+With the above code, the `ActivityManager` will check the package's manifest for a declaration with the same name as the specified class. If no declaration is found, it will respond with a `ActivityNotFoundException`. We call `Activity.getIntent()` to return the intent that started this activity and `getBooleanExtra(String name, boolean defaultValue)` to pull the information out of the intent. It is also important to note that we should define keys for extras on the activities that retrieve and use them, we do this with `public static final String MY_EXTRA_VALUE = "net.ShawnKlein.testapp";`.
 
-The above example is a an _explicit intent_, when an activity wants to start an activity in another application, it would be considered and _implicit intent_.
-
-For our child activity to return data back to our main activity, we will use `public void startActivityForResult(Intent intent, int requestCode)` instead of `startActivity(i)` and `protected void onActivityResult(int requestCode, int resultCode, Intent data)` to actually retrive the returning data. The Child activity will use `public final void setResult(int resultCode)` or `public final void setResult(int resultCode, Intent data)`, if no result code is set, and the parent expects a return, the OS will send RESULT_CANCELED as the `resultCode`. 
+For our child activity to return data back to our main activity, we will use `startActivityForResult(Intent intent, int requestCode)` instead of `startActivity(i)` and `onActivityResult(int requestCode, int resultCode, Intent data)` to actually retrive the returning data. The Child activity will use `setResult(int resultCode)` or `setResult(int resultCode, Intent data)`, if no result code is set, and the parent expects a return, the OS will send `RESULT_CANCELED` as the `resultCode`. 
 
 ````java
 // SideActivity.java
@@ -123,7 +154,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ````
 
-To retrieve our returing data, we use `protected void onActivityResult()`
+To retrieve our returing data, we use `protected void onActivityResult()`. This is part of the `Activity` class, and more infomation can be found in the classes section of this guide.
 
 ### Fragments
 
@@ -289,7 +320,30 @@ Table of some of the more popular methods from the `Activity` class.
     <td>setContentview(View/int view.layoutResId)</td> 
     <td>Set the activity content to an explicit view or from a layout resource.</td>
   </tr>
+  <tr>
+    <td>void</td>
+    <td>onActivityResult(int requestCode, int resultCode, Intent data)</td> 
+    <td>Called when an activity you launched exits, giving you the requestCode you started it with, the resultCode it returned, and any additional data from it.</td>
+  </tr>
 </table>
+
+Methods that are coming: setResult(), startActivityForResult(), startActivity(), onActivityResult(), 
+
+Also a section regarding RESULT_CANCELED
+
+###### Intent
+
+Table of some of the more popular methods from the `Fragment` class.
+
+<table style="width:100%">
+  <tr>
+    <th>Returns</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+</table>
+
+Methods that are coming: getBooleanExtra()
 
 ###### Fragment
 
