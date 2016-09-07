@@ -10,9 +10,7 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-## This post is a work in progress! We have expanded past the realms of just Ruby, and this uneditied post is here as filler for my java tag.
-
-This introduction serves as a reference guide for people new to developing Android applications. 
+This introduction covers some fundamental topics for developing on Android devices. Its goal is to help you piece enough together to create some basic application. 
 
 ### Files
 
@@ -30,7 +28,7 @@ When creating new activities, we need to add it to our AndroidManifest file so o
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.shawnklein.carpk.testapp" >
     <application>
-        <activity android:name=".NewActivity"
+        <activity android:name=".MainActivity"
                   android:label="@string/app_name" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -40,7 +38,7 @@ When creating new activities, we need to add it to our AndroidManifest file so o
     </application>
 </manifest>
 ````
-This file also tells the OS which Activity is the launcher activity, that is the activity that first starts when the OS calls on the application. The manifest declaration specifies this with `intent-filter` element (pg109).
+This file also tells the OS which Activity is the launcher activity, that is the activity that first starts when the OS calls on the application. The manifest declaration specifies this with `intent-filter` element.
 
 ###### app/src/main/java/tld/company/user/project/*.java
 
@@ -52,7 +50,7 @@ These files hold widgets that interprept what our activities will look like.
 
 ###### app/build/generated/source/r/debug/tld/company/user/project/R.java
 
-The `R.java` file is our resources file.
+The `R.java` file is our resources file. It contains all the resource IDs for all the resources in our res/ directory.
 
 ````java
 public static final class string {
@@ -61,17 +59,37 @@ public static final class string {
     public static final int abc_action_bar_home_subtitle_description_format=0x7f060002;
     public static final int abc_action_bar_up_description=0x7f060003;
 }
-````    
+````
+
+We access a resource in two ways, in code using `R.string.hello` and in XML using `@string/hello`.
 
 ### Activities
 
 An activity is an instance of the `Activity` class and is responsible for managing user interactions with a screen of information. Inside an activity are widgets: which can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
 
-`@Override` annotation ensures the class actually has the method you are attempting to override. The compiler will notify you if it does not possess this class.
+###### Activity Lifecycle
 
-A `@TargetApi(11)` annotation is used to suppress build errors from Lint. It is used to say that the below method will only be referenced by an OS version that is passed in as an argument. In our case, version `11`, Honeycomb, instead of the version what is declared in our manifest.
+Upon initially starting the application, our first activity executes the `onCreate()` hook, followed by `onStart()`, and then `onResume()` to gives us our running activity. If we have another activity created, our application executes the `onPause()` method for our current activity, but will resume with `onResume()` once this activey returns to the foreground. The `onStop()` hook occurs when we hit home during the use of our application, if we return, our applicaiton will start up where we initially left. However, the OS can determine that it needs additional resources and can kill these processes on a need be basis. And these activities will execute `onDestroy()` when we are finished with the current activity. Home button will cause the activity to execute `onPause()` and `onStop()`. Using the back button will also call `onDestroy()` which will also destroy any stashed state.
 
-We start an activity by using the `startActivity` method. `public void startActivity(Intent intent)` This sends a call to a part of the OS called the 'ActivityManager', which creates `Activity` instances and calls `onCreate()`. An intent is an object that a component can use to communicate with the OS, which are activities, services, broadcast recievers, and content providers. `public Intent(Context packageContext, Class class)` the Class specifies which activity the ActivityManager should start, Context tells which package the Class object can be found in. We can add additional information to the intent by calling `public Intent putExtra(String name, boolean value)`, this allows us to pass information between our current activity and the one will will be creating.
+![DNS query diagram](/assets/images/activity_lifecycle.jpg)
+
+Rotating the screen to change its orientation will cause it to change the device configuration, which calls `onDestroy()` and `onCreate()` in order to inflate the new activity with the device configuration.
+
+###### Saving State
+
+To persist our data upon changing the device configuration, we will use `protected void onSaveInstanceState(Bundle outState)` method. This method is called by the system before `onPause()`, `onStop()`, and `onDestroy`. And requires the data passed in as as a Bundle object.
+
+````java
+private static final String KEY_INDEX = "index";
+@Override
+public void onSaveInstanceState(Bundle savedInstanceState) {
+  super.onSaveInstanceState(savedInstanceState);
+  savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+}
+````
+###### Starting an activity
+
+We can start an activity by using the `startActivity` method. This sends a call to a part of the OS called the 'ActivityManager', which creates `Activity` instances and calls `onCreate()`. An intent is an object that a component can use to communicate with the OS, which are activities, services, broadcast recievers, and content providers. `public Intent(Context packageContext, Class class)` the Class specifies which activity the ActivityManager should start, Context tells which package the Class object can be found in. We can add additional information to the intent by calling `public Intent putExtra(String name, boolean value)`, this allows us to pass information between our current activity and the one will will be creating.
 
 ````java
 // MainActivity.java
@@ -599,27 +617,6 @@ try {
 }
 ````
 
-### Lifecycle
-
-Upon initially starting the application, our first activity executes the `onCreate()` hook, followed by `onStart()`, and then `onResume()` to gives us our running activity. If we have another activity created, our application executes the `onPause()` method for our current activity, but will resume with `onResume()` once this activey returns to the foreground. The `onStop()` hook occurs when we hit home during the use of our application, if we return, our applicaiton will start up where we initially left. However, the OS can determine that it needs additional resources and can kill these processes on a need be basis. And these activities will execute `onDestroy()` when we are finished with the current activity. Home button will cause the activity to execute `onPause()` and `onStop()`. Using the back button will also call `onDestroy()` which will also destroy any stashed state.
-
-![DNS query diagram](/assets/images/activity_lifecycle.jpg)
-
-Rotating the screen to change its orientation will cause it to change the device configuration, which calls `onDestroy()` and `onCreate()` in order to inflate the new activity with the device configuration.
-
-### Saving State
-
-To persist our data upon changing the device configuration, we will use `protected void onSaveInstanceState(Bundle outState)` method. This method is called by the system before `onPause()`, `onStop()`, and `onDestroy`. And requires the data passed in as as a Bundle object.
-
-````java
-private static final String KEY_INDEX = "index";
-@Override
-public void onSaveInstanceState(Bundle savedInstanceState) {
-  super.onSaveInstanceState(savedInstanceState);
-  savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
-}
-````
-
 ### Adaptor
 
 An Adapter object acts as a bridge between an AdapterView and the underlying data for that view. The Adapter provides access to the data items. The Adapter is also responsible for making a View for each item in the data set.
@@ -642,7 +639,14 @@ Are built in XML layout documents, a small sample set is as follows:
 activity_list_item, browser_link_context_header, list_content, select_dialog_item, simple_dropdown_item1line, simple_expandable_list_item_1, simple_list_item_1, simple_list_activated_2, simple_list_multiple_choice, simple_spinner_item, two_line_list_item
 
 
+extras
 
+
+`@Override` annotation ensures the class actually has the method you are attempting to override. The compiler will notify you if it does not possess this class.
+
+A `@TargetApi(11)` annotation is used to suppress build errors from Lint. It is used to say that the below method will only be referenced by an OS version that is passed in as an argument. In our case, version `11`, Honeycomb, instead of the version what is declared in our manifest.
+
+193
 
 
 
