@@ -183,6 +183,9 @@ class ACMEBicycle implements Bicycle {
 
 ````
 
+###### Abstract
+
+
 ###### Package
 
 A package is a namespace that organizes a set of related classes and interfaces. Conceptually you can think of packages as being similar to different folders on your computer. You might keep HTML pages in one folder, images in another, and scripts or applications in yet another. Because software written in the Java programming language can be composed of hundreds or thousands of individual classes, it makes sense to keep things organized by placing related classes and interfaces into packages.
@@ -191,10 +194,16 @@ The Java platform provides an enormous class library (a set of packages) suitabl
 
 The Java Platform API Specification contains the complete listing for all packages, interfaces, classes, fields, and methods supplied by the Java SE platform. Load the page in your browser and bookmark it. As a programmer, it will become your single most important piece of reference documentation.
 
+###### Thread pools
+
+ IO streams
+ logging classes
+ ant
 
 ### Classes
 
 We compiled a small list of notable classes that deserve some reconigtion.
+final static abstract synchronize this super transient  keywords
 
 ###### Conext
 
@@ -229,14 +238,115 @@ Conext is a public interface. As the name suggests, it's the context of current 
   </tr>
 </table>
 
+###### Thread
+
+Thread is a public class. A thread is a thread of execution in a program. The JVM allows an application to have multiple threads running concurrently.
+http://www.w3resource.com/java-tutorial/java-threadclass-methods-and-threadstates.php
+
+<table style="width:100%">
+  <tr>
+    <th>Type</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>start()</td> 
+    <td>Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.</td>
+  </tr>
+  <tr>
+    <td>static void</td>
+    <td>yield()</td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>static void</td>
+    <td>sleep(long millis)</td> 
+    <td>Causes the currently executing thread to sleep for the specified number of milliseconds.</td>
+  </tr>
+  <tr>
+    <td>Thread.state</td>
+    <td>getState()</td> 
+    <td>Returns the state of this thread.</td>
+  </tr>
+</table>
+
+
+###### System
+
+Thread is a public class. A thread is a thread of execution in a program. The JVM allows an application to have multiple threads running concurrently.
+
+
+<table style="width:100%">
+  <tr>
+    <th>Type</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>start()</td> 
+    <td>Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.</td>
+  </tr>
+  <tr>
+    <td>static void</td>
+    <td>yield()</td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>getEnvironment()</td> 
+    <td>Retrieves the environment in effect for this context.</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>lookup(String name)</td> 
+    <td>Retrieves the named object.</td>
+  </tr>
+</table>
 
 
 
+#### Things I would like to cover
 
+# Class declaration rules
+# Access Modifiers
+# final static abstract synchronize this super transient  keywords
+# Interface and abstract classes
+# Object class & its methods
+# HashCode and Equals methods Contract
+#Immutable Classes String, Wrapper classes
+# Collection API  java.util package 
+# Supportive interface Comparable Comparator Runnable Callable Serializeable  
+# Concurrent API & when to use which collection classes
+# Naming Conventions (First Character should be uppercase in class name, etc..)
+# Java is Complete Object Oriented Programming
+# Java is Call by Value not call by reference
+# JVM, JRE, JDK
+# Class Loader, Java Memory Model, Concurrent Package, Executor Framework.
+# java.io package 
+# Understanding of data Structure and Algorithms is a plus!
+# Oops Principle and Design pattern
+Core java in java.lang, esp. Thread and ThreadLocal
+Collections in java.util
+Streams in java.io
+java.net classes esp. HttpURLConnection
+SQL in java.sql esp. PreparedStatement and ResultSet, which will be used with Android's SQLite database.
+Pattern and Matcher in java.util.regex
+Generics: Lesson: Generics
+Reflection: Trail: The Reflection API
 
-
-
-
+OOPs concept
+String handling
+Exception handling
+Multithreading
+Synchronization
+I/O
+Networking
+Collection
+Inheritance
+Interface
+Packages etc
 
 
 
