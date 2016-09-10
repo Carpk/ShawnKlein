@@ -183,8 +183,49 @@ class ACMEBicycle implements Bicycle {
 
 ````
 
+We should consider using interface when:
+
+* Expect that unrelated classes would implement you interface.
+* Specify the behavior of a particular data type, but not concerned about who implements its behavior.
+* Want to take advantage of multiple inheritance.
+
 ###### Abstract
 
+Abstract classes cannot be instantiated, but they can be subclassed. They may contain a mix of methods declared with ot without an implementation. Its is differnent from `Interface` as you can declare fields that are not `static` and `final`, and define `public`, `protected`, and `private` methods.
+
+````java
+abstract class GraphicObject {
+  int x, y;
+  ...
+  void moveTo(int newX, int newY) {
+    ...
+  }
+  abstract void draw();
+  abstract void resize();
+}
+class Circle extends GraphicObject {
+  void draw() {
+  ...
+  }
+  void resize() {
+  ...
+  }
+}
+class Rectangle extends GraphicObject {
+  void draw() {
+  ...
+  }
+  void resize() {
+  ...
+  }
+}
+````
+
+We should consider using abstract classes when:
+
+* We want to share code amoung several closely related clases
+* Expect the classes that extend your abstract class to have many common methods or fields, or require access modifiers other than public
+* Want to declare non-static or non-final fields.
 
 ###### Package
 
@@ -305,17 +346,56 @@ Thread is a public class. A thread is a thread of execution in a program. The JV
   </tr>
 </table>
 
+###### Object
+
+The `Object` class is the root of the class hierarchy.
+
+<table style="width:100%">
+  <tr>
+    <th>Type</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>protected Object</td>
+    <td>clone()</td> 
+    <td>Creates and returns a vopy of this object.</td>
+  </tr>
+  <tr>
+    <td>protectd void</td>
+    <td>finalize()</td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>Class</td>
+    <td>getClass()</td> 
+    <td>Retrieves the environment in effect for this context.</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>notify()</td> 
+    <td>Wakes up a single thread that is waiting on this object's monitor.</td>
+  </tr>
+  <tr>
+    <td>String</td>
+    <td>toString()</td> 
+    <td>Returns a string representation of the object.</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>wait()</td> 
+    <td>Causes the current thread to wait until another thread invokes the notify() or notifyAll() method.</td>
+  </tr>
+</table>
+
 
 
 #### Things I would like to cover
 
 # Class declaration rules
-# Access Modifiers
 # final static abstract synchronize this super transient  keywords
-# Interface and abstract classes
-# Object class & its methods
 # HashCode and Equals methods Contract
-#Immutable Classes String, Wrapper classes
+# Immutable Classes String, Wrapper classes
 # Collection API  java.util package 
 # Supportive interface Comparable Comparator Runnable Callable Serializeable  
 # Concurrent API & when to use which collection classes

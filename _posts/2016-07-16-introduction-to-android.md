@@ -341,9 +341,17 @@ Table of some of the more popular methods from the `Fragment` class.
     <th>Method</th> 
     <th>Description</th>
   </tr>
+  <tr>
+    <td>boolean</td>
+    <td>getBooleanExtra(String name, boolean defaultValue)</td> 
+    <td>Retrieve extended data from the intent.</td>
+  </tr>
+  <tr>
+    <td>Intent</td>
+    <td>putExtra(String name, boolean value)</td> 
+    <td>Add extended data to the intent. Can also pass in all primitives, Serializable, Bundle, arrays, and String.</td>
+  </tr>
 </table>
-
-Methods that are coming: getBooleanExtra()
 
 ###### Fragment
 
