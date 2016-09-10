@@ -86,68 +86,6 @@ Access Modifiers are also keywords, but are in thier own category as you typical
   </tr>
 </table>
 
-###### Primitive Types
-
-If we assign a variable and attempt to refrence it without assigning it a variable, it will attempt to make sense of whatever remaining bits were left at that allocated block of memory. And if we attempt to assign a value that is too large for our value range, it will again attempt to make sense of whatever bits it had in that block.
-
-<table style="width:100%">
-  <tr>
-    <th>Type</th>
-    <th>Bit Depth</th> 
-    <th>Value Range</th>
-  </tr>
-  <tr>
-    <td>boolean</td>
-    <td>JVM specific</td> 
-    <td>true or false</td>
-  </tr>
-  <tr>
-    <td>char</td>
-    <td>16bits</td> 
-    <td>0 to 65535</td>
-  </tr>
-  <tr>
-    <td>byte</td>
-    <td>8bits</td> 
-    <td>-128 to 127</td>
-  </tr>
-  <tr>
-    <td>short</td>
-    <td>16bits</td> 
-    <td>-32768 to 32767</td>
-  </tr>
-  <tr>
-    <td>int</td>
-    <td>32bits</td> 
-    <td>-2147483648 to 2147483647</td>
-  </tr>
-  <tr>
-    <td>long</td>
-    <td>64bits</td> 
-    <td>-2<sup>63</sup> to 2<sup>63</sup>-1</td>
-  </tr>
-  <tr>
-    <td>float</td>
-    <td>32bits</td> 
-    <td>varies</td>
-  </tr>
-  <tr>
-    <td>double</td>
-    <td>64bits</td> 
-    <td>varies</td>
-  </tr>
-</table>
-
-##### arrays
-
-Arrays can be defined a couple different ways depending on thier context. We maybe able to declare our nums in a `class` scope, but if we needed to use it in the `static` context, we need to declare it in the `static` scope.
-
-````java
-int [] numbers = new int[7];
-// or
-int[] nums;
-nums = new int[7]
-````
 
 ### Concepts
 
@@ -388,7 +326,44 @@ The `Object` class is the root of the class hierarchy.
   </tr>
 </table>
 
+###### HttpURLConnection
 
+The `HttpURLConnection` is a `public abstract class`. Each instance is used to make a single request, but the underlying network connection to the HTTP server may be transparently shared by other instances.
+
+<table style="width:100%">
+  <tr>
+    <th>Type</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>String</td>
+    <td>getRequestMethod()</td> 
+    <td>Get the response method.</td>
+  </tr>
+  <tr>
+    <td>String</td>
+    <td>getResponseMessage()</td> 
+    <td>Gets the HTTP response message, if any, returned along with the response code from a server.</td>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>setRequestMethod(String url)</td> 
+    <td>Set the method for the URL request, one of: GET POST HEAD OPTIONS PUT DELETE TRACE are legal, subject to protocol restrictions.</td>
+  </tr>
+  <tr>
+    <td>abstract boolean</td>
+    <td>usingProxy()</td> 
+    <td>Indicates if the connection is going through a proxy.</td>
+  </tr>
+</table>
+
+````java
+private final String USER_AGENT = "Mozilla/5.0"
+
+String url = "http://www.example.com/"
+
+````
 
 #### Things I would like to cover
 
@@ -410,7 +385,7 @@ The `Object` class is the root of the class hierarchy.
 Core java in java.lang, esp. Thread and ThreadLocal
 Collections in java.util
 Streams in java.io
-java.net classes esp. HttpURLConnection
+java.net classes 
 SQL in java.sql esp. PreparedStatement and ResultSet, which will be used with Android's SQLite database.
 Pattern and Matcher in java.util.regex
 Generics: Lesson: Generics
