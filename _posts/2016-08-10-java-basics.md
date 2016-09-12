@@ -134,27 +134,21 @@ Abstract classes cannot be instantiated, but they can be subclassed. They may co
 ````java
 abstract class GraphicObject {
   int x, y;
-  ...
   void moveTo(int newX, int newY) {
-    ...
   }
   abstract void draw();
   abstract void resize();
 }
 class Circle extends GraphicObject {
   void draw() {
-  ...
   }
   void resize() {
-  ...
   }
 }
 class Rectangle extends GraphicObject {
   void draw() {
-  ...
   }
   void resize() {
-  ...
   }
 }
 ````
@@ -175,16 +169,14 @@ The Java Platform API Specification contains the complete listing for all packag
 
 ###### Thread pools
 
- IO streams
- logging classes
- ant
+Thread pool is a group of pre-instantiated, idle threads which stand ready to be given work.
 
 ### Classes
 
 We compiled a small list of notable classes that deserve some reconigtion.
 final static abstract synchronize this super transient  keywords
 
-###### Conext
+#### Conext
 
 Conext is a public interface. As the name suggests, it's the context of current state of the application/object. It lets newly-created objects understand what has been going on. Typically you call it to get information regarding another part of your program (activity and package/application).
 
@@ -217,7 +209,7 @@ Conext is a public interface. As the name suggests, it's the context of current 
   </tr>
 </table>
 
-###### Thread
+#### Thread
 
 Thread is a public class. A thread is a thread of execution in a program. The JVM allows an application to have multiple threads running concurrently.
 http://www.w3resource.com/java-tutorial/java-threadclass-methods-and-threadstates.php
@@ -251,7 +243,7 @@ http://www.w3resource.com/java-tutorial/java-threadclass-methods-and-threadstate
 </table>
 
 
-###### System
+#### System
 
 Thread is a public class. A thread is a thread of execution in a program. The JVM allows an application to have multiple threads running concurrently.
 
@@ -284,7 +276,7 @@ Thread is a public class. A thread is a thread of execution in a program. The JV
   </tr>
 </table>
 
-###### Object
+#### Object
 
 The `Object` class is the root of the class hierarchy.
 
@@ -326,7 +318,7 @@ The `Object` class is the root of the class hierarchy.
   </tr>
 </table>
 
-###### HttpURLConnection
+#### HttpURLConnection
 
 The `HttpURLConnection` is a `public abstract class`. Each instance is used to make a single request, but the underlying network connection to the HTTP server may be transparently shared by other instances.
 
@@ -358,7 +350,7 @@ The `HttpURLConnection` is a `public abstract class`. Each instance is used to m
   </tr>
 </table>
 
-###### URLConnection
+#### URLConnection
 
 The `URLConnection` is a `public abstract class`. URLConnection is constructed using `URLConnection(URL url)`. Known subclasses are `HttpURLConnection` and `JarURLConnection`. 
 
@@ -406,9 +398,9 @@ connection.setRequestProperty("Accept-Charset", charset);
 InputStream response = connection.getInputStream();
 ````
 
-###### OutputStream
+#### OutputStream
 
-
+The `OutputStream` is a `public abstract class`.
 
 <table style="width:100%">
   <tr>
@@ -420,41 +412,43 @@ InputStream response = connection.getInputStream();
 
 #### Things I would like to cover
 
-# Class declaration rules
-# final static abstract synchronize this super transient  keywords
-# HashCode and Equals methods Contract
-# Immutable Classes String, Wrapper classes
-# Collection API  java.util package 
-# Supportive interface Comparable Comparator Runnable Callable Serializeable  
-# Concurrent API & when to use which collection classes
-# Naming Conventions (First Character should be uppercase in class name, etc..)
-# Java is Complete Object Oriented Programming
-# Java is Call by Value not call by reference
-# JVM, JRE, JDK
-# Class Loader, Java Memory Model, Concurrent Package, Executor Framework.
-# java.io package 
-# Understanding of data Structure and Algorithms is a plus!
-# Oops Principle and Design pattern
-Core java in java.lang, esp. Thread and ThreadLocal
-Collections in java.util
-Streams in java.io
-java.net classes 
-SQL in java.sql esp. PreparedStatement and ResultSet, which will be used with Android's SQLite database.
-Pattern and Matcher in java.util.regex
-Generics: Lesson: Generics
-Reflection: Trail: The Reflection API
-
-OOPs concept
-String handling
-Exception handling
-Multithreading
-Synchronization
-I/O
-Networking
-Collection
-Inheritance
-Interface
-Packages etc
+* Class declaration rules
+* final static abstract synchronize this super transient  keywords
+* HashCode and Equals methods Contract
+* Immutable Classes String, Wrapper classes
+* Collection API  java.util package 
+* Supportive interface Comparable Comparator Runnable Callable Serializeable  
+* Concurrent API & when to use which collection classes
+* Naming Conventions (First Character should be uppercase in class name, etc..)
+* Java is Complete Object Oriented Programming
+* Java is Call by Value not call by reference
+* JVM, JRE, JDK
+* Class Loader, Java Memory Model, Concurrent Package, Executor Framework.
+* java.io package 
+* Understanding of data Structure and Algorithms is a plus!
+* Oops Principle and Design pattern
+* Core java in java.lang, esp. Thread and ThreadLocal
+* Collections in java.util
+* Streams in java.io
+* java.net classes 
+* SQL in java.sql esp. PreparedStatement and ResultSet, which will be used with Android's SQLite database.
+* Pattern and Matcher in java.util.regex
+* Generics: Lesson: Generics
+* Reflection: Trail: The Reflection API
+* IO streams
+* logging classes
+* ant
+* OOPs concept
+* String handling
+* Exception handling
+* Multithreading
+* Synchronization
+* I/O
+* Networking
+* Collection
+* Inheritance
+* Interface
+* Packages etc
 
 
 
