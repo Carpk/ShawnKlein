@@ -358,12 +358,65 @@ The `HttpURLConnection` is a `public abstract class`. Each instance is used to m
   </tr>
 </table>
 
+###### URLConnection
+
+The `URLConnection` is a `public abstract class`. URLConnection is constructed using `URLConnection(URL url)`. Known subclasses are `HttpURLConnection` and `JarURLConnection`. 
+
+<table style="width:100%">
+  <tr>
+    <th>Type</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>abstract void</td>
+    <td>connect()</td> 
+    <td>Opens a communications link to the resource referenced by this URL, if such connection has not already been established.</td>
+  </tr>
+  <tr>
+    <td>InputStream</td>
+    <td>getInputStream()</td> 
+    <td>Returns an input stream that reads from this open connection.</td>
+  </tr>
+  <tr>
+    <td>OutputStream</td>
+    <td>getOutputStream()</td> 
+    <td>Returns and output stream that writes to this connection.</td>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>setDoOutput(boolean dooutput)</td> 
+    <td>Sets the value of the doOutput field for this URLConnection.</td>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>setRequestProperty(String key, String value)</td> 
+    <td>Sets the general request property.</td>
+  </tr>
+</table>
+
 ````java
 private final String USER_AGENT = "Mozilla/5.0"
-
+String charset = "UTF-8";
 String url = "http://www.example.com/"
 
+URLConnection connection = new URL(url).openConnection();
+connection.setRequestProperty("Accept-Charset", charset);
+
+InputStream response = connection.getInputStream();
 ````
+
+###### OutputStream
+
+
+
+<table style="width:100%">
+  <tr>
+    <th>Type</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+</table>
 
 #### Things I would like to cover
 
