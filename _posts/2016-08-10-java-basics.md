@@ -398,12 +398,9 @@ The `OutputStream` is a `public abstract class`. part of the java.io package. Th
   </tr>
 </table>
 
-#### Thread
+#### Reader
 
-The `Thread` is a `public class`. part of the `java.lang` package. A thread is a thread of execution in a program. The Java Virtual Machine allows an application to have multiple threads of execution running concurrently.
-
-http://www.w3resource.com/java-tutorial/java-threadclass-methods-and-threadstates.php
-https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html
+The `Reader` is a `public abstract class`, found in the `java.io` package. Abstract class for reading character streams. The only methods that a subclass must implement are read(char[], int, int) and close(). Most subclasses, however, will override some of the methods defined here in order to provide higher efficiency, additional functionality, or both.
 
 <table style="width:100%">
   <tr>
@@ -412,14 +409,57 @@ https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html
     <th>Description</th>
   </tr>
   <tr>
+    <td>abstract void</td>
+    <td>close()</td> 
+    <td>Closes the stream and releases any system resources associated with it.</td>
+  </tr>
+  <tr>
+    <td>int</td>
+    <td>read()</td> 
+    <td>Reads a single charater. Argument also take (char[]), (char[], int, int) and (CharBuffer)</td>
+  </tr>
+  <tr>
+    <td>boolean</td>
+    <td>ready()</td> 
+    <td>Tells whether this stream is ready to be read.</td>
+  </tr>
+</table>
+
+#### Thread
+
+The `Thread` is a `public class` found in the `java.lang` package. A thread is a thread of execution in a program. The Java Virtual Machine allows an application to have multiple threads of execution running concurrently.
+
+
+<table style="width:100%">
+  <tr>
+    <th>Type</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>static Thread</td>
+    <td>currentThread()</td> 
+    <td>Returns a reference to the currently executing thread object.</td>
+  </tr>
+  <tr>
     <td>void</td>
     <td>start()</td> 
     <td>Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.</td>
   </tr>
   <tr>
-    <td>static void</td>
-    <td>yield()</td> 
-    <td></td>
+    <td>String</td>
+    <td>getName()</td> 
+    <td>Returns this thread'd name.</td>
+  </tr>
+  <tr>
+    <td>Thread.state</td>
+    <td>getState()</td> 
+    <td>Returns the state of this thread.</td>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>join()</td> 
+    <td>Waits for this thread to die.</td>
   </tr>
   <tr>
     <td>static void</td>
@@ -427,9 +467,9 @@ https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html
     <td>Causes the currently executing thread to sleep for the specified number of milliseconds.</td>
   </tr>
   <tr>
-    <td>Thread.state</td>
-    <td>getState()</td> 
-    <td>Returns the state of this thread.</td>
+    <td>static void</td>
+    <td>yield()</td> 
+    <td>A hint to the scheduler that the current thread is willing to yield its current use of a processor.</td>
   </tr>
 </table>
 
@@ -447,18 +487,15 @@ https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html
 * Java is Call by Value not call by reference
 * JVM, JRE, JDK
 * Class Loader, Java Memory Model, Concurrent Package, Executor Framework.
-* java.io package 
 * Understanding of data Structure and Algorithms is a plus!
 * Oops Principle and Design pattern
 * Core java in java.lang, esp. Thread and ThreadLocal
 * Collections in java.util
-* Streams in java.io
 * java.net classes 
 * SQL in java.sql esp. PreparedStatement and ResultSet, which will be used with Android's SQLite database.
 * Pattern and Matcher in java.util.regex
 * Generics: Lesson: Generics
 * Reflection: Trail: The Reflection API
-* IO streams
 * logging classes
 * ant
 * OOPs concept
@@ -466,7 +503,6 @@ https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html
 * Exception handling
 * Multithreading
 * Synchronization
-* I/O
 * Networking
 * Collection
 * Inheritance
