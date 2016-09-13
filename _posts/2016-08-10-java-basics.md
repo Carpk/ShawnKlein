@@ -171,6 +171,10 @@ The Java Platform API Specification contains the complete listing for all packag
 
 Thread pool is a group of pre-instantiated, idle threads which stand ready to be given work.
 
+````java
+
+````
+
 ### Classes
 
 We compiled a small list of notable classes that deserve some reconigtion.
@@ -209,38 +213,7 @@ Conext is a public interface. As the name suggests, it's the context of current 
   </tr>
 </table>
 
-#### Thread
 
-Thread is a public class. A thread is a thread of execution in a program. The JVM allows an application to have multiple threads running concurrently.
-http://www.w3resource.com/java-tutorial/java-threadclass-methods-and-threadstates.php
-
-<table style="width:100%">
-  <tr>
-    <th>Type</th>
-    <th>Method</th> 
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>void</td>
-    <td>start()</td> 
-    <td>Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.</td>
-  </tr>
-  <tr>
-    <td>static void</td>
-    <td>yield()</td> 
-    <td></td>
-  </tr>
-  <tr>
-    <td>static void</td>
-    <td>sleep(long millis)</td> 
-    <td>Causes the currently executing thread to sleep for the specified number of milliseconds.</td>
-  </tr>
-  <tr>
-    <td>Thread.state</td>
-    <td>getState()</td> 
-    <td>Returns the state of this thread.</td>
-  </tr>
-</table>
 
 
 #### System
@@ -400,13 +373,63 @@ InputStream response = connection.getInputStream();
 
 #### OutputStream
 
-The `OutputStream` is a `public abstract class`.
+The `OutputStream` is a `public abstract class`. part of the java.io package. This abstract class is the superclass of all classes representing an output stream of bytes.
 
 <table style="width:100%">
   <tr>
     <th>Type</th>
     <th>Method</th> 
     <th>Description</th>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>close()</td> 
+    <td>Closes this output stream and releases any system resources associated with this stream</td>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>flush()</td> 
+    <td>Flushes this output stream and forces any buffered output bytes to be written out.</td>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>write(byte[] b)</td> 
+    <td>Writes b.length bytes from the specified byte array to this output stream. Also take other forms of arguments.</td>
+  </tr>
+</table>
+
+#### Thread
+
+The `Thread` is a `public class`. part of the `java.lang` package. A thread is a thread of execution in a program. The Java Virtual Machine allows an application to have multiple threads of execution running concurrently.
+
+http://www.w3resource.com/java-tutorial/java-threadclass-methods-and-threadstates.php
+https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html
+
+<table style="width:100%">
+  <tr>
+    <th>Type</th>
+    <th>Method</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>void</td>
+    <td>start()</td> 
+    <td>Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.</td>
+  </tr>
+  <tr>
+    <td>static void</td>
+    <td>yield()</td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>static void</td>
+    <td>sleep(long millis)</td> 
+    <td>Causes the currently executing thread to sleep for the specified number of milliseconds.</td>
+  </tr>
+  <tr>
+    <td>Thread.state</td>
+    <td>getState()</td> 
+    <td>Returns the state of this thread.</td>
   </tr>
 </table>
 
