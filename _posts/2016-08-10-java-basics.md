@@ -167,6 +167,12 @@ The Java platform provides an enormous class library (a set of packages) suitabl
 
 The Java Platform API Specification contains the complete listing for all packages, interfaces, classes, fields, and methods supplied by the Java SE platform. Load the page in your browser and bookmark it. As a programmer, it will become your single most important piece of reference documentation.
 
+###### Inheritance
+
+The idea of inheritance is simple but powerful: When you want to create a new class and there is already a class that includes some of the code that you want, you can derive your new class from the existing class. In doing this, you can reuse the fields and methods of the existing class without having to write (and debug!) them yourself.
+
+A subclass inherits all the members (fields, methods, and nested classes) from its superclass. Constructors are not members, so they are not inherited by subclasses, but the constructor of the superclass can be invoked from the subclass.
+
 ###### Thread pools
 
 Thread pool is a group of pre-instantiated, idle threads which stand ready to be given work.
@@ -178,7 +184,6 @@ Thread pool is a group of pre-instantiated, idle threads which stand ready to be
 ### Classes
 
 We compiled a small list of notable classes that deserve some reconigtion.
-final static abstract synchronize this super transient  keywords
 
 #### Conext
 
@@ -220,7 +225,6 @@ Conext is a public interface. As the name suggests, it's the context of current 
 
 Thread is a public class. A thread is a thread of execution in a program. The JVM allows an application to have multiple threads running concurrently.
 
-
 <table style="width:100%">
   <tr>
     <th>Type</th>
@@ -248,6 +252,9 @@ Thread is a public class. A thread is a thread of execution in a program. The JV
     <td>Retrieves the named object.</td>
   </tr>
 </table>
+
+
+
 
 #### Object
 
@@ -291,6 +298,9 @@ The `Object` class is the root of the class hierarchy.
   </tr>
 </table>
 
+
+
+
 #### HttpURLConnection
 
 The `HttpURLConnection` is a `public abstract class`. Each instance is used to make a single request, but the underlying network connection to the HTTP server may be transparently shared by other instances.
@@ -322,6 +332,9 @@ The `HttpURLConnection` is a `public abstract class`. Each instance is used to m
     <td>Indicates if the connection is going through a proxy.</td>
   </tr>
 </table>
+
+
+
 
 #### URLConnection
 
@@ -371,6 +384,8 @@ connection.setRequestProperty("Accept-Charset", charset);
 InputStream response = connection.getInputStream();
 ````
 
+
+
 #### OutputStream
 
 The `OutputStream` is a `public abstract class`. part of the java.io package. This abstract class is the superclass of all classes representing an output stream of bytes.
@@ -398,6 +413,9 @@ The `OutputStream` is a `public abstract class`. part of the java.io package. Th
   </tr>
 </table>
 
+
+
+
 #### Reader
 
 The `Reader` is a `public abstract class`, found in the `java.io` package. Abstract class for reading character streams. The only methods that a subclass must implement are read(char[], int, int) and close(). Most subclasses, however, will override some of the methods defined here in order to provide higher efficiency, additional functionality, or both.
@@ -424,6 +442,9 @@ The `Reader` is a `public abstract class`, found in the `java.io` package. Abstr
     <td>Tells whether this stream is ready to be read.</td>
   </tr>
 </table>
+
+
+
 
 #### Thread
 
@@ -473,7 +494,10 @@ The `Thread` is a `public class` found in the `java.lang` package. A thread is a
   </tr>
 </table>
 
-#### Things I would like to cover
+
+
+
+#### Additional things I would like to cover
 
 * Class declaration rules
 * final static abstract synchronize this super transient  keywords
@@ -505,9 +529,7 @@ The `Thread` is a `public class` found in the `java.lang` package. A thread is a
 * Synchronization
 * Networking
 * Collection
-* Inheritance
-* Interface
-* Packages etc
+
 
 
 
