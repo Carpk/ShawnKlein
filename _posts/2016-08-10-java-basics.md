@@ -169,17 +169,13 @@ The Java Platform API Specification contains the complete listing for all packag
 
 ###### Inheritance
 
-The idea of inheritance is simple but powerful: When you want to create a new class and there is already a class that includes some of the code that you want, you can derive your new class from the existing class. In doing this, you can reuse the fields and methods of the existing class without having to write (and debug!) them yourself.
+We use inheritance when we want to create a new class and there is already a class that includes some of the code that you want, you can derive your new class from the existing class. In doing this, you can reuse the fields and methods of the existing class without having to write and debug them yourself.
 
 A subclass inherits all the members (fields, methods, and nested classes) from its superclass. Constructors are not members, so they are not inherited by subclasses, but the constructor of the superclass can be invoked from the subclass.
 
 ###### Thread pools
 
-Thread pool is a group of pre-instantiated, idle threads which stand ready to be given work.
-
-````java
-
-````
+A thread pool manages the pool of worker threads, it contains a queue that keeps tasks waiting to get executed. A thread pool manages the collection of Runnable threads and worker threads execute Runnable from the queue. java.util.concurrent.Executors provide implementation of java.util.concurrent.Executor interface to create the thread pool in java.
 
 ### Classes
 
@@ -493,48 +489,6 @@ The `Thread` is a `public class` found in the `java.lang` package. A thread is a
     <td>A hint to the scheduler that the current thread is willing to yield its current use of a processor.</td>
   </tr>
 </table>
-
-
-
-
-#### Additional things I would like to cover
-
-* Class declaration rules
-* final static abstract synchronize this super transient  keywords
-* HashCode and Equals methods Contract
-* Immutable Classes String, Wrapper classes
-* Collection API  java.util package 
-* Supportive interface Comparable Comparator Runnable Callable Serializeable  
-* Concurrent API & when to use which collection classes
-* Naming Conventions (First Character should be uppercase in class name, etc..)
-* Java is Complete Object Oriented Programming
-* Java is Call by Value not call by reference
-* JVM, JRE, JDK
-* Class Loader, Java Memory Model, Concurrent Package, Executor Framework.
-* Understanding of data Structure and Algorithms is a plus!
-* Oops Principle and Design pattern
-* Core java in java.lang, esp. Thread and ThreadLocal
-* Collections in java.util
-* java.net classes 
-* SQL in java.sql esp. PreparedStatement and ResultSet, which will be used with Android's SQLite database.
-* Pattern and Matcher in java.util.regex
-* Generics: Lesson: Generics
-* Reflection: Trail: The Reflection API
-* logging classes
-* ant
-* OOPs concept
-* String handling
-* Exception handling
-* Multithreading
-* Synchronization
-* Networking
-* Collection
-
-
-
-
-
-
 
 
 
