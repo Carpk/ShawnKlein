@@ -10,7 +10,7 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-We are going to cover some Java basics. This post is intended to be an ideal reference guide. We will talk about some commonly used keywords, classes, and cover some light troubleshooting skills.
+This post attempts to cover some ofthe basics in Java. Its meant for someone with some basic programming knowledge, but still new to Java. We will talk about some commonly used keywords, classes, and cover some light troubleshooting skills.
 
 To create a runnable Java object, we need to compile our source code using `javac` and our `.java` file. After compiled, we have Java _bytecode_, that can be ran on numerous devices. 
 
@@ -163,9 +163,7 @@ We should consider using abstract classes when:
 
 A package is a namespace that organizes a set of related classes and interfaces. Conceptually you can think of packages as being similar to different folders on your computer. You might keep HTML pages in one folder, images in another, and scripts or applications in yet another. Because software written in the Java programming language can be composed of hundreds or thousands of individual classes, it makes sense to keep things organized by placing related classes and interfaces into packages.
 
-The Java platform provides an enormous class library (a set of packages) suitable for use in your own applications. This library is known as the "Application Programming Interface", or "API" for short. Its packages represent the tasks most commonly associated with general-purpose programming. For example, a String object contains state and behavior for character strings; a File object allows a programmer to easily create, delete, inspect, compare, or modify a file on the filesystem; a Socket object allows for the creation and use of network sockets; various GUI objects control buttons and checkboxes and anything else related to graphical user interfaces. There are literally thousands of classes to choose from. This allows you, the programmer, to focus on the design of your particular application, rather than the infrastructure required to make it work.
-
-The Java Platform API Specification contains the complete listing for all packages, interfaces, classes, fields, and methods supplied by the Java SE platform. Load the page in your browser and bookmark it. As a programmer, it will become your single most important piece of reference documentation.
+The Java platform provides an enormous class library (a set of packages) suitable for use in your own applications. Its packages represent the tasks most commonly associated with general-purpose programming. For example, a String object contains state and behavior for character strings; a File object allows a programmer to easily create, delete, inspect, compare, or modify a file on the filesystem; a Socket object allows for the creation and use of network sockets; various GUI objects control buttons and checkboxes and anything else related to graphical user interfaces. There are literally thousands of classes to choose from. This allows us to focus on the design of our particular application, rather than the infrastructure required to make it work.
 
 ###### Inheritance
 
@@ -179,7 +177,7 @@ A thread pool manages the pool of worker threads, it contains a queue that keeps
 
 ### Classes
 
-We compiled a small list of notable classes that deserve some reconigtion.
+A class can be defined as a template/blueprint that describes the behavior/state that the object of its type support. We compiled a small list of notable classes that deserve some reconigtion.
 
 #### Conext
 
