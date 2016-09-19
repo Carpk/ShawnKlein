@@ -158,9 +158,9 @@ To retrieve our returing data, we use `protected void onActivityResult()`. This 
 
 ### Fragments
 
-A fragment is a controller object that an activity can deputize to perform tasks, such as managing a user interface. A UI fragment as in either the entire screen or only part of it. Using UI fragments has the benefit of a more modular interface. One where you can remove one fragment and easily replace it with another for a different function or view.
+A fragment is a controller object that an activity can deputize to perform tasks, such as managing a user interface. A UI fragment as in either the entire screen or only part of it. Using UI fragments has the benefit of a more modular interface. One where you can remove a fragment and easily replace it with another for a different function or view. Fragments are not able to get on the view by themselves.
 
-To set our class to use a fragment, we replace `Activity` with `FragmentActivity`. We use `getSuportFragmentManager()` to maintain a bakc stack of fragment transactions. ....pg142...... We use a fragment transaction with `FragmentManager.beginTransaction()` returns an instance of FragmentTransaction, which we use to add, remove, attach, detach, or replace fragments in the fragment list. Our `add()` method takes 2 parameters, the container view ID and our TestFragment. The container view ID tells the FragmentManager where the fragment view should appear and is its unique identifier in the FragmentManager's list.
+To set our class to use a fragment, we replace `Activity` with `FragmentActivity`. We use `getSuportFragmentManager()` to maintain a back stack of fragment transactions. ....pg142...... We use a fragment transaction with `FragmentManager.beginTransaction()` returns an instance of FragmentTransaction, which we use to add, remove, attach, detach, or replace fragments in the fragment list. Our `add()` method takes 2 parameters, the container view ID and our TestFragment. The container view ID tells the FragmentManager where the fragment view should appear and is its unique identifier in the FragmentManager's list.
 
 ````java
 public class TestActivity extends FragmentActivity {
