@@ -158,11 +158,36 @@ To retrieve our returing data, we use `protected void onActivityResult()`. This 
 
 ### Fragments
 
-A fragment is a controller object that an activity can deputize to perform tasks, such as managing a user interface. A UI fragment as in either the entire screen or only part of it. Using UI fragments has the benefit of a more modular interface. One where you can remove a fragment and easily replace it with another for a different function or view. Fragments are not able to get on the view by themselves.
+A fragment is a controller object that an activity can deputize to perform tasks, such as managing a user interface. A UI fragment as in either the entire screen or only part of it. Using UI fragments has the benefit of a more modular interface. One where you can remove a fragment and easily replace it with another for a different function or view. Fragments are not able to get on the view by themselves, their host must define a spot in it's layout for the fragment, and manage the lifecycle of the fragment instance.
 
-To set our class to use a fragment, we replace `Activity` with `FragmentActivity`. We use `getSuportFragmentManager()` to maintain a back stack of fragment transactions. ....pg142...... We use a fragment transaction with `FragmentManager.beginTransaction()` returns an instance of FragmentTransaction, which we use to add, remove, attach, detach, or replace fragments in the fragment list. Our `add()` method takes 2 parameters, the container view ID and our TestFragment. The container view ID tells the FragmentManager where the fragment view should appear and is its unique identifier in the FragmentManager's list.
+To use a fragment in an activity, we must define a space for our fragment to be used in our 'xml' file. While our example is for a single fragment, and activity cn define multiple container views, as well as widgets of it's own. Our fragment would be defined as normal.
+
+````xml
+// activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/fragmentContainer"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+/>
+````
+
+To set our controller to use a fragment, we replace `Activity` with `FragmentActivity`. We use `getSuportFragmentManager()` to maintain a back stack of fragment transactions. ....pg142...... We use a fragment transaction with `FragmentManager.beginTransaction()` returns an instance of FragmentTransaction, which we use to add, remove, attach, detach, or replace fragments in the fragment list. Our `add()` method takes 2 parameters, the container view ID and our TestFragment. The container view ID tells the FragmentManager where the fragment view should appear and is its unique identifier in the FragmentManager's list.
 
 ````java
+// TestFragment.java
+public class TestFragment extends Fragment {
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+  }
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+    View v inflater.inflate(R.layout.fragment_test, parent, false);
+    return v;
+  }
+}
+// TestActivity.java
 public class TestActivity extends FragmentActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -176,12 +201,14 @@ public class TestActivity extends FragmentActivity {
 }
 ````
 
+Our fragment class does not inflate using the `onCreate()` such as activity would, it inflates using the `onCreateView()` method. and we explicitly inflate the the fragments view by calling `LayoutInflater.inflate()`. The first parameter is the resource ID, second is the parent's view, and third tells the inflater whether to add the inflated view to the parent.
+
 A workflow is as follows, we ask FragmentManager for fragment, if in list, FragmentManager will return it. If `null`, a new CrimeFragment will be created.
 
 PAUSE on PAGE 145
 
 
-
+DELETE
 Our fragment class does not inflate using the `onCreate()` such as activity would, it inflates using the `onCreateView()` method. and we explicitly inflate the the fragments view by calling `LayoutInflater.inflate()`. The first parameter is the resource ID, second is the parent's view, and third tells the inflater whether to add the inflated view to the parent.
 
 ````java
@@ -194,6 +221,7 @@ public class TestFragment extends Fragment {
   }
 }
 ````
+DELETE
 
 
 Now that we have created our fragment, we need 2 things to host a UI fragment, a spot in the layout for the fragment's view, and manage the lifecycle of the fragment. Fragments lifecycle are called by the hosting activity, instead of the OS. You can add a fragment to either the hosting activity's _layout_ or _code_.
