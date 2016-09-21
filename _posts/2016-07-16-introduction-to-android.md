@@ -208,6 +208,8 @@ A workflow is as follows, we ask FragmentManager for fragment, if in list, Fragm
 PAUSE on PAGE 145
 
 
+
+
 DELETE
 Our fragment class does not inflate using the `onCreate()` such as activity would, it inflates using the `onCreateView()` method. and we explicitly inflate the the fragments view by calling `LayoutInflater.inflate()`. The first parameter is the resource ID, second is the parent's view, and third tells the inflater whether to add the inflated view to the parent.
 
@@ -222,6 +224,8 @@ public class TestFragment extends Fragment {
 }
 ````
 DELETE
+
+
 
 
 Now that we have created our fragment, we need 2 things to host a UI fragment, a spot in the layout for the fragment's view, and manage the lifecycle of the fragment. Fragments lifecycle are called by the hosting activity, instead of the OS. You can add a fragment to either the hosting activity's _layout_ or _code_.
