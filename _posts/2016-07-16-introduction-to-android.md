@@ -172,7 +172,9 @@ android:layout_height="match_parent"
 />
 ````
 
-To set our controller to use a fragment, we replace `Activity` with `FragmentActivity`. We use `getSuportFragmentManager()` to maintain a back stack of fragment transactions. ....pg142...... We use a fragment transaction with `FragmentManager.beginTransaction()` returns an instance of FragmentTransaction, which we use to add, remove, attach, detach, or replace fragments in the fragment list. Our `add()` method takes 2 parameters, the container view ID and our TestFragment. The container view ID tells the FragmentManager where the fragment view should appear and is its unique identifier in the FragmentManager's list.
+To set our controller to use a fragment, we replace `Activity` with `FragmentActivity`. Then we make a call to set up the `FragmentManager` using `getSuportFragmentManager()`. The `FragmentManager` handles a list of fragments and a back stack of fragment transactions. We ask FragmentManager for fragment, if in list, FragmentManager will return it. If `null`, a new CrimeFragment will be created.
+
+We use a fragment transaction with `FragmentManager.beginTransaction()` returns an instance of FragmentTransaction, which we use to add, remove, attach, detach, or replace fragments in the fragment list. Our `add()` method takes 2 parameters, the container view ID and our TestFragment. The container view ID tells the FragmentManager where the fragment view should appear and is its unique identifier in the FragmentManager's list.
 
 ````java
 // TestFragment.java
@@ -203,28 +205,13 @@ public class TestActivity extends FragmentActivity {
 
 Our fragment class does not inflate using the `onCreate()` such as activity would, it inflates using the `onCreateView()` method. and we explicitly inflate the the fragments view by calling `LayoutInflater.inflate()`. The first parameter is the resource ID, second is the parent's view, and third tells the inflater whether to add the inflated view to the parent.
 
-A workflow is as follows, we ask FragmentManager for fragment, if in list, FragmentManager will return it. If `null`, a new CrimeFragment will be created.
 
 PAUSE on PAGE 145
 
 
 
-
-DELETE
-Our fragment class does not inflate using the `onCreate()` such as activity would, it inflates using the `onCreateView()` method. and we explicitly inflate the the fragments view by calling `LayoutInflater.inflate()`. The first parameter is the resource ID, second is the parent's view, and third tells the inflater whether to add the inflated view to the parent.
-
-````java
-public class TestFragment extends Fragment {
-  // ....
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    View v = inflater.inlfate(R.layout.fragment_test, parent, false);
-    return v;
-  }
-}
-````
-DELETE
-
+TextWatcher
+FragmentManager
 
 
 
