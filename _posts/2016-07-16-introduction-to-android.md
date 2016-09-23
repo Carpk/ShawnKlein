@@ -174,21 +174,7 @@ android:layout_height="match_parent"
 
 To set our controller to use a fragment, we replace `Activity` with `FragmentActivity`. Then we make a call to set up the `FragmentManager` using `getSuportFragmentManager()`. The `FragmentManager` handles a list of fragments and a back stack of fragment transactions. We ask FragmentManager for fragment, if in list, FragmentManager will return it. If `null`, a new CrimeFragment will be created.
 
-We use a fragment transaction with `FragmentManager.beginTransaction()` returns an instance of FragmentTransaction, which we use to add, remove, attach, detach, or replace fragments in the fragment list. Our `add()` method takes 2 parameters, the container view ID and our TestFragment. The container view ID tells the FragmentManager where the fragment view should appear and is its unique identifier in the FragmentManager's list.
-
 ````java
-// TestFragment.java
-public class TestFragment extends Fragment {
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-  }
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-    View v inflater.inflate(R.layout.fragment_test, parent, false);
-    return v;
-  }
-}
 // TestActivity.java
 public class TestActivity extends FragmentActivity {
   @Override
@@ -203,7 +189,28 @@ public class TestActivity extends FragmentActivity {
 }
 ````
 
+We create a fragment transaction with `FragmentManager.beginTransaction()`, it returns an instance of `FragmentTransaction`, which we use to add, remove, attach, detach, or replace fragments in the fragment list. They are the heart of how we use fragments to compose and recompose screens at runtime. The `add()` method takes 2 parameters, the container view ID and our fragment. The container view ID tells the FragmentManager where the fragment view should appear and is its unique identifier in the FragmentManager's list. 
+
+Its good to note that the FragmentManager saves out its list when the Activity is destroyed. When a new Activity and FramgmentManager is created, it retrives the list to make things the way they were before. If no fragment is given, `fragment` will equal `null` and a new fragment is created.
+
 Our fragment class does not inflate using the `onCreate()` such as activity would, it inflates using the `onCreateView()` method. and we explicitly inflate the the fragments view by calling `LayoutInflater.inflate()`. The first parameter is the resource ID, second is the parent's view, and third tells the inflater whether to add the inflated view to the parent.
+
+````java
+// TestFragment.java
+public class TestFragment extends Fragment {
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+  }
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+    View v inflater.inflate(R.layout.fragment_test, parent, false);
+    return v;
+  }
+}
+````
+
+
 
 
 PAUSE on PAGE 145
