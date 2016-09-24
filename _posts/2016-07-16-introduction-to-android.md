@@ -71,7 +71,7 @@ An activity is an instance of the `Activity` class and is responsible for managi
 
 Upon initially starting the application, our first activity executes the `onCreate()` hook, followed by `onStart()`, and then `onResume()` to gives us our running activity. If we have another activity created, our application executes the `onPause()` method for our current activity, but will resume with `onResume()` once this activey returns to the foreground. The `onStop()` hook occurs when we hit home during the use of our application, if we return, our applicaiton will start up where we initially left. However, the OS can determine that it needs additional resources and can kill these processes on a need be basis. And these activities will execute `onDestroy()` when we are finished with the current activity. Home button will cause the activity to execute `onPause()` and `onStop()`. Using the back button will also call `onDestroy()` which will also destroy any stashed state.
 
-![DNS query diagram](/assets/images/activity_lifecycle.jpg)
+![Activity Lifecycle](/assets/images/activity_lifecycle.jpg)
 
 Rotating the screen to change its orientation will cause it to change the device configuration, which calls `onDestroy()` and `onCreate()` in order to inflate the new activity with the device configuration.
 
@@ -191,7 +191,7 @@ public class TestActivity extends FragmentActivity {
 
 We create a fragment transaction with `FragmentManager.beginTransaction()`, it returns an instance of `FragmentTransaction`, which we use to add, remove, attach, detach, or replace fragments in the fragment list. They are the heart of how we use fragments to compose and recompose screens at runtime. The `add()` method takes 2 parameters, the container view ID and our fragment. The container view ID tells the FragmentManager where the fragment view should appear and is its unique identifier in the FragmentManager's list. 
 
-Its good to note that the FragmentManager saves out its list when the Activity is destroyed. When a new Activity and FramgmentManager is created, it retrives the list to make things the way they were before. If no fragment is given, `fragment` will equal `null` and a new fragment is created.
+Its good to note that the FragmentManager saves out its list when the Activity is destroyed. When a new Activity and FragmentManager is created, it retrieves the list to make things the way they were before. If no fragment is given, `fragment` will equal `null` and a new fragment is created.
 
 Our fragment class does not inflate using the `onCreate()` such as activity would, it inflates using the `onCreateView()` method. and we explicitly inflate the the fragments view by calling `LayoutInflater.inflate()`. The first parameter is the resource ID, second is the parent's view, and third tells the inflater whether to add the inflated view to the parent.
 
@@ -210,9 +210,9 @@ public class TestFragment extends Fragment {
 }
 ````
 
+The FragmentManager is responsible for calling the lifecycle methods on the fragments on its list. 
 
-
-
+![Fragment Lifecycle](/assets/images/fragment_lifecycle.png)
 PAUSE on PAGE 145
 
 
