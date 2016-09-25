@@ -10,7 +10,7 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-This introduction covers some fundamental topics for developing on Android devices. Its goal is to help you piece enough together to create some basic application. 
+This introduction covers some fundamental topics for developing on Android devices. Its goal is to help you piece enough together to create a basic application. 
 
 ### Files
 
@@ -210,32 +210,168 @@ public class TestFragment extends Fragment {
 }
 ````
 
-The FragmentManager is responsible for calling the lifecycle methods on the fragments on its list. 
+The FragmentManager is responsible for calling the lifecycle methods on the fragments in its list. The onAttach() , onCreate() , and onCreateView() methods are called when you add the fragment to the FragmentManager, `onActivityCreated()` is called after the hosting activity's `onCreate()`. If the Fragment is added when the Activity is already running, paused, or stopped, the FragmentManager runs through each method until it get gets caught up to the Activity's state.
 
 ![Fragment Lifecycle](/assets/images/fragment_lifecycle.png)
-PAUSE on PAGE 145
+
+
+PAUSE on PAGE 151
 
 
 
-TextWatcher
-FragmentManager
+
 
 
 
 Now that we have created our fragment, we need 2 things to host a UI fragment, a spot in the layout for the fragment's view, and manage the lifecycle of the fragment. Fragments lifecycle are called by the hosting activity, instead of the OS. You can add a fragment to either the hosting activity's _layout_ or _code_.
 
-###### Layout
-
-A layout fragment is simple, but inflexable. We hard code the fragment and its view to the activity's view and cannot swap out the fragment during the activity's lifetime.
-
-
-
-###### Code
-
-A code fragment gives us more control of how our fragment will interact with our activity. It will allow us to determine when to add the fragment to the host activity, remove it, replace it with another, and add the initial fragment back again.
+<table style="width:100%">
+  <tr>
+    <td>Layout</td>
+    <td>A layout fragment is simple, but inflexable. We hard code the fragment and its view to the activity's view and cannot swap out the fragment during the activity's lifetime.</td>
+  </tr>
+  <tr>
+    <td>Code</td>
+    <td>A code fragment gives us more control of how our fragment will interact with our activity. It will allow us to determine when to add the fragment to the host activity, remove it, replace it with another, and add the initial fragment back again.</td>
+  </tr>
+</table>
 
 Fragments also have some convenience methods such as `getActivity()` which returns the hosting activity
 
+### Resources
+
+resources are images, audio, and XML files that live in the res/ diretory. we use the resource ID `R.layout.activity_main` to access these files. This ID returns an int set from `class layout` in R.java, this looks something like  `public static final int activity_main=0x7f04001a;`. 
+
+`setContentView(R.layout.activity_main)` is how our `MainActivity.java` file knows which layout to inflate. In `android:id="@+id/false_button"` the `+` is used during the creation of the id.
+
+Android keeps all the strings all in one place, the strings.xml file.
+
+````java
+// strings.xml
+<resources>
+  <string name="hello_toast">Hello!</string>
+</resources>
+````
+
+public View findViewById(int id) takes ID of widget and returns a View object. We will prefix with "Button" to return a button instead of a view `mTrueButton = (Button)findViewById(R.id.true_button)`
+
+Other files 
+
+Refreneces to a string will begin with `@string/` and refrences for a drawable will begin with `@drawable/`. Drawable resorces have differant files for different dpi screens.
+
+* __mdpi__ medium density screens(~160dpi)
+* __hdpi__ high density screens(~240dpi)
+* __xhdpi__ extra high density screens(~320dpi)
+* __xxhdpi__ extra extra high density screens(~480dpi)
+* __xxxhdpi__ extra extra extra high density screens(~640dpi)
+
+### Attributes
+
+Attributes are found will go inside our class widgets, they describe how the widget should function.
+
+<table style="width:100%">
+  <tr>
+    <th>Attribute</th>
+    <th>Inherits from</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>android:id</td>
+    <td></td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>android:orientation</td>
+    <td>LinearLayout</td> 
+    <td>determines if children will appear vertically or horizontally</td>
+  </tr>
+  <tr>
+    <td>android:layout_width</td>
+    <td>TextView</td> 
+    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
+  </tr>
+  <tr>
+    <td>android:layout_height</td>
+    <td>TextView</td> 
+    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
+  </tr>
+  <tr>
+    <td>android:onClick</td>
+    <td>View</td> 
+    <td>Invokes context when the view is clicked</td>
+  </tr>
+  <tr>
+    <td>android:text</td>
+    <td>TextView</td> 
+    <td>string resources are places in a separate strings file, "@string/referenced_text"</td>
+  </tr>
+  <tr>
+    <td>android:drawableRight</td>
+    <td>TextView</td> 
+    <td>drawable to be drawn to the right of the text</td>
+  </tr>
+  <tr>
+    <td>android:src</td>
+    <td>ImageView</td> 
+    <td>sets a drawable as the content "@[+][package:]type:name", "#rgb"</td>
+  </tr>
+  <tr>
+    <td>android:name</td>
+    <td></td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>android:label</td>
+    <td></td> 
+    <td></td>
+  </tr>
+  <tr>
+    <td>android:padding</td>
+    <td></td> 
+    <td>padding describes how much bigger the widget's size is over the content</td>
+  </tr>
+  <tr>
+    <td>android:layout_margin</td>
+    <td></td> 
+    <td>margin is used by parent widget to space the calling widget from other widgets</td>
+  </tr>
+  <tr>
+    <td>android:layout_weight</td>
+    <td></td> 
+    <td>In regards to only 2 widgets, if both values are the same, it wil split the space 50/50. if 2 and 1, 2/3 and 1/3 respectively</td>
+  </tr>
+</table>
+
+Attributes that begin with `layout_` are directed to be used by the widget's parent, these are known as _layout parameters_. When `layout_` is ommited, the widget calls a method to configure itself based on the attribute and its value.
+
+<table style="width:100%">
+  <tr>
+    <th>Unit</th>
+    <th>Size</th> 
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>dp, dip</td>
+    <td>density independent pixel</td> 
+    <td>When your display is a higher density, density-independent pixels will expand to fill a larger number of screen pixels. One dp is always 1/160th of an inch on a device’s screen.</td>
+  </tr>
+  <tr>
+    <td>sp</td>
+    <td>scale independent pixel</td> 
+    <td>density dependent pixels take into account user font preference, used for text size</td>
+  </tr>
+  <tr>
+    <td>pt, mm, in</td>
+    <td>points, millimeters, inches</td> 
+    <td>Scaled units(points are 1/72 of an inch)</td>
+  </tr>
+</table>
+
+### R.layout
+
+Are built in XML layout documents, a small sample set is as follows:
+
+<span>activity_list_item, browser_link_context_header, list_content, select_dialog_item, simple_dropdown_item1line, simple_expandable_list_item_1, simple_list_item_1, simple_list_activated_2, simple_list_multiple_choice, simple_spinner_item, two_line_list_item</span>
 
 ### Intent
 
@@ -479,136 +615,7 @@ Table of some of the more popular methods from the public `Adapter` interface.
   </tr>
 </table>
 
-### Attributes
 
-Attributes are found will go inside our class widgets, they describe how the widget should function.
-
-<table style="width:100%">
-  <tr>
-    <th>Attribute</th>
-    <th>Inherits from</th> 
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>android:id</td>
-    <td></td> 
-    <td></td>
-  </tr>
-  <tr>
-    <td>android:orientation</td>
-    <td>LinearLayout</td> 
-    <td>determines if children will appear vertically or horizontally</td>
-  </tr>
-  <tr>
-    <td>android:layout_width</td>
-    <td>TextView</td> 
-    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
-  </tr>
-  <tr>
-    <td>android:layout_height</td>
-    <td>TextView</td> 
-    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
-  </tr>
-  <tr>
-    <td>android:onClick</td>
-    <td>View</td> 
-    <td>Invokes context when the view is clicked</td>
-  </tr>
-  <tr>
-    <td>android:text</td>
-    <td>TextView</td> 
-    <td>string resources are places in a separate strings file, "@string/referenced_text"</td>
-  </tr>
-  <tr>
-    <td>android:drawableRight</td>
-    <td>TextView</td> 
-    <td>drawable to be drawn to the right of the text</td>
-  </tr>
-  <tr>
-    <td>android:src</td>
-    <td>ImageView</td> 
-    <td>sets a drawable as the content "@[+][package:]type:name", "#rgb"</td>
-  </tr>
-  <tr>
-    <td>android:name</td>
-    <td></td> 
-    <td></td>
-  </tr>
-  <tr>
-    <td>android:label</td>
-    <td></td> 
-    <td></td>
-  </tr>
-  <tr>
-    <td>android:padding</td>
-    <td></td> 
-    <td>padding describes how much bigger the widget's size is over the content</td>
-  </tr>
-  <tr>
-    <td>android:layout_margin</td>
-    <td></td> 
-    <td>margin is used by parent widget to space the calling widget from other widgets</td>
-  </tr>
-  <tr>
-    <td>android:layout_weight</td>
-    <td></td> 
-    <td>In regards to only 2 widgets, if both values are the same, it wil split the space 50/50. if 2 and 1, 2/3 and 1/3 respectively</td>
-  </tr>
-</table>
-
-Attributes that begin with `layout_` are directed to be used by the widget's parent, these are known as _layout parameters_. When `layout_` is ommited, the widget calls a method to configure itself based on the attribute and its value.
-
-<table style="width:100%">
-  <tr>
-    <th>Unit</th>
-    <th>Size</th> 
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>dp or dip</td>
-    <td>density independent pixel</td> 
-    <td>find more of me on page 155</td>
-  </tr>
-  <tr>
-    <td>sp</td>
-    <td>scale independent pixel</td> 
-    <td>density dependent pixels take into account user font preference, used for text size</td>
-  </tr>
-  <tr>
-    <td>pt, mm, in</td>
-    <td>points, millimeters, inches</td> 
-    <td>Scaled units(points are 1/72 of an inch)</td>
-  </tr>
-</table>
-
-
-
-### Resources
-
-resources are images, audio, and XML files that live in the res/ diretory. we use the resource ID `R.layout.activity_main` to access these files. This ID returns an int set from `class layout` in R.java, this looks something like  `public static final int activity_main=0x7f04001a;`. 
-
-`setContentView(R.layout.activity_main)` is how our `MainActivity.java` file knows which layout to inflate. In `android:id="@+id/false_button"` the `+` is used during the creation of the id.
-
-Android keeps all the strings all in one place, the strings.xml file.
-
-````java
-// strings.xml
-<resources>
-  <string name="hello_toast">Hello!</string>
-</resources>
-````
-
-public View findViewById(int id) takes ID of widget and returns a View object. We will prefix with "Button" to return a button instead of a view `mTrueButton = (Button)findViewById(R.id.true_button)`
-
-Other files 
-
-Refreneces to a string will begin with `@string/` and refrences for a drawable will begin with `@drawable/`. Drawable resorces have differant files for different dpi screens.
-
-* __mdpi__ medium density screens(~160dpi)
-* __hdpi__ high density screens(~240dpi)
-* __xhdpi__ extra high density screens(~320dpi)
-* __xxhdpi__ extra extra high density screens(~480dpi)
-* __xxxhdpi__ extra extra extra high density screens(~640dpi)
 
 ### Listening
 
@@ -640,7 +647,7 @@ public void onClick(View v) {
 }
 ````
 
-### generating getters and setters
+### Generating Getters and Setters
 
 If we prefix our variable names with a letter `private int mCount;`, we can tell Android Studio to generate getters and setters for us.
 
@@ -722,19 +729,19 @@ Adaptor is responisble for:
 * returning the view object to the ListView
 
 
-### R.layout
-
-Are built in XML layout documents, a small sample set is as follows:
-
-activity_list_item, browser_link_context_header, list_content, select_dialog_item, simple_dropdown_item1line, simple_expandable_list_item_1, simple_list_item_1, simple_list_activated_2, simple_list_multiple_choice, simple_spinner_item, two_line_list_item
 
 
-extras
 
+##### extras
 
 `@Override` annotation ensures the class actually has the method you are attempting to override. The compiler will notify you if it does not possess this class.
 
 A `@TargetApi(11)` annotation is used to suppress build errors from Lint. It is used to say that the below method will only be referenced by an OS version that is passed in as an argument. In our case, version `11`, Honeycomb, instead of the version what is declared in our manifest.
+
+classes
+
+TextWatcher
+FragmentManager
 
 193
 
