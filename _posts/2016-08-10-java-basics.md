@@ -10,7 +10,7 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-This post attempts to cover some ofthe basics in Java. Its meant for someone with some basic programming knowledge, but still new to Java. We will talk about some commonly used keywords, classes, and cover some light troubleshooting skills.
+This post attempts to cover some of the basics in Java. Its meant for someone with some basic programming knowledge, but still new to Java. We will talk about some commonly used keywords, classes, and cover some light troubleshooting skills.
 
 To create a runnable Java object, we need to compile our source code using `javac` and our `.java` file. After compiled, we have Java _bytecode_, that can be ran on numerous devices. 
 
@@ -89,8 +89,7 @@ Access Modifiers are also keywords, but are in thier own category as you typical
 
 ### Concepts
 
-This section us going to cover some commonly used class, 
-
+This section is a high level overview of some broad concepts in Java. Concepts such as Packages, Thread Pools and Abstract classes.
 
 ###### Interface
 
@@ -134,22 +133,17 @@ Abstract classes cannot be instantiated, but they can be subclassed. They may co
 ````java
 abstract class GraphicObject {
   int x, y;
-  void moveTo(int newX, int newY) {
-  }
+  void moveTo(int newX, int newY) {...}
   abstract void draw();
   abstract void resize();
 }
 class Circle extends GraphicObject {
-  void draw() {
-  }
-  void resize() {
-  }
+  void draw() {...}
+  void resize() {...}
 }
 class Rectangle extends GraphicObject {
-  void draw() {
-  }
-  void resize() {
-  }
+  void draw() {...}
+  void resize() {...}
 }
 ````
 
@@ -177,11 +171,11 @@ A thread pool manages the pool of worker threads, it contains a queue that keeps
 
 ### Classes
 
-A class can be defined as a template/blueprint that describes the behavior/state that the object of its type support. We compiled a small list of notable classes that deserve some reconigtion.
+A class can be defined as a blueprint that describes the behavior and state that the object of its type support. We compiled a small list of notable classes that deserve some reconigtion.
 
 #### Conext
 
-Conext is a public interface. As the name suggests, it's the context of current state of the application/object. It lets newly-created objects understand what has been going on. Typically you call it to get information regarding another part of your program (activity and package/application).
+Conext is a `public interface`. As the name suggests, it's the context of current state of the application/object. It lets newly created objects understand what has been going on. Typically you call it to get information regarding another part of your program (activity and package/application).
 
 
 <table style="width:100%">
@@ -217,7 +211,7 @@ Conext is a public interface. As the name suggests, it's the context of current 
 
 #### System
 
-Thread is a public class. A thread is a thread of execution in a program. The JVM allows an application to have multiple threads running concurrently.
+Thread is a `public class`. A thread is a thread of execution in a program. The JVM allows an application to have multiple threads running concurrently.
 
 <table style="width:100%">
   <tr>
