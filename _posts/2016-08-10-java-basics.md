@@ -60,7 +60,6 @@ We use these keywords when defining and class and its methods.
   </tr>
 </table>
 
-
 Access Modifiers are also keywords, but are in thier own category as you typically always use one.
 
 <table>
@@ -240,9 +239,6 @@ Thread is a `public class`. A thread is a thread of execution in a program. The 
     <td>Retrieves the named object.</td>
   </tr>
 </table>
-
-
-
 
 #### Object
 

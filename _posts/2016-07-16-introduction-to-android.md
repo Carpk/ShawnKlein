@@ -89,7 +89,7 @@ public void onSaveInstanceState(Bundle savedInstanceState) {
 ````
 ###### Starting an activity
 
-We can start an activity by using the `startActivity(intent)` method. This sends a call to a part of the OS called the `ActivityManager`, which creates `Activity` instances and calls `onCreate()`. An intent is an object that a component can use to communicate with the OS. Components are activities, services, broadcast recievers, and content providers. 
+We can start an activity by using the `startActivity(intent)` method. This sends a call to a part of the OS called the `ActivityManager`, which creates `Activity` instances and calls `onCreate()`. An intent is an object that the component can use to communicate with the OS. Components are activities, services, broadcast recievers, and content providers. 
 
 <table style="width:100%">
   <tr>
@@ -215,7 +215,12 @@ The FragmentManager is responsible for calling the lifecycle methods on the frag
 ![Fragment Lifecycle](/assets/images/fragment_lifecycle.png)
 
 
-PAUSE on PAGE 151
+
+
+
+
+
+PAUSE on PAGE 156
 
 
 
@@ -369,9 +374,30 @@ Attributes that begin with `layout_` are directed to be used by the widget's par
 
 ### R.layout
 
-Are built in XML layout documents, a small sample set is as follows:
+Android includes a some built in XML layout documents. R.layout is a `public static final class` and provides the following:
 
-<span>activity_list_item, browser_link_context_header, list_content, select_dialog_item, simple_dropdown_item1line, simple_expandable_list_item_1, simple_list_item_1, simple_list_activated_2, simple_list_multiple_choice, simple_spinner_item, two_line_list_item</span>
+<table style="width:100%">
+  <tr>
+    <td>activity_list_item</td>
+    <td>browser_link_context_header</td> 
+    <td>list_content</td>
+  </tr>
+  <tr>
+    <td>select_dialog_item</td>
+    <td>simple_dropdown_item1line</td> 
+    <td>simple_expandable_list_item_1</td>
+  </tr>
+  <tr>
+    <td>simple_list_item_1</td>
+    <td>simple_list_activated_2</td> 
+    <td>simple_list_multiple_choice</td>
+  </tr>
+    <tr>
+    <td>simple_spinner_item</td>
+    <td>two_line_list_item</td> 
+    <td></td>
+  </tr>
+</table>
 
 ### Intent
 
@@ -415,44 +441,6 @@ https://developer.android.com/reference/java/util/UUID.html
 ### Classes
 
 Classes are found in both the `.java` and `.xml` files. We are able to reference the `.xml` widgets using `findViewById(int id)` method in our `.java` file. Each class implements or inherits thier own attributes and methods
-
-<table style="width:100%">
-  <tr>
-    <th>Class</th>
-    <th>Inherits from</th> 
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>LinearLayout</td>
-    <td>< ViewGroup < View < Object</td> 
-    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
-  </tr>
-  <tr>
-    <td>FrameLayout</td>
-    <td>< ViewGroup < View < Object</td> 
-    <td>"match_parent" view will be as big as parent, "wrap_content" view with be as big as contents</td>
-  </tr>
-  <tr>
-    <td>TextView</td>
-    <td>< View < Object</td> 
-    <td></td>
-  </tr>
-  <tr>
-    <td>Button</td>
-    <td>< TextView < View < Object</td> 
-    <td>determines if children will appear vertically or horizontally</td>
-  </tr>
-  <tr>
-    <td>ImageButton</td>
-    <td>< ImageView < View < Object</td> 
-    <td>Displays a button with image instead of text.</td>
-  </tr>
-  <tr>
-    <td>ListView</td>
-    <td></td> 
-    <td>Displays stuff.</td>
-  </tr>
-</table>
 
 ###### Activity
 
