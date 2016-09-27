@@ -214,20 +214,6 @@ The FragmentManager is responsible for calling the lifecycle methods on the frag
 
 ![Fragment Lifecycle](/assets/images/fragment_lifecycle.png)
 
-
-
-
-
-
-
-PAUSE on PAGE 156
-
-
-
-
-
-
-
 Now that we have created our fragment, we need 2 things to host a UI fragment, a spot in the layout for the fragment's view, and manage the lifecycle of the fragment. Fragments lifecycle are called by the hosting activity, instead of the OS. You can add a fragment to either the hosting activity's _layout_ or _code_.
 
 <table style="width:100%">
@@ -260,9 +246,9 @@ Android keeps all the strings all in one place, the strings.xml file.
 
 public View findViewById(int id) takes ID of widget and returns a View object. We will prefix with "Button" to return a button instead of a view `mTrueButton = (Button)findViewById(R.id.true_button)`
 
-Other files 
+##### Drawables
 
-Refreneces to a string will begin with `@string/` and refrences for a drawable will begin with `@drawable/`. Drawable resorces have differant files for different dpi screens.
+References to a string will begin with `@string/` and refrences for a drawable will begin with `@drawable/`. Drawable resorces have differant files for different dpi screens.
 
 * __mdpi__ medium density screens(~160dpi)
 * __hdpi__ high density screens(~240dpi)
@@ -349,25 +335,27 @@ Attributes are found will go inside our class widgets, they describe how the wid
 
 Attributes that begin with `layout_` are directed to be used by the widget's parent, these are known as _layout parameters_. When `layout_` is ommited, the widget calls a method to configure itself based on the attribute and its value.
 
+Android has a few different ways to set specific values for view attributes. This is most commonly used for text size, margins, and padding. Android automatically scales images to different screen pixel densities using ldpi, mdpi, and hpdi. Density independent dimension units will help scale to get the same size on different screen densities too.
+
 <table style="width:100%">
   <tr>
     <th>Unit</th>
-    <th>Size</th> 
+    <th>Size</th>
     <th>Description</th>
   </tr>
   <tr>
     <td>dp, dip</td>
-    <td>density independent pixel</td> 
+    <td>density independent pixel</td>
     <td>When your display is a higher density, density-independent pixels will expand to fill a larger number of screen pixels. One dp is always 1/160th of an inch on a device’s screen.</td>
   </tr>
   <tr>
     <td>sp</td>
-    <td>scale independent pixel</td> 
+    <td>scale independent pixel</td>
     <td>density dependent pixels take into account user font preference, used for text size</td>
   </tr>
   <tr>
     <td>pt, mm, in</td>
-    <td>points, millimeters, inches</td> 
+    <td>points, millimeters, inches</td>
     <td>Scaled units(points are 1/72 of an inch)</td>
   </tr>
 </table>
@@ -612,9 +600,7 @@ Android applications are typically event-driven, they start and then wait for an
 ````java
 mTrueButton.setOnClickListener(new View.OnClickListener() {
   @override
-  public void onClick(View v) {
-    // I do something!
-  }
+  public void onClick(View v) {...}
 })
 ````
 
@@ -715,25 +701,6 @@ Adaptor is responisble for:
 * creating the necessary view object
 * populating it with the data from the model layer
 * returning the view object to the ListView
-
-
-
-
-
-##### extras
-
-`@Override` annotation ensures the class actually has the method you are attempting to override. The compiler will notify you if it does not possess this class.
-
-A `@TargetApi(11)` annotation is used to suppress build errors from Lint. It is used to say that the below method will only be referenced by an OS version that is passed in as an argument. In our case, version `11`, Honeycomb, instead of the version what is declared in our manifest.
-
-classes
-
-TextWatcher
-FragmentManager
-
-193
-
-
 
 
  
