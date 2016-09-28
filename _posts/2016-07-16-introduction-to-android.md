@@ -210,7 +210,9 @@ public class TestFragment extends Fragment {
 }
 ````
 
-The FragmentManager is responsible for calling the lifecycle methods on the fragments in its list. The onAttach() , onCreate() , and onCreateView() methods are called when you add the fragment to the FragmentManager, `onActivityCreated()` is called after the hosting activity's `onCreate()`. If the Fragment is added when the Activity is already running, paused, or stopped, the FragmentManager runs through each method until it get gets caught up to the Activity's state.
+###### FragmentManager
+
+The FragmentManager is responsible for calling the lifecycle methods on the fragments in its list. The `onAttach()`, `onCreate()`, and `onCreateView()` methods are called when you add the fragment to the FragmentManager, `onActivityCreated()` is called after the hosting activity's `onCreate()`. If the Fragment is added when the Activity is already running, paused, or stopped, the FragmentManager runs through each method until it get gets caught up to the Activity's state.
 
 ![Fragment Lifecycle](/assets/images/fragment_lifecycle.png)
 
@@ -218,11 +220,11 @@ Now that we have created our fragment, we need 2 things to host a UI fragment, a
 
 <table style="width:100%">
   <tr>
-    <td>Layout</td>
+    <th>Layout</th>
     <td>A layout fragment is simple, but inflexable. We hard code the fragment and its view to the activity's view and cannot swap out the fragment during the activity's lifetime.</td>
   </tr>
   <tr>
-    <td>Code</td>
+    <th>Code</th>
     <td>A code fragment gives us more control of how our fragment will interact with our activity. It will allow us to determine when to add the fragment to the host activity, remove it, replace it with another, and add the initial fragment back again.</td>
   </tr>
 </table>
@@ -231,9 +233,9 @@ Fragments also have some convenience methods such as `getActivity()` which retur
 
 ### Resources
 
-resources are images, audio, and XML files that live in the res/ diretory. we use the resource ID `R.layout.activity_main` to access these files. This ID returns an int set from `class layout` in R.java, this looks something like  `public static final int activity_main=0x7f04001a;`. 
+Resources are images, audio, and XML files that live in the res/ diretory. We use the resource ID `R.layout.activity_main` to access these files. This ID returns an int set from `class layout` in R.java, this looks something like  `public static final int activity_main=0x7f04001a;`. 
 
-`setContentView(R.layout.activity_main)` is how our `MainActivity.java` file knows which layout to inflate. In `android:id="@+id/false_button"` the `+` is used during the creation of the id.
+The method `setContentView(R.layout.activity_main)` is how our `MainActivity.java` file knows which layout to inflate. In `android:id="@+id/false_button"` the `+` is used during the creation of the id.
 
 Android keeps all the strings all in one place, the strings.xml file.
 
@@ -244,7 +246,7 @@ Android keeps all the strings all in one place, the strings.xml file.
 </resources>
 ````
 
-public View findViewById(int id) takes ID of widget and returns a View object. We will prefix with "Button" to return a button instead of a view `mTrueButton = (Button)findViewById(R.id.true_button)`
+The `public View findViewById(int id)` takes ID of widget and returns a View object. We will prefix with "Button" to return a button instead of a view `mTrueButton = (Button)findViewById(R.id.true_button)`
 
 ##### Drawables
 
@@ -268,8 +270,8 @@ Attributes are found will go inside our class widgets, they describe how the wid
   </tr>
   <tr>
     <td>android:id</td>
-    <td></td> 
-    <td></td>
+    <td>View</td> 
+    <td>Supply an identifier name for this view, to later retrieve it with View.findViewById() or Activity.findViewById().</td>
   </tr>
   <tr>
     <td>android:orientation</td>
@@ -309,26 +311,26 @@ Attributes are found will go inside our class widgets, they describe how the wid
   <tr>
     <td>android:name</td>
     <td></td> 
-    <td></td>
+    <td>The name of the class that implements the activity.</td>
   </tr>
   <tr>
     <td>android:label</td>
-    <td></td> 
-    <td></td>
+    <td>TextView</td> 
+    <td>A user-readable label for the activity.</td>
   </tr>
   <tr>
     <td>android:padding</td>
-    <td></td> 
+    <td>View</td> 
     <td>padding describes how much bigger the widget's size is over the content</td>
   </tr>
   <tr>
     <td>android:layout_margin</td>
-    <td></td> 
+    <td>ViewGroup.MarginLayoutParams</td> 
     <td>margin is used by parent widget to space the calling widget from other widgets</td>
   </tr>
   <tr>
     <td>android:layout_weight</td>
-    <td></td> 
+    <td>LinearLayout.LayoutParams</td> 
     <td>In regards to only 2 widgets, if both values are the same, it wil split the space 50/50. if 2 and 1, 2/3 and 1/3 respectively</td>
   </tr>
 </table>
