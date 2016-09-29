@@ -417,14 +417,12 @@ https://developer.android.com/reference/android/content/Intent.html
 
 ### UUID
 
-A class that represents an immutable universally unique identifier (UUID). A UUID represents a 128-bit value.
+A `public final class` that represents an immutable universally unique identifier (UUID). A UUID represents a 128-bit value.
 
-There exist different variants of these global identifiers. The methods of this class are for manipulating the Leach-Salz variant, although the constructors allow the creation of any variant of UUID (described below).
+There exist different variants of these global identifiers. The methods of this class are for manipulating the Leach-Salz variant, although the constructors allow the creation of any variant of UUID.
 
-The layout of a variant 2 (Leach-Salz) UUID is as follows: The most significant long consists of the following unsigned fields:
 
 https://developer.android.com/reference/java/util/UUID.html
-
 
 
 
@@ -703,6 +701,24 @@ Adaptor is responisble for:
 * creating the necessary view object
 * populating it with the data from the model layer
 * returning the view object to the ListView
+
+Below is a example of us instaniating our `ArrayAdapter` class with our fragment's associated Activity for the Context, a predefined layout from R.layout, and the list of objects. 
+
+````java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+  ArrayAdapter<Object> adapter = new ArrayAdapter<Object>(getActivity(), android.R.layout.simple_list_item_1, mObjects);
+  
+  setListAdapter(adapter);
+}
+````
+
+The `setListAdapter(ListAdapter adapter)` method is a convienece method from the `ListFragment` class. We covered `android.R.layout.simple_list_item_1` in our R.layout section
+
+### Context
+
+Is a `public abstract class` of the current state of the application/object. It lets newly created objects ubderstand what has been going on. Typically you call it to get information regarding another part of your program.
 
 
  

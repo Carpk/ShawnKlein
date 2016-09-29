@@ -203,9 +203,6 @@ Conext is a `public interface`. As the name suggests, it's the context of curren
   </tr>
 </table>
 
-
-
-
 #### System
 
 Thread is a `public final class`. The System class contains several useful class fields and methods. It cannot be instantiated.
