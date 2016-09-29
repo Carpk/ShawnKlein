@@ -168,7 +168,7 @@ A thread pool manages the pool of worker threads, it contains a queue that keeps
 
 ### Classes
 
-A class can be defined as a blueprint that describes the behavior and state that the object of its type support. We compiled a small list of notable classes that deserve some reconigtion.
+A class can be defined as a blueprint that describes the behavior and state that the object of its type support. We compiled a small list of notable classes that deserve some recognition.
 
 #### Conext
 
@@ -208,7 +208,7 @@ Conext is a `public interface`. As the name suggests, it's the context of curren
 
 #### System
 
-Thread is a `public class`. A thread is a thread of execution in a program. The JVM allows an application to have multiple threads running concurrently.
+Thread is a `public final class`. The System class contains several useful class fields and methods. It cannot be instantiated.
 
 <table style="width:100%">
   <tr>
@@ -217,24 +217,24 @@ Thread is a `public class`. A thread is a thread of execution in a program. The 
     <th>Description</th>
   </tr>
   <tr>
-    <td>void</td>
-    <td>start()</td> 
-    <td>Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.</td>
+    <td>static Console</td>
+    <td>console()</td> 
+    <td>Returns the unique Console object associated with the current Java virtual machine, if any.</td>
   </tr>
   <tr>
     <td>static void</td>
-    <td>yield()</td> 
-    <td></td>
+    <td>exit(int status)</td> 
+    <td>Terminates the currently running Java Virtual Machine.</td>
   </tr>
   <tr>
-    <td></td>
-    <td>getEnvironment()</td> 
-    <td>Retrieves the environment in effect for this context.</td>
+    <td>static Properties</td>
+    <td>getProperties()</td> 
+    <td>Determines the current system properties.</td>
   </tr>
   <tr>
-    <td></td>
-    <td>lookup(String name)</td> 
-    <td>Retrieves the named object.</td>
+    <td>static void</td>
+    <td>setOut(PrintStream out)</td> 
+    <td>Reassigns the "standard" output stream.</td>
   </tr>
 </table>
 
