@@ -103,9 +103,7 @@ interface Bicycle {
 }
 
 class ACMEBicycle implements Bicycle {
-
     int speed = 0;
-
     void speedUp(int increment) {
          speed = speed + increment;   
     }
@@ -127,7 +125,7 @@ We should consider using interface when:
 
 ###### Abstract
 
-Abstract classes cannot be instantiated, but they can be subclassed. They may contain a mix of methods declared with ot without an implementation. Its is differnent from `Interface` as you can declare fields that are not `static` and `final`, and define `public`, `protected`, and `private` methods.
+Abstract classes cannot be instantiated, but they can be subclassed. They may contain a mix of methods declared with or without an implementation. Its is different from `Interface` as you can declare fields that are not `static` and `final`, and define `public`, `protected`, and `private` methods.
 
 ````java
 abstract class GraphicObject {
@@ -148,8 +146,8 @@ class Rectangle extends GraphicObject {
 
 We should consider using abstract classes when:
 
-* We want to share code amoung several closely related clases
-* Expect the classes that extend your abstract class to have many common methods or fields, or require access modifiers other than public
+* We want to share code among several closely related clases.
+* Expect the classes that extend your abstract class to have many common methods or fields, or require access modifiers other than public.
 * Want to declare non-static or non-final fields.
 
 ###### Package

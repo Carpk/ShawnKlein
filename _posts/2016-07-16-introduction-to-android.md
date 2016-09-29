@@ -210,7 +210,7 @@ public class TestFragment extends Fragment {
 }
 ````
 
-###### FragmentManager
+###### The FragmentManager
 
 The FragmentManager is responsible for calling the lifecycle methods on the fragments in its list. The `onAttach()`, `onCreate()`, and `onCreateView()` methods are called when you add the fragment to the FragmentManager, `onActivityCreated()` is called after the hosting activity's `onCreate()`. If the Fragment is added when the Activity is already running, paused, or stopped, the FragmentManager runs through each method until it get gets caught up to the Activity's state.
 
