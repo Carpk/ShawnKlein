@@ -11,17 +11,17 @@ logo: 'assets/images/logo.png'
 ---
 
 
-The SOLID principals are five basic principles of object oriented programming and design. These principles help engineers write maintainable code. 
+The SOLID principals are five basic principles of object oriented programming and design. These principles help engineers write maintainable code.
 
-* [Single](#composite) responsibility principle
-* [Open](#open) closed principle
-* [Liskov](#liskov) substitution principle
-* [Interface](#interface) segregation principle
-* [Dependency](#dependency) inversion principle
+* [Single responsibility principle](#single_responsibility) 
+* [Open closed principle](#open_closed)
+* [Liskov substitution principle](#liskov_substitution)
+* [Interface segregation principle](#interface_segregation)
+* [Dependency inversion principle](#dependency_inversion)
 
 We are going to take a look at each principle, and break it down with some simple Ruby examples.
 
-### Single Responsibility
+###<a name="single_responsibility"></a>Single Responsibility
 
 > A class should have one, and only one, reason to change.
 
@@ -65,7 +65,7 @@ Now we have two smaller classes that handle each specific task. Our `BankAccount
 
 While the original documentation spoke in terms of classes for the SRP, it can also be applied to methods. A good rule of thumb is if you need to use the words "and" or "or" to describe what your method does, then it is doing too much.
 
-### Open/Closed Principle
+###<a name="open_closed"></a>Open/Closed Principle
 
 > code should be open for extension, but closed for modification
 
@@ -129,7 +129,7 @@ end
 
 Now we have the ability to add new types of wraps without changing any code. It is simple to create a `LettuceWrap` class and pass it in to our `BuildTaco` with the rest of the order and the duck type will do the rest.
 
-### Liskov Substitution
+###<a name="liskov_substitution"></a>Liskov Substitution
 
 >   Derived classes must be substitutable for their base classes.
 
@@ -159,7 +159,7 @@ end
 
 The instance of `Square` class will not behave the same way as an instance of `Rectangle`. Calling `#set_height` also changes our width. So our `Square` child instance cannot replace its `Rectangle` parent, thus breaking the Liskov Substitution principle.
 
-### Interface Segregation
+###<a name="interface_segregation"></a>Interface Segregation
 
 > Make fine grained interfaces that are client specific.
 
@@ -177,7 +177,7 @@ end
 ````
 We certainly cannot eat soup with a fork, so this is a poor interface implementation. We are attempting to force clients of this interface to depend on these methods that they do not want to use.
 
-### Dependency Inversion
+###<a name="dependency_inversion"></a>Dependency Inversion
 
 > Depend on abstractions, not on concretions.
 

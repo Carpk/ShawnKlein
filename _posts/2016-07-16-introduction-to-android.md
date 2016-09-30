@@ -592,7 +592,6 @@ Table of some of the more popular methods from the public `Adapter` interface.
 </table>
 
 
-
 ### Listening
 
 Android applications are typically event-driven, they start and then wait for an event, such as the user pressing a button. We say it waits by listening for an event, such as `View.OnClickListener` interface.
@@ -606,7 +605,8 @@ mTrueButton.setOnClickListener(new View.OnClickListener() {
 
 This listener is implemented as an anonymous inner class. With OnClickListener's sole interface method being onClick(View), we must implement this method.
 
-(If your knowledge of anonymous inner classes, listeners, or interfaces is rusty, you may want to review some Java before continuing or at least keep a reference nearby.)
+
+
 
 ### Toasting
 
