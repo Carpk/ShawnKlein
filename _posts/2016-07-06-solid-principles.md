@@ -11,7 +11,7 @@ logo: 'assets/images/logo.png'
 ---
 
 
-The SOLID principals are five basic principles of object oriented programming and design. These principles help engineers write maintainable code.
+The SOLID principals are five basic principles of object oriented programming and design. These principles help engineers write maintainable code. We are going to take a look at the following:
 
 * [Single responsibility principle](#single_responsibility) 
 * [Open closed principle](#open_closed)
@@ -19,7 +19,7 @@ The SOLID principals are five basic principles of object oriented programming an
 * [Interface segregation principle](#interface_segregation)
 * [Dependency inversion principle](#dependency_inversion)
 
-We are going to take a look at each principle, and break it down with some simple Ruby examples.
+Each example has a brief description and some simple Ruby examples.
 
 ###<a name="single_responsibility"></a>Single Responsibility
 

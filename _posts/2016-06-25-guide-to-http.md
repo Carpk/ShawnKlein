@@ -10,19 +10,41 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-HTTP is a request/response protocol that is used for transmitting hypermedia documents such as HTML. HTTP connections start by a client sending a request to the server in the form of a [request method](#methods), [URI](#uri), and [protocol version](#versions), followed by a MIME-like message containing request modifiers, client information, and possible body content over a connection with a server. 
+HTTP is a request/response protocol that is used for transmitting hypermedia documents such as HTML. HTTP connections start by a client sending a request to the server in the form of a [request method](#methods), [URI](#uri), and [protocol version](#versions), followed by a [MIME](#mime)-like message containing request modifiers, client information, and possible body content over a connection with a server. 
 
 The request method, URI and protocol version make up the __request line__. Followed by __request headers__ defining the parameters of the HTTP transaction. Both of these are what make up the __request message header__. Then lastly a __blank line__ and the optional __request message body__.
 
 ![image of HTTP request](/assets/images/http_request.jpg)
 
-The server responds with a __status line__ that includes the message's [protocol version](#versions) and a [response code](#codes) for success or error, followed by by a MIME-like message containing server information, entity meta-information, which is our __response headers__ and possible a entity-body content being __response message body__.
+The server responds with a __status line__ that includes the message's [protocol version](#versions) and a [response code](#codes) for success or error, followed by by a [MIME](#mime)-like message containing server information, entity meta-information, which is our __response headers__ and possible a entity-body content being __response message body__.
 
 ![image of HTTP request](/assets/images/http_response.jpg)
 
 HTTP is also used as a generic protocol for communication between user agents(browsers, web crawlers) and proxies/gateways to other Internet systems, including those supported by the SMTP, FTP, Gopher, and WAIS protocols. In this way, HTTP allows basic hypermedia access to resources available from diverse applications.
 
-* MIME (Multipurpose Internet Mail Extensions) was designed for SMTP/email service, however, it became important when using HTTP to enable browsers to display or output files that are not in HTML format.
+#### TCP
+
+Hypertext Transfer Protocol (HTTP) is an application level protocol. We covered application level protocols in the [OSI model blog post](/the-osi-model). HTTP was designed to use TCP of the transport layer, but can be used with other protocols such as UDP. 
+
+An HTTP client initiates by starting a TCP session to port 80 of the server. The server's TCP stack uses Transmission Control Block (TCB) for distinct connections. Now we begin with a 3 way handshake.
+
+<ol>
+  <li>The client will sent a `syn` packet, requesting the server to establish a session.</li>
+  <li>Server will respond to `syn` with `syn-ack`, stating it wishes to synchronize with the requesting client, and acknowledges its initial request.</li>
+  <li>Finally, the client will respond with `ack` to acknowledge the server's synchronize request. 
+</ol>
+
+![image of 3 way handshake for TCP connection](/assets/images/3-way-handshake.jpg)
+
+TCP will then commence with data transmission, and will close the session upon completion.
+
+#### Sessions
+
+HTTP is a stateless protocol, that is dependent on a stateful TCP protocol, which relies on IP that is also stateless. Stateless protocols treat requests an independent transactions unrelated to any previous requests. HTTP follows the RESTful architecture, while TCP maintains state in the form of window size for data transmission. With HTTP being stateless, a web client can hold information in cookies or session IDs, such as authentication credentials to keep a session but still be stateless.
+
+#### Encryption
+
+HTTPS is the protocol for secure communication over the network. Its encrypted by the Transport Layer Security (SSL) or Secure Socket Layer (SSL), which is also found on the application layer of the OSI model.
 
 ####<a name="methods"></a>Request methods
 
@@ -99,6 +121,10 @@ Can reuse a connection multiple times to download resources. Such as images, scr
 
 Goal of HTTP/2.0 is to improve performance by reducing latency and the number of TCP requests. Its utilizes multiplexing for multiple TCP connections, header compression reduces sending the same headers repeatedly, server push handles resource dependencies, and resource prioritization judges what the user will need first.
 
+####<a name="mime"></a>MIME
+
+MIME (Multipurpose Internet Mail Extensions) was designed for SMTP/email service, however, it became important when using HTTP to enable browsers to display or output files that are not in HTML format.
+
 ####<a name="codes"></a>Response Codes
 
 The status line of an HTTP response includes a numeric status code and a textual reason phrase. Below is a small sample set, but servers can even have custom codes and proprietary codes from vendors.
@@ -166,28 +192,5 @@ The status line of an HTTP response includes a numeric status code and a textual
   </tr>
 </table>
 
-#### TCP
-
-Hypertext Transfer Protocol (HTTP) is an application level protocol. We covered application level protocols in the [OSI model blog post](/the-osi-model). HTTP was designed to use TCP of the transport layer, but can be used with other protocols such as UDP. 
-
-An HTTP client initiates by starting a TCP session to port 80 of the server. The server's TCP stack uses Transmission Control Block (TCB) for distinct connections. Now we begin with a 3 way handshake.
-
-<ol>
-  <li>The client will sent a `syn` packet, requesting the server to establish a session.</li>
-  <li>Server will respond to `syn` with `syn-ack`, stating it wishes to synchronize with the requesting client, and acknowledges its initial request.</li>
-  <li>Finally, the client will respond with `ack` to acknowledge the server's synchronize request. 
-</ol>
-
-![image of 3 way handshake for TCP connection](/assets/images/3-way-handshake.jpg)
-
-TCP will then commence with data transmission, and will close the session upon completion.
-
-#### Sessions
-
-HTTP is a stateless protocol, that is dependent on a stateful TCP protocol, which relies on IP that is also stateless. Stateless protocols treat requests an independent transactions unrelated to any previous requests. HTTP follows the RESTful architecture, while TCP maintains state in the form of window size for data transmission. With HTTP being stateless, a web client can hold information in cookies or session IDs, such as authentication credentials to keep a session but still be stateless.
-
-#### Encryption
-
-HTTPS is the protocol for secure communication over the network. Its encrypted by the Transport Layer Security (SSL) or Secure Socket Layer (SSL), which is also found on the application layer of the OSI model.
 
 
