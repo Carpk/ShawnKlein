@@ -14,11 +14,11 @@ The Open Systems Interconnection (OSI) model is a way to help us conceptualize h
 
 <table style="width:100%">
   <tr>
-    <td>#</td>
-    <td>Layer</td>
-    <td>PDU</td> 
-    <td>Functions</td>
-    <td>Examples</td>
+    <th>#</th>
+    <th>Layer</th>
+    <th>PDU</th> 
+    <th>Functions</th>
+    <th>Examples</th>
   </tr>
   <tr>
     <td>7</td>

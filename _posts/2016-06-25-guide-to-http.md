@@ -29,9 +29,9 @@ Hypertext Transfer Protocol (HTTP) is an application level protocol. We covered 
 An HTTP client initiates by starting a TCP session to port 80 of the server. The server's TCP stack uses Transmission Control Block (TCB) for distinct connections. Now we begin with a 3 way handshake.
 
 <ol>
-  <li>The client will sent a `syn` packet, requesting the server to establish a session.</li>
-  <li>Server will respond to `syn` with `syn-ack`, stating it wishes to synchronize with the requesting client, and acknowledges its initial request.</li>
-  <li>Finally, the client will respond with `ack` to acknowledge the server's synchronize request. 
+  <li>The client will sent a <code>syn</code> packet, requesting the server to establish a session.</li>
+  <li>Server will respond to <code>syn</code> with <code>syn-ack</code>, stating it wishes to synchronize with the requesting client, and acknowledges its initial request.</li>
+  <li>Finally, the client will respond with <code>ack</code> to acknowledge the server's synchronize request. 
 </ol>
 
 ![image of 3 way handshake for TCP connection](/assets/images/3-way-handshake.jpg)
