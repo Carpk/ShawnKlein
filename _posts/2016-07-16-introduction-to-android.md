@@ -231,6 +231,33 @@ Now that we have created our fragment, we need 2 things to host a UI fragment, a
 
 Fragments also have some convenience methods such as `getActivity()` which returns the hosting activity
 
+###### Fragment Arguments
+
+There is a chortcut approach for a fragment to retrieve needed information from its calling activity. We call `getActivity()` to get the frament's calling activity, `getIntent()` will return the `Intent` that was initially used to to start the `BookActivity`, from that `Intent` object we will call `getSerializableExtra(String)` to pull the `UUID` into a variable.
+
+````java
+// BookFragment.java
+public static final String EXTRA_BOOK_ID = "net.shawnklein.android.availablebooks.book_id"
+public void onCreate(Bundle savedInstanceState) {
+  UUID bookId = (UUID)getActivity().getIntent().getSerializableExtra(EXTRA_BOOK_ID);
+  mBook = Library.get(getActivity()).getBook(bookId);
+}
+````
+
+Now that we have the `Book`, we can display its data. 
+
+````java
+public View onCreateView(LayoutInflater, ViewGroup, Bundle) {
+  ...
+  mTitleField = (EditText)v.findViewById(R.id.book_title);
+  mTitleField.setText(mBook.getTitle());
+}
+````
+
+The drawback with this simple approach is we lose encapsulation. `BookFragment` is not longer a resuable building block as it now expects to be hosted by an activity whose Intent defines and extra named `EXTRA_BOOK_ID`.
+
+
+
 ### Resources
 
 Resources are images, audio, and XML files that live in the res/ diretory. We use the resource ID `R.layout.activity_main` to access these files. This ID returns an int set from `class layout` in R.java, this looks something like  `public static final int activity_main=0x7f04001a;`. 

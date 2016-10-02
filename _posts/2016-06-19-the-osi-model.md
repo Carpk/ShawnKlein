@@ -87,6 +87,7 @@ traceroute to example.com (93.184.216.34), 30 hops max, 60 byte packets
 5  gar13.cgcil.ip.att.net (12.122.132.121)  364.762 ms  365.137 ms  365.140 ms
 ````
   </li>
+  
   <li>Networking layer provides the end to end connection. It would be the connection from our PC to the web server to view this page. The above Data Link layer doesn't know how to get to this point, instead it says "but I know someone who does" and keeps transfering the next router. 
   
 <table style="width:100%">
