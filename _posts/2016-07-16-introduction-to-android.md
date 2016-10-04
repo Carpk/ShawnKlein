@@ -256,7 +256,50 @@ public View onCreateView(LayoutInflater, ViewGroup, Bundle) {
 
 The drawback with this simple approach is we lose encapsulation. `BookFragment` is not longer a resuable building block as it now expects to be hosted by an activity whose Intent defines and extra named `EXTRA_BOOK_ID`.
 
+A better approach is to use the `Bundle` object that is attached to it. The bundle uses key-value pairs just like intent extras of an `Activity`.
 
+````java
+// BookFragment.java
+public static BookFragment newInstance(UUID bookId) {
+  Bundle args = new Bundle();
+  args.putSerializable(EXTRA_MY_OBJECT, bookId);
+  args.putInt(EXTRA_MY_INT, myInt);
+  ars.putCharSequence(EXTRA_MY_STRING, myString);
+
+  BookFragment fragment = new BookFragment();
+  fragment.setArguments(args);
+
+  return fragment
+}
+
+// BookActivity.java
+protected Fragment createFragment() {
+  UUID bookId = (UUID)getIntent().getSerializableExtra(BookFragment.EXTRA_BOOK_ID);
+  
+  return BookFragment.newInstance(bookId);
+}
+````
+
+We are calling `setArgument(Bundle)` on an object that has inherited from the `Fragment` class. This method name of `newInstance()` follows Android's naming convention. To get the arguments, we call `getArguments()` from `Fragment`, then the type specific 'get' method from `Bundle`.
+
+````java
+// BookFragment.java
+public void onCreate(Bundle savedInstanceState) {
+  UUID bookId = (UUID)getArguments().getSerializable(EXTRA_BOOK_ID);
+  mBook = Library.get(getActivity()).getBook(bookId);
+}
+````
+
+##### Updating Activity
+
+We may have an Activity that we already inflatedand is still in our stack, but the data changed due to current running activity changing the data. In this case, must change that parent activity to update its view list.
+
+````java
+public void onResume() {
+  super.onResume();
+  ((BookAdapter)getListAdapter()).notifyDataSetChanged();
+}
+````
 
 ### Resources
 
