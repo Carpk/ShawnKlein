@@ -11,7 +11,7 @@ logo: 'assets/images/logo.png'
 ---
 
 
-What is the purpose of the Adapter class? Is a question I kept asking myself while working on adroid apps. This post takes a look at the Apater class and discusses its purposes.
+What is the purpose of the Adapter class? This is a question I kept asking myself while working on adroid apps. This post takes a look at the Apater class and discusses its purposes.
 
 
 
