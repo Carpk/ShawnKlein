@@ -1,7 +1,7 @@
 ---
 layout: post
 cover: 'assets/images/railroad_fog.jpg'
-title: Android File Directory
+title: Android File Structure
 date:   2016-07-29 10:18:00
 tags: coding java
 subclass: 'post tag-test tag-content'
@@ -35,7 +35,7 @@ public static final class string {
 
 We access a resource in two ways, in code using `R.string.hello` and in XML using `@string/hello`
 
-#### app/lib
+#### app/libs
 
 External library files will be placed in this folder. If you want any external library in your project, place the library jar inside this folder and it will be added to the classpath automatically.
 
