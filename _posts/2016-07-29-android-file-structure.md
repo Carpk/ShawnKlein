@@ -10,11 +10,22 @@ navigation: True
 logo: 'assets/images/logo.png'
 ---
 
-This post will take a look at the Android file structure. We will figure out what goes where, and how to make the best of keeping track of all out files.
+This post will take a look at the Android file structure. We will figure out what goes where, and how to make the best of keeping track of all our files.
 
 #### app/build.gradle
 
-Gradle build scripts are a DSL, they come with a top-level build file and build files for each module.
+Android Studio uses Gradle build scripts. Gradle build scripts are a project automation tool wrtten as a DSL. This is where we define our target and minimal SDK. We also use this file to define the versionName and versionCode of our app.
+
+We actually have two `build.gradle` scripts, a top-level build file and build files for each module. It is also where we identify the minimal and taret SDK for our app.
+
+This file is where we have our dependancy declarations. If we want to add an external library such as `UniversalImageLoader`, we  make it avaialbe by adding:
+
+````
+dependencies {
+compile 'com.google.code.gson:gson:2.3+'
+compile 'com.nostral13.univeralimageloader:universal-image-loader:1.9.3'
+}
+````
 
 #### app/build/generated
 
@@ -71,9 +82,13 @@ This directory is home to our `xml`  and `png` resources.
 
 Resources are images, audio, and XML files that live in the res/ diretory. We use the resource ID `R.layout.activity_main` to access these files. This ID returns an int set from `class layout` in R.java, this looks something like  `public static final int activity_main=0x7f04001a;`.
 
-#### app/src/main/res/mipmap-hdpi/*.png
+#### app/src/main/res/drawable
 
-This file 
+References to a string will begin with `@string/` and refrences for a drawable will begin with `@drawable/`. Drawable resorces have differant files for different dpi screens. See the section below for an undestanding of which each file is used for. This folder is initally empty, but you can upload an image by right clicking `res` folder and selecting `new image asset`. Android Studio will create the appropriate resolutions from the uploaded image you provide.
+
+#### app/src/main/res/mipmap/*.png
+
+These files hold the images for your app/launcher icons. The launcher icon is used at different resolutions from the device's current density.
 
 * __mdpi__ medium density screens(~160dpi)
 * __hdpi__ high density screens(~240dpi)
@@ -81,6 +96,7 @@ This file
 * __xxhdpi__ extra extra high density screens(~480dpi)
 * __xxxhdpi__ extra extra extra high density screens(~640dpi)
 
+They are refrenced as `android:icon="@mipmap/ic_launcher"`.
 
 #### app/src/main/res/layout/*.xml
 
@@ -102,7 +118,7 @@ Android keeps all the strings all in one place, the `strings.xml` file. Referenc
 
 
 
-==========================================================================================
+==========================================================================
 
 
 
@@ -110,9 +126,6 @@ The method `setContentView(R.layout.activity_main)` is how our `MainActivity.jav
 
 The `public View findViewById(int id)` takes ID of widget and returns a View object. We will prefix with "Button" to return a button instead of a view `mTrueButton = (Button)findViewById(R.id.true_button)`
 
-##### Drawables
-
-References to a string will begin with `@string/` and refrences for a drawable will begin with `@drawable/`. Drawable resorces have differant files for different dpi screens.
 
 
 
