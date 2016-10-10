@@ -115,26 +115,3 @@ Android keeps all the strings all in one place, the `strings.xml` file. Referenc
 ````
 
 
-
-
-
-==========================================================================
-
-
-
-The method `setContentView(R.layout.activity_main)` is how our `MainActivity.java` file knows which layout to inflate. In `android:id="@+id/false_button"` the `+` is used during the creation of the id.
-
-The `public View findViewById(int id)` takes ID of widget and returns a View object. We will prefix with "Button" to return a button instead of a view `mTrueButton = (Button)findViewById(R.id.true_button)`
-
-
-
-
-
-
-
-
-
-
-
-
-

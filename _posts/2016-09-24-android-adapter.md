@@ -16,20 +16,19 @@ For us to understand the Adapter class, we need to know how the ListView class w
 
 #### ListView
 
-To use the Adapater class, we need to know how ListView works. Creating a new view in Android is very expensive. When scrolling a list of items from the ListView, any items that you scroll out of are sent to a part of the `ListView` called the Recycler. The Recycler allows the Adapter to point to our now unused view using `convertView()`. and reused that view instead of creating a brand new one. 
-
-Our code should look somthing like the example below. 
+To use the Adapater class, we need to know how ListView works. Creating a new view in Android is very expensive. When scrolling a list of items from the ListView, any items that you scroll out of are sent to a part of the `ListView` called the Recycler. The Recycler allows the Adapter to point to our now unused view using `convertView()`, and reused that view instead of creating a brand new one. 
 
 ````java
 public View getView(int position, View convertView, ViewGroup parent) {
   if (convertView == null) {
     convertView = mInflater.inflate(R.layout.item, null);
   }
-  ((TextView) convertView.findViewById(R.id.text
+  ((TextView) convertView.findViewById(R.id.text)).setText(DATA[postion]);
+  ((ImageView) convertView.findViewById(R.id.icon)).setImageBitmap((position & 1) == 1 ? mIcon1 : mIcon2);
 }
 ````
 
-Our code takes a converted view, if it has not been inflated yet, it will do so
+Our code takes a converted view, and if it has not been inflated yet, it will do so with the first code block. With our code initially inflating our view, it will overw
 
 
 
