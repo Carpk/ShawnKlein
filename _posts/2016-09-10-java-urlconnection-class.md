@@ -25,24 +25,45 @@ InputStream response = connection.getInputStream();
 
 We use the `URLConnection` instance to `setRequestProperty()` on our `connection`. The URLConnection class allows us to set additional parameters on our object. Such as `setDefaultUseCaches(boolean)` and `setDoInput(boolean)`. If no additional parameters need to be set, then we could have immediately instantiated the `InputSteam` with `InputStream response = new URL(url).openStream();`.
 
-To use `HttpURLConnection`, we still set up with `URL()` and  `openConnection()`, then use polymorphism to send our object to let our object be refrenced as an objecty from the `HttpURLConnection` class.
+To use `HttpURLConnection`, we still set up with `URL()` and  `openConnection()`, then use type casting to let our object to let our object be refrenced as a type of the `HttpURLConnection` class.
 
 ````java
 String address = "http://example.com";
 String charset = "UTF-8";
+String userAgent = "Mozilla/5.0";
 
 URL url = new URL(address);
 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
 connection.setRequestMethod("GET");
+connection.setRequestProperty("User-Agent", userAgent);
+
+int responseCode = connection.getResponsecode();
 ````
 
+The use of `HttpURLConnection` allows us more methods to use with our HTTP connection, such as `setRequestMethod("GET")`. Next, we will explore some addtional parameters to set when sending a post request.
 
+````java
+String address = "http://example.com/create";
+String charset = "UTF-8";
+String userAgent = "Mozilla/5.0";
+String addressParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
 
+URL url = new URL(address);
+HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
+connection.setRequestMethod("POST");
+connection.setRequestProperty("User-Agent", userAgent);
+connection.setRequestProperty("Accept-Language", "en-US, en;q=0.5");
+connection.setDoOutput(true);
 
+DataOutputStream wr = DataOutputStream(connection.getOutputStream());
+wr.writeBytes(addressParameters);
+wr.flush();
+wr.close();
+````
 
-
+Setting up the connection is mostly the same as our previous examples. we changed the request method to a post request, except for `setDoOutput()` and `getOutputStream()`, which are both methods of the `URLConnection` class.
 
 
 
