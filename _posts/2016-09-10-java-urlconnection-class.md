@@ -15,20 +15,27 @@ One of the most useful classes in Java is the `URLConnection` class. Its the bas
 All three of these classes are abstract classes, this means we are not able in instantiate them. Instead we start by initializing the `URL` class with the address we are looking to query, and by calling `openConnection()` will return a `URLConnection` instance. 
 
 ````java
-String url = "http://example.com";
+String address = "http://example.com";
 String charset = "UTF-8";
 
-URLConnection connection = new URL(url).openConnection();
+URLConnection connection = new URL(address).openConnection();
 connection.setRequestProperty("Accept-Charset", charset);
 InputStream response = connection.getInputStream();
 ````
 
 We use the `URLConnection` instance to `setRequestProperty()` on our `connection`. The URLConnection class allows us to set additional parameters on our object. Such as `setDefaultUseCaches(boolean)` and `setDoInput(boolean)`. If no additional parameters need to be set, then we could have immediately instantiated the `InputSteam` with `InputStream response = new URL(url).openStream();`.
 
+To use `HttpURLConnection`, we still set up with `URL()` and  `openConnection()`, then use polymorphism to send our object to let our object be refrenced as an objecty from the `HttpURLConnection` class.
 
+````java
+String address = "http://example.com";
+String charset = "UTF-8";
 
+URL url = new URL(address);
+HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-
+connection.setRequestMethod("GET");
+````
 
 
 
