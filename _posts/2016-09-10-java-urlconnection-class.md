@@ -43,8 +43,9 @@ int responseCode = connection.getResponsecode();
 
 The use of `HttpURLConnection` allows us more methods to use with our HTTP connection, such as `setRequestMethod("GET")`. Next, we will explore some addtional parameters to set when sending a post request.
 
+
 ````java
-String address = "http://example.com/create";
+String address = "https://posttestserver.com/post.php";
 String charset = "UTF-8";
 String userAgent = "Mozilla/5.0";
 String addressParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
@@ -63,7 +64,7 @@ wr.flush();
 wr.close();
 ````
 
-Setting up the connection is mostly the same as our previous examples. we changed the request method to a post request, except for `setDoOutput()` and `getOutputStream()`, which are both methods of the `URLConnection` class.
+Setting up the connection is mostly the same as our previous examples, but we changed the request method to a post request. Then we called `setDoOutput()` and `getOutputStream()`, which area actually from the `URLConnection` class, and use `DataOutputStream` class to write the string to our post request. To test if this work, head over to [http://posttestserver.com/](http://posttestserver.com/) and check the logs!
 
 
 
