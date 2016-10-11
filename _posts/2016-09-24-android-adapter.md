@@ -12,7 +12,6 @@ logo: 'assets/images/logo.png'
 
 The adapter class can add another layer of abstraction and complexity, but when used correctly, it can greatly improve the performance of your app.
 
-For us to understand the Adapter class, we need to know how the ListView class works.
 
 #### ListView
 
@@ -28,23 +27,23 @@ public View getView(int position, View convertView, ViewGroup parent) {
 }
 ````
 
-Our code takes a converted view, and if it has not been inflated yet, it will do so with the first code block. With our code initially inflating our view, it will overw
+Our code takes a converted view, and if it has not been inflated yet, it will do so in the first code block. This will continue until your current view id full. 
 
 
 
 
+Adapters get the data and and a child view, then pass it to the AdapterView. The AdapaterView will then display the child view along with the data.
+
+### Common Adapters
+
+##### ArrayAdapter
+
+The ArrayAdapter is an adapter backed by an array of objects. We convert an ArrayAdapter item into a String and put it into a TextView. The TextView is then displayed in the AdapterView(ListView).
 
 
+##### SimpleCursorAdapter
 
-
-
-
-
-
-
-
-
-
+A SimpleCursorAdapter links the data contained in a Cursor to an Adapter View. The SimpleCursorView binds the data to an AdapterView. This 
 
 
 
