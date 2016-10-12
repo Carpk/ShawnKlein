@@ -14,13 +14,25 @@ This post will discuss Android Activities and how the OS manages them.
 
 ### Activities
 
-An activity is an instance of the `Activity` class and is responsible for managing user interactions with a screen of information. Inside an activity are widgets: which can show text, graphics, interact with user, or arrange other widgets on screen. buttons, text input, check boxes.
+An activity is an instance of the `Activity` class and is responsible for managing user interactions with a screen of information. Inside an activity are widgets: which can show text, graphics, interact with user, or arrange other widgets on screen. Also includes buttons, text input, and check boxes.
+
+````xml
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical">
+    <TextView
+        android:text="@string/sample_title_label" />
+    <Button
+        android:id="@+id/sample_button" />
+</LinearLayout>
+````
+
+LinearLayout, TextView, and Button are all widgets that an activity is responisble for managing.
 
 ###### Activity Lifecycle
 
-Upon initially starting the application, our first activity executes the `onCreate()` hook, followed by `onStart()`, and then `onResume()` to gives us our running activity. If we have another activity created, our application executes the `onPause()` method for our current activity, but will resume with `onResume()` once this activey returns to the foreground. The `onStop()` hook occurs when we hit home during the use of our application, if we return, our applicaiton will start up where we initially left. However, the OS can determine that it needs additional resources and can kill these processes on a need be basis. And these activities will execute `onDestroy()` when we are finished with the current activity. Home button will cause the activity to execute `onPause()` and `onStop()`. Using the back button will also call `onDestroy()` which will also destroy any stashed state.
+Upon initially starting the application, the `ActivityManager` calls the `onCreate()` method on our activity, followed by `onStart()`, and then `onResume()` to gives us our running activity. If we have another activity created, `ActivityManager` calls the `onPause()` method for our current activity, but will resume with `onResume()` once this activity returns to the foreground. `onStop()` occurs when we hit home during the use of our application, if we return, our applicaiton will start up where we initially left. However, the OS can determine that it needs additional resources and can kill these processes on a need be basis. And these activities will execute `onDestroy()` when we are finished with the current activity. Home button will cause the activity to execute `onPause()` and `onStop()`. Using the back button will also call `onDestroy()` which will also destroy any stashed state.
 
-![Activity Lifecycle](/assets/images/activity_lifecycle.jpg)
+![Activity Lifecycle](/assets/images/managing-activities/activity_lifecycle.jpg)
 
 Rotating the screen to change its orientation will cause it to change the device configuration, which calls `onDestroy()` and `onCreate()` in order to inflate the new activity with the device configuration.
 
@@ -163,7 +175,7 @@ public class TestFragment extends Fragment {
 
 The FragmentManager is responsible for calling the lifecycle methods on the fragments in its list. The `onAttach()`, `onCreate()`, and `onCreateView()` methods are called when you add the fragment to the FragmentManager, `onActivityCreated()` is called after the hosting activity's `onCreate()`. If the Fragment is added when the Activity is already running, paused, or stopped, the FragmentManager runs through each method until it get gets caught up to the Activity's state.
 
-![Fragment Lifecycle](/assets/images/fragment_lifecycle.png)
+![Fragment Lifecycle](/assets/images/managing-activities/fragment_lifecycle.png)
 
 Now that we have created our fragment, we need 2 things to host a UI fragment, a spot in the layout for the fragment's view, and manage the lifecycle of the fragment. Fragments lifecycle are called by the hosting activity, instead of the OS. You can add a fragment to either the hosting activity's _layout_ or _code_.
 
