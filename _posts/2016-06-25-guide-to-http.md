@@ -14,11 +14,11 @@ HTTP is a request/response protocol that is used for transmitting hypermedia doc
 
 The request method, URI and protocol version make up the __request line__. Followed by __request headers__ defining the parameters of the HTTP transaction. Both of these are what make up the __request message header__. Then lastly a __blank line__ and the optional __request message body__.
 
-![image of HTTP request](/assets/images/http_request.jpg)
+![image of HTTP request](/assets/images/http-guide/http_request.jpg)
 
 The server responds with a __status line__ that includes the message's [protocol version](#versions) and a [response code](#codes) for success or error, followed by by a [MIME](#mime)-like message containing server information, entity meta-information, which is our __response headers__ and possible a entity-body content being __response message body__.
 
-![image of HTTP request](/assets/images/http_response.jpg)
+![image of HTTP request](/assets/images/http-guide/http_response.jpg)
 
 HTTP is also used as a generic protocol for communication between user agents(browsers, web crawlers) and proxies/gateways to other Internet systems, including those supported by the SMTP, FTP, Gopher, and WAIS protocols. In this way, HTTP allows basic hypermedia access to resources available from diverse applications.
 
@@ -34,7 +34,7 @@ An HTTP client initiates by starting a TCP session to port 80 of the server. The
   <li>Finally, the client will respond with <code>ack</code> to acknowledge the server's synchronize request. 
 </ol>
 
-![image of 3 way handshake for TCP connection](/assets/images/3-way-handshake.jpg)
+![image of 3 way handshake for TCP connection](/assets/images/http-guide/3-way-handshake.jpg)
 
 TCP will then commence with data transmission, and will close the session upon completion.
 
