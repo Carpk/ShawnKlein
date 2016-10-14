@@ -52,46 +52,5 @@ Our code takes a view named `convertView`, and if it has not been inflated yet, 
 
 
 
-==========================================================================
-
-
-This works by allowing any list items that are not in the current view
-
-
-Creating a new view in Android is very expensive. To scroll through a list of 1000 items will greatly impair the performace of our device
-
-
-
-#### ListView
-
-To use the Adapater class, we need to know how ListView works. Creating a new view in Android is very expensive. When scrolling a list of items from the ListView, any items that you scroll out of are sent to a part of the `ListView` called the Recycler. The Recycler allows the Adapter to point to our now unused view using `convertView()`, and reused that view instead of creating a brand new one. 
-
-
-Adapters get the data and and a child view, then pass it to the AdapterView. The AdapaterView will then display the child view along with the data.
-
-### Common Adapters
-
-##### ArrayAdapter
-
-The ArrayAdapter is an adapter backed by an array of objects. We convert an ArrayAdapter item into a String and put it into a TextView. The TextView is then displayed in the AdapterView(ListView).
-
-
-##### SimpleCursorAdapter
-
-A SimpleCursorAdapter links the data contained in a Cursor to an Adapter View. The SimpleCursorView binds the data to an AdapterView. This 
-
-
-
-
-
-
-
-
-
-
-
-
-
-Using the Adapter class can greatly improve the performace of an app. while the cost is another layer of abstraction and complexity, 
 
 
