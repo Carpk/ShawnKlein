@@ -13,11 +13,11 @@ logo: 'assets/images/logo.png'
 
 The SOLID principals are five basic principles of object oriented programming and design. These principles help engineers write maintainable code. We are going to take a look at the following:
 
-* [Single responsibility principle](#single_responsibility) 
-* [Open closed principle](#open_closed)
-* [Liskov substitution principle](#liskov_substitution)
-* [Interface segregation principle](#interface_segregation)
-* [Dependency inversion principle](#dependency_inversion)
+1. [__S__ingle responsibility principle](#single_responsibility) 
+2. [__O__pen closed principle](#open_closed)
+3. [__L__iskov substitution principle](#liskov_substitution)
+4. [__I__nterface segregation principle](#interface_segregation)
+5. [__D__ependency inversion principle](#dependency_inversion)
 
 Each example has a brief description and some simple Ruby examples.
 
@@ -163,19 +163,20 @@ The instance of `Square` class will not behave the same way as an instance of `R
 
 > Make fine grained interfaces that are client specific.
 
+Before we start talking about ISP, it's good to note that duck typed languages do not have this issue as the nature of duck typing. Using our examples below, a duck type launguage only need `Job.enable_action(action); action.complete; end` to allow the correct functionality to take place.
+
 The principle states that a client should not be forced to depend on methods that it does not use. When designing a class, we should not have a "fat" public interface full of methods other classes wont use.
 
-````ruby
-class Salad
-  def eat_with_fork
-  end
-end
-class Soup
-  def eat_with_fork
-  end
-end
+````swift
+class Job {
+  func enable_print {}
+  func enable_stable {}
+}
+class Print {}
+class Staple {}
 ````
-We certainly cannot eat soup with a fork, so this is a poor interface implementation. We are attempting to force clients of this interface to depend on these methods that they do not want to use.
+
+The `Staple` class would certainly never use the `Job`'s `#enable_print` method. So we have a fat public interface that violates ISP. The work around would be to create another class to act as the interface for these objects.
 
 ###<a name="dependency_inversion"></a>Dependency Inversion
 
