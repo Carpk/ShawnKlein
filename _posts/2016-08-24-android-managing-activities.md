@@ -115,7 +115,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ````
 
-To retrieve our returing data, we use `protected void onActivityResult()`. This is part of the `Activity` class, and more infomation can be found in the classes section of this guide.
+To retrieve our returing data, we use `protected void onActivityResult()`. This is part of the `Activity` class. The `ActivityManager` calls `onActivityResult` on the parent activity after the child activity dies. This also works for parent fragments, the intent from the child fragment wil be returned to the parent fragment.
 
 ### Fragments
 
@@ -176,6 +176,16 @@ public class TestFragment extends Fragment {
 The FragmentManager is responsible for calling the lifecycle methods on the fragments in its list. The `onAttach()`, `onCreate()`, and `onCreateView()` methods are called when you add the fragment to the FragmentManager, `onActivityCreated()` is called after the hosting activity's `onCreate()`. If the Fragment is added when the Activity is already running, paused, or stopped, the FragmentManager runs through each method until it get gets caught up to the Activity's state.
 
 ![Fragment Lifecycle](/assets/images/managing-activities/fragment_lifecycle.png)
+
+If we were to persist a fragment, the ActivityManager will check the `setRestainInstance` boolean, if set to `true`, the fragment will not be destroyed, but will be detached, then attached to the new FragmentManger and View.
+
+````
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setRetainInstance(true);
+}
+````
 
 Now that we have created our fragment, we need 2 things to host a UI fragment, a spot in the layout for the fragment's view, and manage the lifecycle of the fragment. Fragments lifecycle are called by the hosting activity, instead of the OS. You can add a fragment to either the hosting activity's _layout_ or _code_.
 
