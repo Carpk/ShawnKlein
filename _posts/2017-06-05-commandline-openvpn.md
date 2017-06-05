@@ -19,7 +19,6 @@ The easiest way to get started is with a config file in your current directory. 
 
 ````bash
 ~$ sudo openvpn chicago.ovpn
-
 ````
 
 If you are recieving errors such as:

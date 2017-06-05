@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Shawn Klein</title>
+    <link>http://ShawnKlein.net/</link>
+    <description>Web Developer in the Chicagoland area.</description>
+    <pubDate>Mon, 05 Jun 2017 05:18:00 -0500</pubDate>
+    <item>
+      <title>OpenVPN from the Command Line</title>
+      <link>http://ShawnKlein.net//commandline-openvpn</link>
+      <description>&lt;p&gt;OpenVPN is a popular VPN service. Many companies that provide a VPN service use OpenVPN as their underlying client &lt;/p&gt;
+</description>
+      <pubDate>Mon, 05 Jun 2017 05:18:00 -0500</pubDate>
+      <dc:date>2017-06-05T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Android Adapter Class</title>
+      <link>http://ShawnKlein.net//android-adapter</link>
+      <description>&lt;p&gt;The adapter class can add another layer of abstraction and complexity, but when used correctly, it can greatly improve the performance of your app.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 24 Sep 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-09-24T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Java URLConnection Class</title>
+      <link>http://ShawnKlein.net//java-urlconnection-class</link>
+      <description>&lt;p&gt;One of the most useful classes in Java is the &lt;code&gt;URLConnection&lt;/code&gt; class. Its the base class of &lt;code&gt;HttpURLConnection&lt;/code&gt; and &lt;code&gt;HttpsURLConnection&lt;/code&gt;, which we will also cover. &lt;/p&gt;
+</description>
+      <pubDate>Sat, 10 Sep 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-09-10T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Android Managing Activities</title>
+      <link>http://ShawnKlein.net//android-managing-activities</link>
+      <description>&lt;p&gt;This post will discuss Android Activities and how the OS manages them.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 24 Aug 2016 10:18:00 -0500</pubDate>
+      <dc:date>2016-08-24T10:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Android File Structure</title>
+      <link>http://ShawnKlein.net//android-file-structure</link>
+      <description>&lt;p&gt;This post will take a look at the Android file structure. We will figure out what goes where, and how to make the best of keeping track of all our files.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 29 Jul 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-07-29T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Solid Principles</title>
+      <link>http://ShawnKlein.net//solid-principles</link>
+      <description>&lt;p&gt;The SOLID principals are five basic principles of object oriented programming and design. These principles help engineers write maintainable code. We are going to take a look at the following:&lt;/p&gt;
+</description>
+      <pubDate>Wed, 06 Jul 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-07-06T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Guide to HTTP</title>
+      <link>http://ShawnKlein.net//guide-to-http</link>
+      <description>&lt;p&gt;HTTP is a request/response protocol that is used for transmitting hypermedia documents such as HTML. HTTP connections start by a client sending a request to the server in the form of a &lt;a href=&quot;#methods&quot;&gt;request method&lt;/a&gt;, &lt;a href=&quot;#uri&quot;&gt;URI&lt;/a&gt;, and &lt;a href=&quot;#versions&quot;&gt;protocol version&lt;/a&gt;, followed by a &lt;a href=&quot;#mime&quot;&gt;MIME&lt;/a&gt;-like message containing request modifiers, client information, and possible body content over a connection with a server. &lt;/p&gt;
+</description>
+      <pubDate>Mon, 27 Jun 2016 04:48:00 -0500</pubDate>
+      <dc:date>2016-06-27T04:48:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>The OSI Model</title>
+      <link>http://ShawnKlein.net//the-osi-model</link>
+      <description>&lt;p&gt;The Open Systems Interconnection (OSI) model is a way to help us conceptualize how data gets transfered from one point to another. This post describes the recommended 7 layered model, where 1 is the lowest layer in this model.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 19 Jun 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-06-19T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>DNS Overview</title>
+      <link>http://ShawnKlein.net//dns-overview</link>
+      <description>&lt;p&gt;A Domain Name System (DNS) is typically provided by your ISP. It is used to look up a hostname (ShawnKlein.net) and convert it to a IP address (127.0.0.1) so we can find our site on the World Wide Web. The DNS converts more than just hostnames, the table below will help us make sense of some additional records that we may be familiar with.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 13 Jun 2016 12:03:00 -0500</pubDate>
+      <dc:date>2016-06-13T12:03:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>The REST Architecture</title>
+      <link>http://ShawnKlein.net//the-rest-architecture</link>
+      <description>&lt;p&gt;Representational State Transfer (REST) is the architectural style used in the development of Web services for the World Wide Web. RESTful systems typically use HTTP to request, retrieve, and send data to web servers. &lt;/p&gt;
+</description>
+      <pubDate>Wed, 08 Jun 2016 04:27:00 -0500</pubDate>
+      <dc:date>2016-06-08T04:27:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Calling Shell Commands</title>
+      <link>http://ShawnKlein.net//calling-shell-commands</link>
+      <description>&lt;p&gt;Occasionally we need to interact with the OS or run a shell command, Ruby gives us a few ways to do this. All commands allow for interpolation.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 29 May 2016 12:09:00 -0500</pubDate>
+      <dc:date>2016-05-29T12:09:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Module Paths in Rails</title>
+      <link>http://ShawnKlein.net//module-paths-in-rails</link>
+      <description>&lt;p&gt;Rails has quite a few directories for breaking up and organizing our code. We are going to briefly explore what files belong in these directories, and how to best utilize them.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 21 May 2016 15:24:00 -0500</pubDate>
+      <dc:date>2016-05-21T15:24:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Setting Iptables</title>
+      <link>http://ShawnKlein.net//setting-iptables</link>
+      <description>&lt;p&gt;The &lt;code&gt;iptables&lt;/code&gt; firewall allows all traffic by default. If we just set up our server, we are not going to have any rules as of yet. But to get an idea of what a table may look like, we use &lt;code&gt;sudo iptables -L&lt;/code&gt; to list our rules for our default &lt;code&gt;filter&lt;/code&gt; table. We &lt;em&gt;list&lt;/em&gt; the rules by using the &lt;code&gt;-L&lt;/code&gt; option, we can also specify a chain after our list option, &lt;code&gt;sudo iptables -L INPUT&lt;/code&gt; would only show the rules for the INPUT chain.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 15 May 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-05-15T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Creating a Cronjob</title>
+      <link>http://ShawnKlein.net//creating-a-cronjob</link>
+      <description>&lt;p&gt;Cron is a system daemon that executes tasks at designated times. Crontab files are user specific, and can executed with admin privledges. Look for our current set of cronjobs using the &lt;code&gt;-l&lt;/code&gt; option.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 11 May 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-05-11T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Using Modules and Mixins</title>
+      <link>http://ShawnKlein.net//using-modules-and-mixins</link>
+      <description>&lt;p&gt;Ruby gives us two ways to mixin a module, the &lt;code&gt;extend&lt;/code&gt; and &lt;code&gt;include&lt;/code&gt; methods.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 07 May 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-05-07T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Duck Typing</title>
+      <link>http://ShawnKlein.net//duck-typing</link>
+      <description>&lt;p&gt;Duck typing is an object oriented design technique that lets us determine an object by using its properties and its methods. We are not concerned with the class type of a duck object, it&amp;#39;s the public interface that will dictate how we may interact with the object. Our goal is to utilize a duck&amp;#39;s public interface with other similar ducks and allow them to share their interfaces in an abstract manner. We are trying to recognize the places in our code that our application would benefit from having similar interfaces.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 01 May 2016 10:18:00 -0500</pubDate>
+      <dc:date>2016-05-01T10:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>The Grep Command</title>
+      <link>http://ShawnKlein.net//the-grep-command</link>
+      <description>&lt;p&gt;The grep command is without a doubt currently my favorite command. Lets say we are writing a large complex application, and we have some method that we don&amp;#39;t know who calls it, or some code that is passed in and we have no idea from where or why. We can easily locate our elusive method call with &lt;code&gt;grep -r my_method&lt;/code&gt;. The &lt;code&gt;-r&lt;/code&gt; option will recursively search the contents of all the files in and below our current directory. We can also call this command as &lt;code&gt;rgrep search_pattern&lt;/code&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 26 Apr 2016 15:24:00 -0500</pubDate>
+      <dc:date>2016-04-26T15:24:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Guide to Object Oriented Design</title>
+      <link>http://ShawnKlein.net//guide-to-object-oriented-design</link>
+      <description>&lt;p&gt;In a procedural language, behavior and data are separate. Data gets packages into variables and pass around to the behaviors. But an OO language combines them into what we refer to as an &lt;em&gt;object&lt;/em&gt;. Objects have behavior and may contain data. They invoke behavior in one another by sending each other messages. For code to be agile, it must be easy to change. Change to meet future demands of our application.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 14 Apr 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-04-14T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Creating a DSL</title>
+      <link>http://ShawnKlein.net//creating-a-dsl</link>
+      <description>&lt;p&gt;Rake, RSpec, and ActiveRecord are all examples of a Domain Specific Language(DSL). There are Internal DSLs, which was will explore first, and then External DSLs, which is when the parser/interpreter and the programs written in the DSL are completely distinct. For our internal DSL example, we have a mock logging utility that will inform us once we have more than 5 blog posts. It simply consists of a name and code block. The end result is to have the code block return a boolean. &lt;code&gt;true&lt;/code&gt; if we have more that 5 blog posts, &lt;code&gt;false&lt;/code&gt; if we do not.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 05 Apr 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-04-05T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>The Chmod Command</title>
+      <link>http://ShawnKlein.net//the-chmod-command</link>
+      <description>&lt;p&gt;The chmod command is an abbreviation of change mode. It is used to change access permissions to files directories. If we were to &lt;code&gt;ll&lt;/code&gt;(short for &lt;code&gt;ls -l&lt;/code&gt;) from our home directory, we many see something like this:&lt;/p&gt;
+</description>
+      <pubDate>Tue, 29 Mar 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-03-29T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>A Brief Introductory into Design Patterns</title>
+      <link>http://ShawnKlein.net//brief-intoductory-to-design-patterns</link>
+      <description>&lt;p&gt;This post is a brief overview of software design patterns from the Design Patterns in Ruby book. The book is a Ruby version of the original Gang of Four book- Design Patterns. We will be covering the following patterns in this post:&lt;/p&gt;
+</description>
+      <pubDate>Wed, 23 Mar 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-03-23T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Troubleshooting nginx install</title>
+      <link>http://ShawnKlein.net//troubleshooting-nginx</link>
+      <description>&lt;p&gt;Recently after installing nginx on a Ubuntu Server and completed setting up configurations along with the creation of a basic index.html page, I was unable to connect to the URL or even ping the ip address. The connection kept giving me a &amp;quot;request timed out&amp;quot; error.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 15 Mar 2016 05:18:00 -0500</pubDate>
+      <dc:date>2016-03-15T05:18:00-05:00</dc:date>
+    </item>
+    <item>
+      <title>Dynamic methods in Ruby</title>
+      <link>http://ShawnKlein.net//dynamic-methods-in-ruby</link>
+      <description>&lt;p&gt;There are three main ways to get Ruby to dynamically generate code for us. These are ways that Ruby will generate code for a method when it simply does not exist yet.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 10 Mar 2016 04:18:00 -0600</pubDate>
+      <dc:date>2016-03-10T04:18:00-06:00</dc:date>
+    </item>
+    <item>
+      <title>The Start of Another Blog</title>
+      <link>http://ShawnKlein.net//so-begins-the-start-of-another-blog</link>
+      <description>&lt;p&gt;And so begins the start of another blog. I often find interesting things I would like to share, or even create a guide to help along other new developers, but there was a certain turn off I had with my wp site. But I hope to populate this with many useful topics that I could reference from time to time again.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 08 Mar 2016 04:18:00 -0600</pubDate>
+      <dc:date>2016-03-08T04:18:00-06:00</dc:date>
+    </item>
+    <dc:date>2017-06-05T05:18:00-05:00</dc:date>
+  </channel>
+</rss>
