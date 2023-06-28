@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/mountainous_lake.jpg'
 title: Setting Iptables
 date:   2016-05-15 10:18:00
-tags: linux/unix devops
+tags: unix/linux
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

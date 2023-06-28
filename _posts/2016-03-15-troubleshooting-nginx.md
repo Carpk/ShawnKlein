@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/autumn_stairs.jpg'
 title: Troubleshooting nginx install
 date:   2016-03-15 10:18:00
-tags: troubleshooting unix/linux devops
+tags: unix/linux
 subclass: 'post tag-test tag-content'
 categories: 'casper'
 navigation: True

@@ -6,24 +6,24 @@ language: 'en-us'
 
 # Website info
 name: 'Shawn Klein'
-description: "Web Developer in the Chicagoland area."
+description: "Software Engineer in Chicago."
 
 # Author's info
 author: 'Shawn Klein'
 # edit 'categories' in the front matter of every post to match this username
 nickname: carpk
-bio: 'Free lance web developer. Lover of all things open source.'
+bio: 'Recent UIC graduate in Chicago'
 location: 'Chicago, IL'
 url: 'http://ShawnKlein.net/'
-linkedin: 'http://www.linkedin.com/pub/shawn-klein/77/375/12'
+linkedin: 'http://www.linkedin.com/in/shawnklein202/'
 github: 'https://github.com/Carpk'
-twitter: 'https://twitter.com/ShawnKlein202'
-resume: 'https://resume.creddle.io/resume/ciek2rbdexk'
-image: 'assets/images/carpk.png'
+projects: 'https://www.thekleinbottle.com'
+resume: 'https://www.thekleinbottle.com/resume/Shawn_Klein_resume.pdf'
+image: 'assets/images/outdoors.png'
 
 short_url: 'ShawnKlein.net/'
 google_analytics: UA-75067724-1
-disqus: username
+#disqus: username
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /
 

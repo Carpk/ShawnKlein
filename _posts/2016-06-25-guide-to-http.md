@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/rocky_river.jpg'
 title: Guide to HTTP
 date:   2016-06-27 9:48:00
-tags: general devops
+tags: general
 subclass: 'post tag-test tag-content'
 categories: 'Casper'
 navigation: True

@@ -9,6 +9,7 @@ categories: 'casper'
 navigation: True
 logo: 'assets/images/logo.png'
 ---
+
 There are three main ways to get Ruby to dynamically generate code for us. These are ways that Ruby will generate code for a method when it simply does not exist yet.
 
 In our examples, we will be defining code in a Library class, which could have an ivar called `@books` as an array of Book objects.
