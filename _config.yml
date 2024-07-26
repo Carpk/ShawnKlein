@@ -22,7 +22,8 @@ resume: 'https://www.thekleinbottle.com/resume/Shawn_Klein_resume.pdf'
 image: 'assets/images/outdoors.png'
 
 short_url: 'ShawnKlein.net/'
-google_analytics: UA-75067724-1
+# google_analytics: UA-75067724-1
+google_analytics: G-708E0PN1K1
 #disqus: username
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /
